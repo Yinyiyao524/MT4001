@@ -23,13 +23,13 @@ undre gränser vara, uttryckt i a, för att standardavvikelsen ska bli lika stor
 Om $X \sim U[\alpha, \beta]$, så gäller att $\text{Var}(X) = \frac{(\beta - \alpha)^2}{12}$.
 $\alpha=a-\sqrt3a, \beta=a+\sqrt3a$
 
-# Uppgift 2
+# Uppgift 2: Kommer data från en normalfördelning?
 Mer text. Använd underrubriker för delfrågor om du tycker det är motiverat.
 
 Et cetera om det är fler än 2 uppgifter.
 test
 
-## Upggift 2.1
+## Upggift 2.1  Normalfördelade data
 ```{r}
 a <- 67
 set.seed(19690420)
@@ -38,7 +38,6 @@ hist(x1, prob = TRUE)
 x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
 lines(x, dnorm(x, a, a))
 set.seed(19690420) 
-x1 <- rnorm(10, a, a)
 x2 <- rnorm(10, a, a) 
 x3 <- rnorm(10, a, a)
 x4 <- rnorm(10, a, a)
@@ -51,12 +50,33 @@ boxplot(x1, x2, x3, x4, x5, x6, x7, x8)
 ```
 
 ```{r}
-
+old_par <- par(mfrow = c(2, 4)) # 2 rader, 4 kolonner
+hist(x1)
+hist(x2)
+hist(x3)
+hist(x4)
+hist(x5)
+hist(x6)
+hist(x7)
+hist(x8)
+par(old_par) # säg åt R att sluta förvänta sig fler plottar till samma fönster
 ```
 
 
 1.
 2.
 
-## Upggift 1.2
+## Upggift 2.2 Likformigt fördelade data
+```{r}
+min_a <-a-sqrt(3*a)
+max_a <- a+sqrt(3*a)
+set.seed(19690420)
+u1 <- runif(10,min_a,max_a)
+hist(u1, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
 Mer text. 
