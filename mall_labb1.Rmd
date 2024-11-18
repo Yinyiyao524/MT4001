@@ -1,21 +1,62 @@
 ---
 title: "Laboration 1"
-author: "Förnamn Efternamn"
+author: "Yinyi Yao Yovela Zhang"
 date: "`r Sys.Date()`"
-output: 
+output:
   html_document:
-    fig_caption: yes
+    fig_caption: true
+  pdf_document: default
+knit_root_dir: "E:/matematik/MT4001/labb"
 ---
 
 # Sammanfattning
 yyyyyyyyyyyyyyyyyy
 zzzzzzzzzzzzzzzzzzzzz
 
-# Uppgift 1
-Text. Använd underrubriker för delfrågor om du tycker det är motiverat.
+# Uppgift 1 Två teorifrågor
+1. Om en exponentialfördelad slumpvariabel har väntevärde a, vad är då dess standardavvikelse?
+
+Standardavvikelse är också a.
+
+2. Den stokatiska variabeln X är likformigt fördelad med väntevärde a. Vad ska fördelningens övre och
+undre gränser vara, uttryckt i a, för att standardavvikelsen ska bli lika stor som väntevärdet? Ledning:
+Om $X \sim U[\alpha, \beta]$, så gäller att $\text{Var}(X) = \frac{(\beta - \alpha)^2}{12}$.
+$\alpha=a-\sqrt3a, \beta=a+\sqrt3a$
 
 # Uppgift 2
 Mer text. Använd underrubriker för delfrågor om du tycker det är motiverat.
 
 Et cetera om det är fler än 2 uppgifter.
 test
+
+## Upggift 2.1
+```{r}
+a <- 67
+set.seed(19690420)
+x1 <- rnorm(10, a, a)
+hist(x1, prob = TRUE)
+x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
+lines(x, dnorm(x, a, a))
+set.seed(19690420) 
+x1 <- rnorm(10, a, a)
+x2 <- rnorm(10, a, a) 
+x3 <- rnorm(10, a, a)
+x4 <- rnorm(10, a, a)
+x5 <- rnorm(10, a, a) 
+x6 <- rnorm(10, a, a)
+x7 <- rnorm(10, a, a)
+x8 <- rnorm(10, a, a) 
+boxplot(x1, x2, x3, x4, x5, x6, x7, x8)
+
+```
+
+```{r}
+
+```
+
+
+1.
+2.
+
+## Upggift 1.2
+Mer text. 
