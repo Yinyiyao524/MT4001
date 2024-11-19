@@ -24,20 +24,13 @@ Om $X \sim U[\alpha, \beta]$, så gäller att $\text{Var}(X) = \frac{(\beta - \a
 $\alpha=a-\sqrt3a, \beta=a+\sqrt3a$
 
 # Uppgift 2: Kommer data från en normalfördelning?
-Mer text. Använd underrubriker för delfrågor om du tycker det är motiverat.
-
-Et cetera om det är fler än 2 uppgifter.
-test
+I denna uppgift undersöker vi om en uppsättning data kan anses komma från en normalfördelning. Vi utgår från ett stickprov med n oberoende observationer  från en okänd sannolikhetsfördelning och använder främst grafiska metoder för att bedöma om fördelningen är normal. Vi undersöker också hur stort n behöver vara för att med rimlig säkerhet avgöra detta. För att undersöka detta simuleras data från både normalfördelningar och andra fördelningar, där alla har samma väntevärde och standardavvikelse.
 
 ## Upggift 2.1  Normalfördelade data
 ```{r}
 a <- 67
 set.seed(19690420)
 x1 <- rnorm(10, a, a)
-hist(x1, prob = TRUE)
-x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
-lines(x, dnorm(x, a, a))
-set.seed(19690420) 
 x2 <- rnorm(10, a, a) 
 x3 <- rnorm(10, a, a)
 x4 <- rnorm(10, a, a)
@@ -46,7 +39,12 @@ x6 <- rnorm(10, a, a)
 x7 <- rnorm(10, a, a)
 x8 <- rnorm(10, a, a) 
 boxplot(x1, x2, x3, x4, x5, x6, x7, x8)
-
+hist(x1, prob = TRUE)
+x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
+lines(x, dnorm(x, a, a))
+boxplot(x1)
+qqnorm(x1)
+qqline(x1)
 ```
 
 ```{r}
@@ -72,11 +70,39 @@ min_a <-a-sqrt(3*a)
 max_a <- a+sqrt(3*a)
 set.seed(19690420)
 u1 <- runif(10,min_a,max_a)
+u2 <- runif(10,min_a,max_a)
+u3 <- runif(10,min_a,max_a)
+u4 <- runif(10,min_a,max_a)
+u5 <- runif(10,min_a,max_a)
 hist(u1, prob = TRUE)
 u <- seq(from = min_a, to = max_a, length.out = 100)
 
 # Add the uniform distribution curve to the histogram
 lines(u, dunif(u, min_a,max_a))
+```
+```{r}
+par_1 <- par(mfrow=c(2,3))
+hist(u1)
+hist(u2)
+hist(u3)
+hist(u4)
+hist(u5)
+par(par_1)
+```
+
+```{r}
+par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
+hist(x1)
+hist(x2)
+hist(x3)
+hist(x4)
+hist(x5)
+hist(u1)
+hist(u2)
+hist(u3)
+hist(u4)
+hist(u5)
+par(par_2) 
 ```
 
 Mer text. 
