@@ -31,22 +31,64 @@ I denna uppgift undersöker vi om en uppsättning data kan anses komma från en 
 
 ## Upggift 2.1  Normalfördelade data
 
-```{r}
-a <- 67
+```{r, fig.cap= 'Boxplot n=10' }
+a <- 97
 set.seed(15151515)
-x1 <- rnorm(50, a, a)
-x2 <- rnorm(50, a, a) 
-x3 <- rnorm(50, a, a)
-x4 <- rnorm(50, a, a)
-x5 <- rnorm(50, a, a) 
-x6 <- rnorm(50, a, a)
-x7 <- rnorm(50, a, a)
-x8 <- rnorm(50, a, a) 
-boxplot(x1, x2, x3, x4, x5, x6, x7, x8)
+x10_1 <- rnorm(10, a, a)
+x10_2 <- rnorm(10, a, a) 
+x10_3 <- rnorm(10, a, a)
+x10_4 <- rnorm(10, a, a)
+x10_5 <- rnorm(10, a, a) 
+x10_6 <- rnorm(10, a, a)
+x10_7 <- rnorm(10, a, a)
+x10_8 <- rnorm(10, a, a) 
+boxplot(x10_1, x10_2, x10_3, x10_4, x10_5, x10_6, x10_7, x10_8)
 ```
 
-```{r fig.cap="Normalfördelning n=50"}
-hist(x8, prob = TRUE,
+```{r, fig.cap= 'Boxplot n=20' }
+a <- 97
+set.seed(15151515)
+x20_1 <- rnorm(20, a, a)
+x20_2 <- rnorm(20, a, a) 
+x20_3 <- rnorm(20, a, a)
+x20_4 <- rnorm(20, a, a)
+x20_5 <- rnorm(20, a, a) 
+x20_6 <- rnorm(20, a, a)
+x20_7 <- rnorm(20, a, a)
+x20_8 <- rnorm(20, a, a) 
+boxplot(x20_1, x20_2, x20_3, x20_4, x20_5, x20_6, x20_7, x20_8)
+```
+
+```{r, fig.cap= 'Boxplot n=50' }
+a <- 97
+set.seed(15151515)
+x50_1 <- rnorm(50, a, a)
+x50_2 <- rnorm(50, a, a) 
+x50_3 <- rnorm(50, a, a)
+x50_4 <- rnorm(50, a, a)
+x50_5 <- rnorm(50, a, a) 
+x50_6 <- rnorm(50, a, a)
+x50_7 <- rnorm(50, a, a)
+x50_8 <- rnorm(50, a, a) 
+boxplot(x50_1, x50_2, x50_3, x50_4, x50_5, x50_6, x50_7, x50_8)
+```
+
+```{r, fig.cap= 'Boxplot n=100' }
+a <- 97
+set.seed(15151515)
+x100_1 <- rnorm(100, a, a)
+x100_2 <- rnorm(100, a, a) 
+x100_3 <- rnorm(100, a, a)
+x100_4 <- rnorm(100, a, a)
+x100_5 <- rnorm(100, a, a) 
+x100_6 <- rnorm(100, a, a)
+x100_7 <- rnorm(100, a, a)
+x100_8 <- rnorm(100, a, a) 
+boxplot(x100_1, x100_2, x100_3, x100_4, x100_5, x100_6, x100_7, x100_8)
+```
+
+```{r, fig.cap= 'Normalfördelning n=10' }
+hist(x10_8, prob = TRUE,
 main = "Histogram för normalfördelade slumptal",
 ylab = "Täthet",
 xlab = "Värde")
@@ -54,34 +96,119 @@ x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
 lines(x, dnorm(x, a, a))
 ```
 
-```{r}
-boxplot(x8)
+```{r, fig.cap= 'Normalfördelning n=10 par' }
+old_par <- par(mfrow = c(2, 4)) # 2 rader, 4 kolonner
+hist(x10_1)
+hist(x10_2)
+hist(x10_3)
+hist(x10_4)
+hist(x10_5)
+hist(x10_6)
+hist(x10_7)
+hist(x10_8)
+par(old_par) # säg åt R att sluta förvänta sig fler plottar till samma fönster
 ```
 
-```{r fig.cap=" Q-Q plot n=50"}
-qqnorm(x1,
+
+```{r, fig.cap= 'Normalfördelning n=20' }
+hist(x20_8, prob = TRUE,
+main = "Histogram för normalfördelade slumptal",
+ylab = "Täthet",
+xlab = "Värde")
+x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
+lines(x, dnorm(x, a, a))
+```
+
+```{r, fig.cap= 'Normalfördelning n=20 par' }
+old_par <- par(mfrow = c(2, 4)) # 2 rader, 4 kolonner
+hist(x20_1)
+hist(x20_2)
+hist(x20_3)
+hist(x20_4)
+hist(x20_5)
+hist(x20_6)
+hist(x20_7)
+hist(x20_8)
+par(old_par) # säg åt R att sluta förvänta sig fler plottar till samma fönster
+```
+
+```{r, fig.cap= 'Normalfördelning n=50' }
+hist(x50_8, prob = TRUE,
+main = "Histogram för normalfördelade slumptal",
+ylab = "Täthet",
+xlab = "Värde")
+x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
+lines(x, dnorm(x, a, a))
+```
+
+```{r, fig.cap= 'Normalfördelning n=50 par' }
+old_par <- par(mfrow = c(2, 4)) # 2 rader, 4 kolonner
+hist(x50_1)
+hist(x50_2)
+hist(x50_3)
+hist(x50_4)
+hist(x50_5)
+hist(x50_6)
+hist(x50_7)
+hist(x50_8)
+par(old_par) # säg åt R att sluta förvänta sig fler plottar till samma fönster
+```
+
+```{r, fig.cap= 'Normalfördelning n=100' }
+hist(x100_8, prob = TRUE,
+main = "Histogram för normalfördelade slumptal",
+ylab = "Täthet",
+xlab = "Värde")
+x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
+lines(x, dnorm(x, a, a))
+```
+
+```{r, fig.cap= 'Normalfördelning n=100 par' }
+old_par <- par(mfrow = c(2, 4)) # 2 rader, 4 kolonner
+hist(x100_1)
+hist(x100_2)
+hist(x100_3)
+hist(x100_4)
+hist(x100_5)
+hist(x100_6)
+hist(x100_7)
+hist(x100_8)
+par(old_par) # säg åt R att sluta förvänta sig fler plottar till samma fönster
+```
+
+
+```{r, fig.cap= 'Q-Q plot n=10' }
+qqnorm(x10_1,
        main = "Q-Q Plott för normalfördelade slumptal", 
        xlab = "Teoretiska kvantiler", 
        ylab = "Observerade kvantiler")
 qqline(x1)
 ```
 
-
-
-
-
-```{r}
-old_par <- par(mfrow = c(2, 4)) # 2 rader, 4 kolonner
-hist(x1)
-hist(x2)
-hist(x3)
-hist(x4)
-hist(x5)
-hist(x6)
-hist(x7)
-hist(x8)
-par(old_par) # säg åt R att sluta förvänta sig fler plottar till samma fönster
+```{r, fig.cap= 'Q-Q plot n=20' }
+qqnorm(x20_1,
+       main = "Q-Q Plott för normalfördelade slumptal", 
+       xlab = "Teoretiska kvantiler", 
+       ylab = "Observerade kvantiler")
+qqline(x1)
 ```
+
+```{r, fig.cap= 'Q-Q plot n=50' }
+qqnorm(x50_1,
+       main = "Q-Q Plott för normalfördelade slumptal", 
+       xlab = "Teoretiska kvantiler", 
+       ylab = "Observerade kvantiler")
+qqline(x1)
+```
+
+```{r fig.cap=" Q-Q plot n=100"}
+qqnorm(x100_1,
+       main = "Q-Q Plott för normalfördelade slumptal", 
+       xlab = "Teoretiska kvantiler", 
+       ylab = "Observerade kvantiler")
+qqline(x1)
+```
+
 
 1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som normal eller icke-normal?
 
