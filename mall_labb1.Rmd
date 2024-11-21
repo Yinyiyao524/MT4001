@@ -226,26 +226,16 @@ Däremot har man lätt att se om plotterna i normalfördelningsplott är på nå
 min_a <- a-sqrt(3)*a
 max_a <- a+sqrt(3)*a
 set.seed(15151515)
-u10_1 <- runif(50,min_a,max_a)
-u10_2 <- runif(50,min_a,max_a)
-u10_3 <- runif(50,min_a,max_a)
-u10_4 <- runif(50,min_a,max_a)
-u10_5 <- runif(50,min_a,max_a)
+u10_1 <- runif(10,min_a,max_a)
+u10_2 <- runif(10,min_a,max_a)
+u10_3 <- runif(10,min_a,max_a)
+u10_4 <- runif(10,min_a,max_a)
+u10_5 <- runif(10,min_a,max_a)
 hist(u10_1, prob = TRUE)
 u <- seq(from = min_a, to = max_a, length.out = 100)
 
 # Add the uniform distribution curve to the histogram
 lines(u, dunif(u, min_a,max_a))
-```
-
-```{r}
-par_1 <- par(mfrow=c(2,3))
-hist(u10_1)
-hist(u10_2)
-hist(u10_3)
-hist(u10_4)
-hist(u10_5)
-par(par_1)
 ```
 
 ```{r}
@@ -262,6 +252,58 @@ hist(u10_4)
 hist(u10_5)
 par(par_2) 
 ```
+
+```{r}
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u10_1 <- runif(50,min_a,max_a)
+u10_2 <- runif(50,min_a,max_a)
+u10_3 <- runif(50,min_a,max_a)
+u10_4 <- runif(50,min_a,max_a)
+u10_5 <- runif(50,min_a,max_a)
+hist(u10_1, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
+```{r}
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u10_1 <- runif(50,min_a,max_a)
+u10_2 <- runif(50,min_a,max_a)
+u10_3 <- runif(50,min_a,max_a)
+u10_4 <- runif(50,min_a,max_a)
+u10_5 <- runif(50,min_a,max_a)
+hist(u10_1, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
+```{r}
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u10_1 <- runif(50,min_a,max_a)
+u10_2 <- runif(50,min_a,max_a)
+u10_3 <- runif(50,min_a,max_a)
+u10_4 <- runif(50,min_a,max_a)
+u10_5 <- runif(50,min_a,max_a)
+hist(u10_1, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
+
+
+
 
 ```{r fig.cap=" Q-Q plot n=50"}
 qqnorm(u10_4,
