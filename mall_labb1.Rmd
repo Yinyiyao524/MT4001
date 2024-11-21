@@ -14,50 +14,59 @@ yyyyyyyyyyyyyyyyyy
 zzzzzzzzzzzzzzzzzzzzz
 
 # Uppgift 1 Två teorifrågor
+
 1. Om en exponentialfördelad slumpvariabel har väntevärde a, vad är då dess standardavvikelse?
 
-Standardavvikelse är också a.
+Svar: Standardavvikelse är också a.
 
-2. Den stokatiska variabeln X är likformigt fördelad med väntevärde a. Vad ska fördelningens övre och
-undre gränser vara, uttryckt i a, för att standardavvikelsen ska bli lika stor som väntevärdet? Ledning:
+2. Den stokatiska variabeln X är likformigt fördelad med väntevärde a. Vad ska fördelningens övre och undre gränser vara, uttryckt i a, för att 
+standardavvikelsen ska bli lika stor som väntevärdet? Ledning:
 Om $X \sim U[\alpha, \beta]$, så gäller att $\text{Var}(X) = \frac{(\beta - \alpha)^2}{12}$.
-$\alpha=a-\sqrt3a, \beta=a+\sqrt3a$
+
+Svar: $\alpha=a-\sqrt3*a$, och $\beta=a+\sqrt3*a$
 
 # Uppgift 2: Kommer data från en normalfördelning?
+
 I denna uppgift undersöker vi om en uppsättning data kan anses komma från en normalfördelning. Vi utgår från ett stickprov med n oberoende observationer  från en okänd sannolikhetsfördelning och använder främst grafiska metoder för att bedöma om fördelningen är normal. Vi undersöker också hur stort n behöver vara för att med rimlig säkerhet avgöra detta. För att undersöka detta simuleras data från både normalfördelningar och andra fördelningar, där alla har samma väntevärde och standardavvikelse.
 
 ## Upggift 2.1  Normalfördelade data
+
 ```{r}
 a <- 67
-set.seed(19690420)
-x1 <- rnorm(10, a, a)
-x2 <- rnorm(10, a, a) 
-x3 <- rnorm(10, a, a)
-x4 <- rnorm(10, a, a)
-x5 <- rnorm(10, a, a) 
-x6 <- rnorm(10, a, a)
-x7 <- rnorm(10, a, a)
-x8 <- rnorm(10, a, a) 
+set.seed(15151515)
+x1 <- rnorm(50, a, a)
+x2 <- rnorm(50, a, a) 
+x3 <- rnorm(50, a, a)
+x4 <- rnorm(50, a, a)
+x5 <- rnorm(50, a, a) 
+x6 <- rnorm(50, a, a)
+x7 <- rnorm(50, a, a)
+x8 <- rnorm(50, a, a) 
 boxplot(x1, x2, x3, x4, x5, x6, x7, x8)
 ```
-```{r fig.cap="Normalfördelning n=10"}
-hist(x1, prob = TRUE,
+
+```{r fig.cap="Normalfördelning n=50"}
+hist(x8, prob = TRUE,
 main = "Histogram för normalfördelade slumptal",
 ylab = "Täthet",
 xlab = "Värde")
 x <- seq(from = a-3*a, to = a+3*a, length.out = 100)
 lines(x, dnorm(x, a, a))
 ```
-```{r fig.cap=" Q-Q plot n=10"}
+
+```{r}
+boxplot(x8)
+```
+
+```{r fig.cap=" Q-Q plot n=50"}
 qqnorm(x1,
        main = "Q-Q Plott för normalfördelade slumptal", 
        xlab = "Teoretiska kvantiler", 
        ylab = "Observerade kvantiler")
 qqline(x1)
 ```
-```{r}
-boxplot(x1)
-```
+
+
 
 
 
@@ -74,26 +83,34 @@ hist(x8)
 par(old_par) # säg åt R att sluta förvänta sig fler plottar till samma fönster
 ```
 
+1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som normal eller icke-normal?
 
-1.
-2.
+Svar: När $n$ blir minst 50 har man lätt att se att det är normalfördelad.
+
+2. Vilken grafisk metod anser ni är mest effektiv för att avgöra om ett stickprov är normalfördelat eller inte? 
+Motivera med de olika grafiska metoderna (boxplot, histogram, normalfördelningsplott).
+
+Svar: Normalfördelningsplott är mest effektiv för att avgora om ett stickprov är normalfördelat eller inte. Boxplot visar inte alls detaljer om hur fördelningen ser ut; man har också svårt att bedöma om staplerna följer normalfördelade kurvan i histogram.
+Däremot har man lätt att se om plotterna i normalfördelningsplott är på någon rätt linjen eller inte.
 
 ## Upggift 2.2 Likformigt fördelade data
+
 ```{r}
-min_a <-a-sqrt(3*a)
-max_a <- a+sqrt(3*a)
-set.seed(19690420)
-u10_1 <- runif(10,min_a,max_a)
-u10_2 <- runif(10,min_a,max_a)
-u10_3 <- runif(10,min_a,max_a)
-u10_4 <- runif(10,min_a,max_a)
-u10_5 <- runif(10,min_a,max_a)
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u10_1 <- runif(50,min_a,max_a)
+u10_2 <- runif(50,min_a,max_a)
+u10_3 <- runif(50,min_a,max_a)
+u10_4 <- runif(50,min_a,max_a)
+u10_5 <- runif(50,min_a,max_a)
 hist(u10_1, prob = TRUE)
 u <- seq(from = min_a, to = max_a, length.out = 100)
 
 # Add the uniform distribution curve to the histogram
 lines(u, dunif(u, min_a,max_a))
 ```
+
 ```{r}
 par_1 <- par(mfrow=c(2,3))
 hist(u10_1)
@@ -119,6 +136,13 @@ hist(u10_5)
 par(par_2) 
 ```
 
+```{r fig.cap=" Q-Q plot n=50"}
+qqnorm(u10_4,
+       main = "Q-Q Plott för normalfördelade slumptal", 
+       xlab = "Teoretiska kvantiler", 
+       ylab = "Observerade kvantiler")
+qqline(u10_4)
+```
 # Uppgift 3: Explorativ dataanalys
 ```{r}
 data <- read.csv(("E:/matematik/MT4001/labb/homework1/olvinsprit.csv"), header = TRUE)
