@@ -182,7 +182,7 @@ qqnorm(x10_1,
        main = "Q-Q Plott för normalfördelade slumptal", 
        xlab = "Teoretiska kvantiler", 
        ylab = "Observerade kvantiler")
-qqline(x1)
+qqline(x10_1)
 ```
 
 ```{r, fig.cap= 'Q-Q plot n=20' }
@@ -190,7 +190,7 @@ qqnorm(x20_1,
        main = "Q-Q Plott för normalfördelade slumptal", 
        xlab = "Teoretiska kvantiler", 
        ylab = "Observerade kvantiler")
-qqline(x1)
+qqline(x20_1)
 ```
 
 ```{r, fig.cap= 'Q-Q plot n=50' }
@@ -198,7 +198,7 @@ qqnorm(x50_1,
        main = "Q-Q Plott för normalfördelade slumptal", 
        xlab = "Teoretiska kvantiler", 
        ylab = "Observerade kvantiler")
-qqline(x1)
+qqline(x50_1)
 ```
 
 ```{r fig.cap=" Q-Q plot n=100"}
@@ -206,7 +206,7 @@ qqnorm(x100_1,
        main = "Q-Q Plott för normalfördelade slumptal", 
        xlab = "Teoretiska kvantiler", 
        ylab = "Observerade kvantiler")
-qqline(x1)
+qqline(x100_1)
 ```
 
 
@@ -240,11 +240,11 @@ lines(u, dunif(u, min_a,max_a))
 
 ```{r}
 par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
-hist(x1)
-hist(x2)
-hist(x3)
-hist(x4)
-hist(x5)
+hist(x10_1)
+hist(x10_2)
+hist(x10_3)
+hist(x10_4)
+hist(x10_5)
 hist(u10_1)
 hist(u10_2)
 hist(u10_3)
@@ -320,7 +320,47 @@ beer <- data$beer
 vin <- data$vin
 sprit <- data$sprit
 ```
-```{r}
-plot(beer, vin)
+```{r fig.cap="Spridningsdiagram för Beer vs. Wine Consumption"}
+plot(beer, vin,
+     xlab = "Beer Consumption",        
+     ylab = "Wine Consumption",          
+     pch = 16,)   
+text(beer,vin,land)
 ```
+```{r}
+plot(beer, sprit,
+     xlab = "Beer Consumption",        
+     ylab = "sprit Consumption",          
+     pch = 16,)   
+text(beer,sprit,land)
+```
+
+```{r fig.cap=" Histogram för öl konsumtion "}
+hist(beer,probability = TRUE, 
+     xlab = "Öl-konsumtion")
+```
+```{r}
+qqnorm(beer, main = "Q-Q-plot för öl-konsumtion")
+qqline(beer)
+```
+
+```{r fig.cap=" Histogram för vin konsumtion "}
+hist(vin,probability = TRUE, 
+     xlab = "vin-konsumtion")
+```
+```{r}
+qqnorm(vin, main = "Q-Q-plot för vin-konsumtion")
+qqline(vin)
+```
+
+```{r fig.cap=" Histogram för sprit konsumtion "}
+hist(sprit,probability = TRUE, 
+     xlab = "sprit-konsumtion")
+```
+```{r}
+qqnorm(sprit, main = "Q-Q-plot för sprit-konsumtion")
+qqline(sprit)
+```
+
+
 
