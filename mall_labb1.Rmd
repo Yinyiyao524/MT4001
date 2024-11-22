@@ -370,8 +370,156 @@ Motivera med de olika grafiska metoderna (boxplot, histogram, normalfördelnings
 Svar:  Histogram är mest effektiv för att avgora om ett stickprov är likformigt fördelade eller inte. Boxplot visar inte alls detaljer om hur fördelningen ser ut.
 Däremot har man lätt att se om plotterna i histogrammet är på någon rätt linjen eller inte.
 
+## Upggift 2.3  Exponentialfördelade data
+
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=10' }
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u10_1 <- runif(10,min_a,max_a)
+u10_2 <- runif(10,min_a,max_a)
+u10_3 <- runif(10,min_a,max_a)
+u10_4 <- runif(10,min_a,max_a)
+u10_5 <- runif(10,min_a,max_a)
+hist(u10_1, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=10, compare'}
+par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
+hist(x10_1)
+hist(x10_2)
+hist(x10_3)
+hist(x10_4)
+hist(x10_5)
+hist(u10_1)
+hist(u10_2)
+hist(u10_3)
+hist(u10_4)
+hist(u10_5)
+par(par_2) 
+```
+
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=20'}
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u20_1 <- runif(20,min_a,max_a)
+u20_2 <- runif(20,min_a,max_a)
+u20_3 <- runif(20,min_a,max_a)
+u20_4 <- runif(20,min_a,max_a)
+u20_5 <- runif(20,min_a,max_a)
+hist(u20_1, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=20, compare'}
+par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
+hist(x20_1)
+hist(x20_2)
+hist(x20_3)
+hist(x20_4)
+hist(x20_5)
+hist(u20_1)
+hist(u20_2)
+hist(u20_3)
+hist(u20_4)
+hist(u20_5)
+par(par_2) 
+```
 
 
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=100'}
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u100_1 <- runif(100,min_a,max_a)
+u100_2 <- runif(100,min_a,max_a)
+u100_3 <- runif(100,min_a,max_a)
+u100_4 <- runif(100,min_a,max_a)
+u100_5 <- runif(100,min_a,max_a)
+hist(u100_1, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=100, compare'}
+par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
+hist(x100_1)
+hist(x100_2)
+hist(x100_3)
+hist(x100_4)
+hist(x100_5)
+hist(u100_1)
+hist(u100_2)
+hist(u100_3)
+hist(u100_4)
+hist(u100_5)
+par(par_2) 
+```
+
+```{r, fig.cap= 'Normalfördelning, histrogram n=500' }
+a <- 97
+set.seed(15151515)
+x500_1 <- rnorm(500, a, a)
+x500_2 <- rnorm(500, a, a) 
+x500_3 <- rnorm(500, a, a)
+x500_4 <- rnorm(500, a, a)
+x500_5 <- rnorm(500, a, a) 
+x500_6 <- rnorm(500, a, a)
+x500_7 <- rnorm(500, a, a)
+x500_8 <- rnorm(500, a, a) 
+boxplot(x500_1, x500_2, x500_3, x500_4, x500_5, x500_6, x500_7, x500_8)
+```
+
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=500'}
+min_a <- a-sqrt(3)*a
+max_a <- a+sqrt(3)*a
+set.seed(15151515)
+u500_1 <- runif(500,min_a,max_a)
+u500_2 <- runif(500,min_a,max_a)
+u500_3 <- runif(500,min_a,max_a)
+u500_4 <- runif(500,min_a,max_a)
+u500_5 <- runif(500,min_a,max_a)
+hist(u500_2, prob = TRUE)
+u <- seq(from = min_a, to = max_a, length.out = 100)
+
+# Add the uniform distribution curve to the histogram
+lines(u, dunif(u, min_a,max_a))
+```
+
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=500, compare'}
+par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
+hist(x500_1)
+hist(x500_2)
+hist(x500_3)
+hist(x500_4)
+hist(x500_5)
+hist(u500_1)
+hist(u500_2)
+hist(u500_3)
+hist(u500_4)
+hist(u500_5)
+par(par_2) 
+```
+
+1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som normal eller icke-normal?
+
+Svar: När $n$ blir minst 500 har man lätt att se att det är likformigt fördelade.
+
+2. Vilken grafisk metod anser ni är mest effektiv för att avgöra om ett stickprov är likformigt fördelade eller inte? 
+Motivera med de olika grafiska metoderna (boxplot, histogram, normalfördelningsplott).
+
+Svar:  Histogram är mest effektiv för att avgora om ett stickprov är likformigt fördelade eller inte. Boxplot visar inte alls detaljer om hur fördelningen ser ut.
+Däremot har man lätt att se om plotterna i histogrammet är på någon rätt linjen eller inte.
 
 # Uppgift 3: Explorativ dataanalys
 ```{r}
