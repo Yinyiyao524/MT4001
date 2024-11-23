@@ -575,7 +575,7 @@ Svar: Q-Q plot är mest effektiv för att avgora om ett stickprov är exponentia
 
 # Uppgift 3: Explorativ data analys
 ```{r}
-data <- read.csv(("E:/matematik/MT4001/labb/homework1/olvinsprit.csv"), header = TRUE)
+data <- read.csv(("C:/Users/User-Dator/Documents/MT4001/olvinsprit.csv"), header = TRUE)
 land <- data$Land
 beer <- data$beer
 vin <- data$vin
@@ -630,13 +630,14 @@ qqnorm(sprit, main = "Q-Q-plot för sprit-konsumtion")
 qqline(sprit)
 ```
 
-Utifrån figuen 35: Spridningsdiagram för Beer vs.vin Consumtion, Sverige har en låg till medelhög ölkonsumtion jämfört med andra länder. Länder som Irland och Tyskland har betydligt högre ölkonsumtion. Italien ligger lågt för öl.
+Utifrån figuen ????35: Spridningsdiagram för Beer vs.vin Consumtion, Sverige har en låg till medelhög ölkonsumtion jämfört med andra länder. Länder som Irland och Tyskland har betydligt högre ölkonsumtion. Italien ligger lågt för öl.
 Sverige ligger relativt lågt även när det gäller vinkonsumtion. Länder som Italien och Frankrike har högre vinkonsumtion. Länder som Japan och Kanada har låg vinkonsumtion.
-Utifrån figuen 36: Spridningsdiagram för Beer vs.sprit Consumtion, Sverige har en relativt lågt spritkonsumtion. Länder som Japan och Frankrike har högre spritkonsumtion. Länder som Italian, Norge och Nya_zeeland ligger lågt för sprit.
+
+Utifrån figuen ????36: Spridningsdiagram för Beer vs.sprit Consumtion, Sverige har en relativt lågt spritkonsumtion. Länder som Japan och Frankrike har högre spritkonsumtion. Länder som Italian, Norge och Nya_zeeland ligger lågt för sprit.
 
 
 Vi kan säga att Sverige ligger på en måttlig nivå för alla typer av alkohol och är inte extremt åt något håll.
-Det verkar finnas ett negativt samband mellan vinkonsumtion och spritkonsumtion. Länder som Japan har mycket hög spritkonsumtion men dricker lite vin. På samma sätt har länder som dricker mycket vin en låg spritkonsumtion.
+Det verkar finnas ett negativt samband mellan vinkonsumtion och spritkonsumtion. Länder som Japan har mycket hög spritkonsumtion men dricker lite vin. På samma sätt har länderna som dricker mycket vin en låg spritkonsumtion.
 
 
 
