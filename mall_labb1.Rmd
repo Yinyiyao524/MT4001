@@ -13,6 +13,7 @@ knit_root_dir: "E:/matematik/MT4001/labb"
 yyyyyyyyyyyyyyyyyy
 zzzzzzzzzzzzzzzzzzzzz
 
+
 # Uppgift 1 Två teorifrågor
 
 1. Om en exponentialfördelad slumpvariabel har väntevärde a, vad är då dess standardavvikelse?
@@ -24,6 +25,7 @@ standardavvikelsen ska bli lika stor som väntevärdet? Ledning:
 Om $X \sim U[\alpha, \beta]$, så gäller att $\text{Var}(X) = \frac{(\beta - \alpha)^2}{12}$.
 
 Svar: $\alpha=a-\sqrt3*a$, och $\beta=a+\sqrt3*a$
+
 
 # Uppgift 2: Kommer data från en normalfördelning?
 
@@ -561,8 +563,6 @@ qqplot(exp, ex100_4,
 abline(0, 1, col = "blue") 
 ```
 
-
-
 1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som exponential eller icke-exponential?
 
 Svar: När $n$ blir minst 100 har man lätt att se att det är exponential fördelade.
@@ -571,6 +571,7 @@ Svar: När $n$ blir minst 100 har man lätt att se att det är exponential förd
 Motivera med de olika grafiska metoderna (boxplot, histogram, Q-Q plot).
 
 Svar: Q-Q plot är mest effektiv för att avgora om ett stickprov är exponential fördelade eller inte. Boxplot visar inte alls detaljer om hur fördelningen ser ut; man har också svårt att bedöma om staplerna följer exponential fördelade kurvan i histogram. Däremot har man lätt att se om plotterna i Q-Q plot är på någon rätt linjen eller inte.
+
 
 # Uppgift 3: Explorativ data analys
 ```{r}
