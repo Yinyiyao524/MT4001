@@ -572,7 +572,7 @@ Motivera med de olika grafiska metoderna (boxplot, histogram, Q-Q plot).
 
 Svar: Q-Q plot är mest effektiv för att avgora om ett stickprov är exponential fördelade eller inte. Boxplot visar inte alls detaljer om hur fördelningen ser ut; man har också svårt att bedöma om staplerna följer exponential fördelade kurvan i histogram. Däremot har man lätt att se om plotterna i Q-Q plot är på någon rätt linjen eller inte.
 
-# Uppgift 3: Explorativ dataanalys
+# Uppgift 3: Explorativ data analys
 ```{r}
 data <- read.csv(("E:/matematik/MT4001/labb/homework1/olvinsprit.csv"), header = TRUE)
 land <- data$Land
