@@ -221,19 +221,23 @@ Däremot har man lätt att se om plotterna i normalfördelningsplott är på nå
 
 ## Upggift 2.2 Likformigt fördelade data
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=10' }
+```{r, fig.cap= 'Likformigt fördelning, boxplot n=10' }
 min_a <- a-sqrt(3)*a
 max_a <- a+sqrt(3)*a
+n <- 10
 set.seed(15151515)
-u10_1 <- runif(10,min_a,max_a)
-u10_2 <- runif(10,min_a,max_a)
-u10_3 <- runif(10,min_a,max_a)
-u10_4 <- runif(10,min_a,max_a)
-u10_5 <- runif(10,min_a,max_a)
-hist(u10_1, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
+u10_1 <- runif(n,min_a,max_a)
+u10_2 <- runif(n,min_a,max_a)
+u10_3 <- runif(n,min_a,max_a)
+u10_4 <- runif(n,min_a,max_a)
+u10_5 <- runif(n,min_a,max_a)
+boxplot(u10_1, u10_2, u10_3, u10_4, u10_5)
+```
 
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=10' }
+hist(u10_1, prob = TRUE)
 # Add the uniform distribution curve to the histogram
+u <- seq(from = min_a, to = max_a, length.out = 100)
 lines(u, dunif(u, min_a,max_a))
 ```
 
@@ -252,19 +256,23 @@ hist(u10_5)
 par(par_2) 
 ```
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=20'}
+```{r, fig.cap= 'Likformigt fördelning, boxplot n=20' }
 min_a <- a-sqrt(3)*a
 max_a <- a+sqrt(3)*a
+n <- 20
 set.seed(15151515)
-u20_1 <- runif(20,min_a,max_a)
-u20_2 <- runif(20,min_a,max_a)
-u20_3 <- runif(20,min_a,max_a)
-u20_4 <- runif(20,min_a,max_a)
-u20_5 <- runif(20,min_a,max_a)
-hist(u20_1, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
+u20_1 <- runif(n,min_a,max_a)
+u20_2 <- runif(n,min_a,max_a)
+u20_3 <- runif(n,min_a,max_a)
+u20_4 <- runif(n,min_a,max_a)
+u20_5 <- runif(n,min_a,max_a)
+boxplot(u20_1, u20_2, u20_3, u20_4, u20_5)
+```
 
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=20'}
+hist(u20_1, prob = TRUE)
 # Add the uniform distribution curve to the histogram
+u <- seq(from = min_a, to = max_a, length.out = 100)
 lines(u, dunif(u, min_a,max_a))
 ```
 
@@ -282,21 +290,23 @@ hist(u20_4)
 hist(u20_5)
 par(par_2) 
 ```
-
-
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=100'}
+```{r, fig.cap= 'Likformigt fördelning, boxplot n=100' }
 min_a <- a-sqrt(3)*a
 max_a <- a+sqrt(3)*a
+n <- 100
 set.seed(15151515)
-u100_1 <- runif(100,min_a,max_a)
-u100_2 <- runif(100,min_a,max_a)
-u100_3 <- runif(100,min_a,max_a)
-u100_4 <- runif(100,min_a,max_a)
-u100_5 <- runif(100,min_a,max_a)
-hist(u100_1, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
+u100_1 <- runif(n,min_a,max_a)
+u100_2 <- runif(n,min_a,max_a)
+u100_3 <- runif(n,min_a,max_a)
+u100_4 <- runif(n,min_a,max_a)
+u100_5 <- runif(n,min_a,max_a)
+boxplot(u100_1, u100_2, u100_3, u100_4, u100_5)
+```
 
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=100'}
+hist(u100_1, prob = TRUE)
 # Add the uniform distribution curve to the histogram
+u <- seq(from = min_a, to = max_a, length.out = 100)
 lines(u, dunif(u, min_a,max_a))
 ```
 
@@ -329,19 +339,23 @@ x500_8 <- rnorm(500, a, a)
 boxplot(x500_1, x500_2, x500_3, x500_4, x500_5, x500_6, x500_7, x500_8)
 ```
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=500'}
+```{r, fig.cap= 'Likformigt fördelning, boxplot n=500' }
 min_a <- a-sqrt(3)*a
 max_a <- a+sqrt(3)*a
+n <- 500
 set.seed(15151515)
-u500_1 <- runif(500,min_a,max_a)
-u500_2 <- runif(500,min_a,max_a)
-u500_3 <- runif(500,min_a,max_a)
-u500_4 <- runif(500,min_a,max_a)
-u500_5 <- runif(500,min_a,max_a)
-hist(u500_2, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
+u500_1 <- runif(n,min_a,max_a)
+u500_2 <- runif(n,min_a,max_a)
+u500_3 <- runif(n,min_a,max_a)
+u500_4 <- runif(n,min_a,max_a)
+u500_5 <- runif(n,min_a,max_a)
+boxplot(u500_1, u500_2, u500_3, u500_4, u500_5)
+```
 
+```{r, fig.cap= 'Likformigt fördelning, histrogram n=500'}
+hist(u500_2, prob = TRUE)
 # Add the uniform distribution curve to the histogram
+u <- seq(from = min_a, to = max_a, length.out = 100)
 lines(u, dunif(u, min_a,max_a))
 ```
 
@@ -360,160 +374,158 @@ hist(u500_5)
 par(par_2) 
 ```
 
-1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som normal eller icke-normal?
+1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som likformig eller icke-likformig?
 
 Svar: När $n$ blir minst 500 har man lätt att se att det är likformigt fördelade.
 
 2. Vilken grafisk metod anser ni är mest effektiv för att avgöra om ett stickprov är likformigt fördelade eller inte? 
-Motivera med de olika grafiska metoderna (boxplot, histogram, normalfördelningsplott).
+Motivera med de olika grafiska metoderna (boxplot, histogram).
 
-Svar:  Histogram är mest effektiv för att avgora om ett stickprov är likformigt fördelade eller inte. Boxplot visar inte alls detaljer om hur fördelningen ser ut.
-Däremot har man lätt att se om plotterna i histogrammet är på någon rätt linjen eller inte.
+Svar:  Histogram är mest effektiv för att avgora om ett stickprov är likformigt fördelade eller inte. Boxplot visar inte alls detaljer om hur fördelningen ser ut. Däremot har man lätt att se om plotterna i histogrammet är på någon rätt linjen eller inte.
 
 ## Upggift 2.3  Exponentialfördelade data
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=10' }
-min_a <- a-sqrt(3)*a
-max_a <- a+sqrt(3)*a
+```{r, fig.cap= 'Exponentialfördelning, boxplot n=10' }
+min_a <- 0
+max_a <- 11
+n <- 10
+rate <- 1
 set.seed(15151515)
-u10_1 <- runif(10,min_a,max_a)
-u10_2 <- runif(10,min_a,max_a)
-u10_3 <- runif(10,min_a,max_a)
-u10_4 <- runif(10,min_a,max_a)
-u10_5 <- runif(10,min_a,max_a)
-hist(u10_1, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
-
-# Add the uniform distribution curve to the histogram
-lines(u, dunif(u, min_a,max_a))
+ex10_1 <- rexp(n, rate)
+ex10_2 <- rexp(n, rate)
+ex10_3 <- rexp(n, rate)
+ex10_4 <- rexp(n, rate)
+ex10_5 <- rexp(n, rate)
+boxplot(ex10_1, ex10_2, ex10_3, ex10_4, ex10_5)
 ```
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=10, compare'}
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=10' }
+hist(ex10_5, prob = TRUE)
+# Add the exponential distribution curve to the histogram
+curve(dexp(x, 1), add = TRUE, col = "darkblue", lwd = 2)
+```
+
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=10, compare'}
 par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
 hist(x10_1)
 hist(x10_2)
 hist(x10_3)
 hist(x10_4)
 hist(x10_5)
-hist(u10_1)
-hist(u10_2)
-hist(u10_3)
-hist(u10_4)
-hist(u10_5)
+hist(ex10_1)
+hist(ex10_2)
+hist(ex10_3)
+hist(ex10_4)
+hist(ex10_5)
 par(par_2) 
 ```
-
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=20'}
-min_a <- a-sqrt(3)*a
-max_a <- a+sqrt(3)*a
+```{r, fig.cap= 'Exponentialfördelning, boxplot n=20' }
+min_a <- 0
+max_a <- 11
+n <- 20
+rate <- 1
 set.seed(15151515)
-u20_1 <- runif(20,min_a,max_a)
-u20_2 <- runif(20,min_a,max_a)
-u20_3 <- runif(20,min_a,max_a)
-u20_4 <- runif(20,min_a,max_a)
-u20_5 <- runif(20,min_a,max_a)
-hist(u20_1, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
-
-# Add the uniform distribution curve to the histogram
-lines(u, dunif(u, min_a,max_a))
+ex20_1 <- rexp(n, rate)
+ex20_2 <- rexp(n, rate)
+ex20_3 <- rexp(n, rate)
+ex20_4 <- rexp(n, rate)
+ex20_5 <- rexp(n, rate)
+boxplot(ex20_1, ex20_2, ex20_3, ex20_4, ex20_5)
 ```
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=20, compare'}
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=20' }
+hist(ex20_4, prob = TRUE)
+# Add the exponential distribution curve to the histogram
+curve(dexp(x, 1), add = TRUE, col = "darkblue", lwd = 2)
+```
+
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=20, compare'}
 par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
 hist(x20_1)
 hist(x20_2)
 hist(x20_3)
 hist(x20_4)
 hist(x20_5)
-hist(u20_1)
-hist(u20_2)
-hist(u20_3)
-hist(u20_4)
-hist(u20_5)
+hist(ex20_1)
+hist(ex20_2)
+hist(ex20_3)
+hist(ex20_4)
+hist(ex20_5)
 par(par_2) 
 ```
 
-
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=100'}
-min_a <- a-sqrt(3)*a
-max_a <- a+sqrt(3)*a
+```{r, fig.cap= 'Exponentialfördelning, boxplot n=100' }
+min_a <- 0
+max_a <- 11
+n <- 100
+rate <- 1
 set.seed(15151515)
-u100_1 <- runif(100,min_a,max_a)
-u100_2 <- runif(100,min_a,max_a)
-u100_3 <- runif(100,min_a,max_a)
-u100_4 <- runif(100,min_a,max_a)
-u100_5 <- runif(100,min_a,max_a)
-hist(u100_1, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
-
-# Add the uniform distribution curve to the histogram
-lines(u, dunif(u, min_a,max_a))
+ex100_1 <- rexp(n, rate)
+ex100_2 <- rexp(n, rate)
+ex100_3 <- rexp(n, rate)
+ex100_4 <- rexp(n, rate)
+ex100_5 <- rexp(n, rate)
+boxplot(ex100_1, ex100_2, ex100_3, ex100_4, ex100_5)
 ```
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=100, compare'}
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=100' }
+hist(ex100_4, prob = TRUE)
+# Add the exponential distribution curve to the histogram
+curve(dexp(x, 1), add = TRUE, col = "darkblue", lwd = 2)
+```
+
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=100, compare'}
 par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
 hist(x100_1)
 hist(x100_2)
 hist(x100_3)
 hist(x100_4)
 hist(x100_5)
-hist(u100_1)
-hist(u100_2)
-hist(u100_3)
-hist(u100_4)
-hist(u100_5)
+hist(ex100_1)
+hist(ex100_2)
+hist(ex100_3)
+hist(ex100_4)
+hist(ex100_5)
 par(par_2) 
 ```
-
-```{r, fig.cap= 'Normalfördelning, histrogram n=500' }
-a <- 97
+```{r, fig.cap= 'Exponentialfördelning, boxplot n=50' }
+min_a <- 0
+max_a <- 11
+n <- 50
+rate <- 1
 set.seed(15151515)
-x500_1 <- rnorm(500, a, a)
-x500_2 <- rnorm(500, a, a) 
-x500_3 <- rnorm(500, a, a)
-x500_4 <- rnorm(500, a, a)
-x500_5 <- rnorm(500, a, a) 
-x500_6 <- rnorm(500, a, a)
-x500_7 <- rnorm(500, a, a)
-x500_8 <- rnorm(500, a, a) 
-boxplot(x500_1, x500_2, x500_3, x500_4, x500_5, x500_6, x500_7, x500_8)
+ex50_1 <- rexp(n, rate)
+ex50_2 <- rexp(n, rate)
+ex50_3 <- rexp(n, rate)
+ex50_4 <- rexp(n, rate)
+ex50_5 <- rexp(n, rate)
+boxplot(ex50_1, ex50_2, ex50_3, ex50_4, ex50_5)
 ```
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=500'}
-min_a <- a-sqrt(3)*a
-max_a <- a+sqrt(3)*a
-set.seed(15151515)
-u500_1 <- runif(500,min_a,max_a)
-u500_2 <- runif(500,min_a,max_a)
-u500_3 <- runif(500,min_a,max_a)
-u500_4 <- runif(500,min_a,max_a)
-u500_5 <- runif(500,min_a,max_a)
-hist(u500_2, prob = TRUE)
-u <- seq(from = min_a, to = max_a, length.out = 100)
-
-# Add the uniform distribution curve to the histogram
-lines(u, dunif(u, min_a,max_a))
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=50' }
+hist(ex50_3, prob = TRUE)
+# Add the exponential distribution curve to the histogram
+curve(dexp(x, 1), add = TRUE, col = "darkblue", lwd = 2)
 ```
 
-```{r, fig.cap= 'Likformigt fördelning, histrogram n=500, compare'}
+```{r, fig.cap= 'Exponentialfördelning, histrogram n=50, compare'}
 par_2 <- par(mfrow = c(2, 5)) # 2 rader, 5 kolonner
-hist(x500_1)
-hist(x500_2)
-hist(x500_3)
-hist(x500_4)
-hist(x500_5)
-hist(u500_1)
-hist(u500_2)
-hist(u500_3)
-hist(u500_4)
-hist(u500_5)
+hist(x50_1)
+hist(x50_2)
+hist(x50_3)
+hist(x50_4)
+hist(x50_5)
+hist(ex50_1)
+hist(ex50_2)
+hist(ex50_3)
+hist(ex50_4)
+hist(ex50_5)
 par(par_2) 
 ```
 
-1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som normal eller icke-normal?
+1. Vilken är det minsta stickprovsstorleken som behövs för att den fördelning ni simulerar från skall avslöja sig som exponential eller icke-exponential?
 
-Svar: När $n$ blir minst 500 har man lätt att se att det är likformigt fördelade.
+Svar: När $n$ blir minst 50 har man lätt att se att det är exponential fördelade.
 
 2. Vilken grafisk metod anser ni är mest effektiv för att avgöra om ett stickprov är likformigt fördelade eller inte? 
 Motivera med de olika grafiska metoderna (boxplot, histogram, normalfördelningsplott).
