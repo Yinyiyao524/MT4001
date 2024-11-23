@@ -3,9 +3,9 @@ title: "Laboration 1"
 author: "Yinyi Yao Yovela Zhang"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document:
     fig_caption: true
+  pdf_document: default
 knit_root_dir: "E:/matematik/MT4001/labb"
 ---
 
@@ -529,19 +529,26 @@ beer <- data$beer
 vin <- data$vin
 sprit <- data$sprit
 ```
-```{r fig.cap="Spridningsdiagram för Beer vs. Wine Consumption"}
+```{r fig.cap="Spridningsdiagram för Beer vs.Wine Consumption"}
 plot(beer, vin,
      xlab = "Beer Consumption",        
      ylab = "Wine Consumption",          
      pch = 16,)   
-text(beer,vin,land)
+text(beer,vin,land,pos=4, cex=0.7,offset = 0.5)
 ```
-```{r}
+```{r fig.cap="Spridningsdiagram för Beer vs.sprit Consumption"}
 plot(beer, sprit,
      xlab = "Beer Consumption",        
      ylab = "sprit Consumption",          
      pch = 16,)   
-text(beer,sprit,land)
+text(beer,sprit,land,pos=2,cex=0.7,offset = 0.5)
+```
+```{r fig.cap="Spridningsdiagram för wine vs.sprit Consumption"}
+plot(vin, sprit,
+     xlab = "wine Consumption",        
+     ylab = "sprit Consumption",          
+     pch = 16,)   
+text(vin,sprit,land,pos=2,cex=0.7,offset = 0.5)
 ```
 
 ```{r fig.cap=" Histogram för öl konsumtion "}
@@ -570,6 +577,17 @@ hist(sprit,probability = TRUE,
 qqnorm(sprit, main = "Q-Q-plot för sprit-konsumtion")
 qqline(sprit)
 ```
+
+Utifrån figuen 35: Spridningsdiagram för Beer vs.vin Consumtion, Sverige har en låg till medelhög ölkonsumtion jämfört med andra länder. Länder som Irland och Tyskland har betydligt högre ölkonsumtion. Italien ligger lågt för öl.
+Sverige ligger relativt lågt även när det gäller vinkonsumtion. Länder som Italien och Frankrike har högre vinkonsumtion. Länder som Japan och Kanada har låg vinkonsumtion.
+Utifrån figuen 36: Spridningsdiagram för Beer vs.sprit Consumtion, Sverige har en relativt lågt spritkonsumtion. Länder som Japan och Frankrike har högre spritkonsumtion. Länder som Italian, Norge och Nya_zeeland ligger lågt för sprit.
+
+
+Vi kan säga att Sverige ligger på en måttlig nivå för alla typer av alkohol och är inte extremt åt något håll.
+Det verkar finnas ett negativt samband mellan vinkonsumtion och spritkonsumtion. Länder som Japan har mycket hög spritkonsumtion men dricker lite vin. På samma sätt har länder som dricker mycket vin en låg spritkonsumtion.
+
+
+
 
 
 
