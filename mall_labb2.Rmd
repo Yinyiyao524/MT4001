@@ -1,0 +1,20 @@
+---
+title: "Laboration 2"
+author: "Förnamn Efternamn"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    fig_caption: yes
+---
+
+# Sammanfattning
+I detta inledande stycke ska du förklara vad labben går ut på, utan att gå in
+på detaljer.
+
+# Uppgift 1
+Text. Använd underrubriker för delfrågor om du tycker det är motiverat.
+
+# Uppgift 2
+Mer text. Använd underrubriker för delfrågor om du tycker det är motiverat.
+
+Et cetera om det är fler än 2 uppgifter.
