@@ -15,7 +15,7 @@ på detaljer.
 
 # Uppgift 1
 Text. Använd underrubriker för delfrågor om du tycker det är motiverat.'
-E = mc^2
+
 
 # Uppgift 2
 Mer text. Använd underrubriker för delfrågor om du tycker det är motiverat.
