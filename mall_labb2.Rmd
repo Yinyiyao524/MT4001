@@ -11,7 +11,7 @@ output:
 I detta inledande stycke ska du förklara vad labben går ut på, utan att gå in
 på detaljer.
 
-
+aaa
 
 # Uppgift 1
 Text. Använd underrubriker för delfrågor om du tycker det är motiverat.
