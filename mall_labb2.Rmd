@@ -1,6 +1,6 @@
 ---
 title: "Laboration 2"
-author: "Förnamn Efternamn"
+author: Yinyi Yao Esbjörn Runesson
 date: "`r Sys.Date()`"
 output: 
   pdf_document:
