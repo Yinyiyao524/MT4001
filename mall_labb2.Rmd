@@ -65,6 +65,26 @@ y <- c(2,4,6,8,10,12)
 wilcox.test(x,y, alternative = "greater", mu = 4.5, conf.level = 0.9) # p-värde är 1
 ```
 
+# Uppgift 1: Molnsådd i Arizona
+## Uppgift 1.1: Teoretisk uppgift
+1. Indelningen i tvådagarsperioden säkerställer att varja dag med molnsådd har en motsvarande kontroll dag (utan molnsådd dagen) innan eller efter. Detta blir möjligt att direkt jämföra resultatet mellan dessa två dagar.
+2.
+
+## Uppgift 1.2 Praktisk uppgift
+```{r}
+arizona <- read.csv("E:\\matematik\\MT4001\\labb\\homework1\\arizona.csv", header = FALSE)
+year <- arizona$V1
+seed <- arizona$V2
+nonseed <- arizona$V3
+```
+```{r fig.cap=" Histogram för seed mängd "}
+hist(seed,probability = TRUE, 
+     xlab = "seed")
+```
+```{r fig.cap = "Q-Q-plot för seed"}
+qqnorm(seed)
+qqline(seed)
+```
 
 # Uppgift 2
 Mer text. Använd underrubriker för delfrågor om du tycker det är motiverat.
