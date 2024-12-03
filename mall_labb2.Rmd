@@ -18,11 +18,14 @@ på detaljer.
 # Uppgift 1
 1.1 
 ```{r}
-z <- 1.72
-2 * (1- pnorm(z))
-1 - pnorm(z)
+z <- 1.72 # observerat värde på teststatistika
+2 * (1- pnorm(z)) #p-värde för tvåsidigt test
+1 - pnorm(z) # p-värde för ensidigt test
 
-
+```
+1.2
+```{r}
+t.test(1:10, alternative = "greater", mu = 4.5, conf.level = 0.9) #p-värde för nollhypotesen är 16,18%
 ```
 
 
