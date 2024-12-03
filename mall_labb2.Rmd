@@ -42,6 +42,18 @@ t.test(1:10, 1:20, alternative = "greater", mu = 0, conf.level = 0.9) #p-värde 
 t.test(1:10, 1:20, alternative = "greater", mu = 0, var.equal = TRUE, conf.level = 0.9) #p-värde för nollhypotesen med Welch–Satterthwaites metod är 99,07%
 
 ```
+1.5
+```{r}
+x = 1:10
+y = 1:20
+d <- x - y
+t.test(d, alternative = "greater", mu = 0, conf.level = 0.9) #p-värde för nollhypotesen för parvist beroende stickprov är 99,98%
+#t.test(1:10, 1:10, alternative = "greater", mu = 0, paired = TRUE, conf.level = 0.9)
+```
+1.6
+```{r}
+
+```
 
 
 # Uppgift 2
