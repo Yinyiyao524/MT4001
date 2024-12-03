@@ -38,6 +38,8 @@ t.test(1:10, alternative = "two.sided", mu = 4.5, conf.level = 0.9) #p-värde f�
 
 1.4
 ```{r}
+x <- rnorm(100,0,0)
+y <- rnorm(100,0,0)
 t.test(1:10, 1:20, alternative = "greater", mu = 0, conf.level = 0.9) #p-värde för nollhypotesen är 99,76%
 t.test(1:10, 1:20, alternative = "greater", mu = 0, var.equal = TRUE, conf.level = 0.9) #p-värde för nollhypotesen med Welch–Satterthwaites metod är 99,07%
 
@@ -51,6 +53,12 @@ t.test(d, alternative = "greater", mu = 0, conf.level = 0.9) #p-värde för noll
 #t.test(1:10, 1:10, alternative = "greater", mu = 0, paired = TRUE, conf.level = 0.9)
 ```
 1.6
+```{r}
+#set.seed(17761122)
+#x <- rnorm(1000,0,6)
+wilcox.test(rnorm(10),rnorm(10,2), alternative = "greater", mu = 0, conf.int = TRUE, conf.level = 0.9, exact = FALSE) #p-värde med Wilcoxons teckenrangtest är 99,95%
+```
+1.7
 ```{r}
 
 ```
