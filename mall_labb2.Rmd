@@ -1,10 +1,12 @@
 ---
 title: "Laboration 2"
-author: Yinyi Yao Esbjörn Runesson
+author: "Yinyi Yao Esbjörn Runesson"
 date: "`r Sys.Date()`"
-output: 
+output:
+  html_document:
+    df_print: paged
   pdf_document:
-    fig_caption: yes
+    fig_caption: true
 ---
 
 # Sammanfattning
@@ -15,6 +17,13 @@ på detaljer.
 
 # Uppgift 1
 1.1 
+```{r}
+z <- 1.72
+2 * (1- pnorm(z))
+1 - pnorm(z)
+
+
+```
 
 
 # Uppgift 2
