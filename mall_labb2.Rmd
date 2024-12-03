@@ -56,11 +56,13 @@ t.test(d, alternative = "greater", mu = 0, conf.level = 0.9) #p-värde för noll
 ```{r}
 #set.seed(17761122)
 #x <- rnorm(1000,0,6)
-wilcox.test(rnorm(10),rnorm(10,2), alternative = "greater", mu = 0, conf.int = TRUE, conf.level = 0.9, exact = FALSE) #p-värde med Wilcoxons teckenrangtest är 99,95%
+wilcox.test(rnorm(10),rnorm(10,2), alternative = "greater", mu = 0, conf.int = TRUE, conf.level = 0.9, exact = FALSE) #p-värde med Wilcoxons teckenrangtest är 99,99%
 ```
 1.7
 ```{r}
-
+x <- c(1,2,3,4,5,6)
+y <- c(2,4,6,8,10,12)
+wilcox.test(x,y, alternative = "greater", mu = 4.5, conf.level = 0.9) # p-värde är 1
 ```
 
 
