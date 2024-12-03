@@ -14,7 +14,7 @@ på detaljer.
 
 
 # Uppgift 1
-Text. Använd underrubriker för delfrågor om du tycker det är motiverat.'
+1.1 
 
 
 # Uppgift 2
