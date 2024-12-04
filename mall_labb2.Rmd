@@ -71,6 +71,11 @@ wilcox.test(x,y, alternative = "greater", mu = 4.5, conf.level = 0.9) # p-värde
 2.
 
 ## Uppgift 1.2 Praktisk uppgift
+I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbörd med
+molnsådd, nederbörd utan molnsådd samt deras årtal kan ha någon fördelning. Vi
+vill dessutom konstruera en nollhypotes för att testa om det finns en skillnad
+mellan den nederbörd som förekommer med molnsådd eller den dagen då det ej förekommer.
+
 ```{r}
 arizona <- read.csv("arizona.csv", header = FALSE) #Yinyi testa använda denna istället
 #arizona <- read.csv("E:\\matematik\\MT4001\\labb\\homework1\\arizona.csv", header = FALSE)
@@ -90,6 +95,16 @@ hist(nonseed,prob = TRUE, main = 'Histogram för nederbörd utan molnsådd', yla
        'Densitet', xlab = 'Nederbörd utan molnsådd')
 hist(seed,prob = TRUE, main = 'Histogram för nederbörd med molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
+par(old_par)
+old_par <- par(mfrow = c(2,3))
+plot(seed,year,main = 'Diagram för nederbörd med molnsådd', xlab= '
+Nederbörd med molnsådd', ylab = 'Årtal')
+plot(nonseed,year,main = 'Diagram för nederbörd utan molnsådd', xlab= '
+Nederbörd med molnsådd', ylab = 'Årtal')
+par(old_par)
+old_par <- par(mfrow = c(2,3))
+boxplot(seed)
+boxplot(nonseed)
 par(old_par)
 ```
 ```{r fig.cap=" Histogram för seed mängd "}
