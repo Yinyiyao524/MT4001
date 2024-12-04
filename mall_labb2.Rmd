@@ -72,17 +72,31 @@ wilcox.test(x,y, alternative = "greater", mu = 4.5, conf.level = 0.9) # p-värde
 
 ## Uppgift 1.2 Praktisk uppgift
 ```{r}
-arizona <- read.csv("arizona.csv", header = FALSE)
+arizona <- read.csv("arizona.csv", header = FALSE) #Yinyi testa använda denna istället
 #arizona <- read.csv("E:\\matematik\\MT4001\\labb\\homework1\\arizona.csv", header = FALSE)
 year <- arizona$V1
 seed <- arizona$V2
 nonseed <- arizona$V3
+old_par <- par(mfrow = c(2,3))
+qqnorm(seed,main = 'Q-Q-plot för nederbörd med molnsådd', ylab= 'Nederbörd med
+molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
+qqline(seed)
+qqnorm(nonseed,main = 'Q-Q-plot för nederbörd utan molnsådd', ylab= 'Nederbörd utan
+molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
+qqline(nonseed)
+par(old_par)
+old_par <- par(mfrow = c(2,3))
+hist(nonseed,prob = TRUE, main = 'Histogram för nederbörd utan molnsådd', ylab =
+       'Densitet', xlab = 'Nederbörd utan molnsådd')
+hist(seed,prob = TRUE, main = 'Histogram för nederbörd med molnsådd', ylab =
+       'Densitet', xlab = 'Nederbörd med molnsådd')
+par(old_par)
 ```
 ```{r fig.cap=" Histogram för seed mängd "}
 hist(seed,probability = TRUE, 
      xlab = "seed mängd")
 ```
-```{r fig.cap = "Q-Q-plot för seed"}
+```{r fig.cap = "Q-Q-plot för nederbörd med molnsådd"}
 qqnorm(seed)
 qqline(seed)
 ```
@@ -90,7 +104,7 @@ qqline(seed)
 hist(seed,probability = TRUE, 
      xlab = "Nonseed mängd")
 ```
-```{r fig.cap = "Q-Q-plot för nonseed"}
+```{r fig.cap = "Q-Q-plot för nederbörd utan molnsådd"}
 qqnorm(nonseed)
 qqline(nonseed)
 ```
@@ -105,7 +119,7 @@ Et cetera om det är fler än 2 uppgifter.
 
 ## Uppgift 2.2: Praktisk uppgift
 ```{r}
-oregon <- read.csv("oregon.csv", header = FALSE)
+oregon <- read.csv("oregon.csv", header = FALSE) #Yinyi testa använda denna istället
 #oregon <- read.csv("E:\\matematik\\MT4001\\labb\\homework1\\oregon.csv", header = FALSE)
 trial <- oregon$V1
 typ1 <- oregon$V2
