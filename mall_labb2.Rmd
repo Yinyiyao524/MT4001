@@ -21,8 +21,10 @@ på detaljer.
 ## Uppgift 1.2 Praktisk uppgift
 I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbörd med
 molnsådd, nederbörd utan molnsådd samt deras årtal kan ha någon fördelning. Vi
-vill dessutom konstruera en nollhypotes för att testa om det finns en skillnad
-mellan den nederbörd som förekommer med molnsådd eller den dagen då det ej förekommer.
+vill dessutom konstruera en nollhypotes för att testa med Wilcoxons teckenrangtest
+om det är så att molnsådd ökar nederbörden. Till att börja med undersöker vi med
+hjälp av histogram och normalfördelningsplot om vårt datamaterial kan komma
+från någon fördelning.
 
 ```{r}
 arizona <- read.csv("arizona.csv", header = FALSE) #Yinyi testa använda denna istället
@@ -30,31 +32,27 @@ arizona <- read.csv("arizona.csv", header = FALSE) #Yinyi testa använda denna i
 year <- arizona$V1
 seed <- arizona$V2
 nonseed <- arizona$V3
-old_par <- par(mfrow = c(2,3))
-qqnorm(seed,main = 'Q-Q-plot för nederbörd med molnsådd', ylab= 'Nederbörd med
+old_par <- par(mfrow = c(1,2))
+qqnorm(seed,main = 'Nederbörd med molnsådd', ylab= 'Nederbörd med
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(seed)
-qqnorm(nonseed,main = 'Q-Q-plot för nederbörd utan molnsådd', ylab= 'Nederbörd utan
+qqnorm(nonseed,main = 'Nederbörd utan molnsådd', ylab= 'Nederbörd utan
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed)
 par(old_par)
-old_par <- par(mfrow = c(2,3))
-hist(nonseed,prob = TRUE, main = 'Histogram för nederbörd utan molnsådd', ylab =
+old_par <- par(mfrow = c(1,2))
+hist(nonseed,prob = TRUE, main = 'Nederbörd utan molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
-hist(seed,prob = TRUE, main = 'Histogram för nederbörd med molnsådd', ylab =
+hist(seed,prob = TRUE, main = 'Nederbörd med molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
 par(old_par)
-old_par <- par(mfrow = c(2,3))
-plot(seed,year,main = 'Diagram för nederbörd med molnsådd', xlab= '
-Nederbörd med molnsådd', ylab = 'Årtal')
-plot(nonseed,year,main = 'Diagram för nederbörd utan molnsådd', xlab= '
-Nederbörd utan molnsådd', ylab = 'Årtal')
-par(old_par)
-old_par <- par(mfrow = c(2,3))
-boxplot(seed)
-boxplot(nonseed)
-par(old_par)
 ```
+
+Vi ser då att vårt datamaterial inte verkar komma från en särskild fördelning.
+Vi fortsätter nu med att göra ett diagram för differensen mellan nederbörden
+med molnsådd och utan molnsådd, för att sedan konstruera vår nollhypotes och
+utföra Wilcoxons teckentangtest.
+
 ```{r fig.cap="Diagram för nederbörd med molnsådd och utan molnsådd"}
 differ <- seed-nonseed
 old_par <- par(mfrow = c(1,2))
