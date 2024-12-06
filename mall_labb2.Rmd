@@ -17,6 +17,7 @@ på detaljer.
 ## Uppgift 1.1: Teoretisk uppgift
 1. Indelningen i tvådagarsperioden säkerställer att varja dag med molnsådd har en motsvarande kontroll dag (utan molnsådd dagen) innan eller efter. Detta blir möjligt att direkt jämföra resultatet mellan dessa två dagar.
 2.
+3. Wilcoxons teckenrangtest
 
 ## Uppgift 1.2 Praktisk uppgift
 I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbörd med
