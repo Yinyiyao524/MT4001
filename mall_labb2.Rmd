@@ -30,7 +30,7 @@ I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbö
 molnsådd, nederbörd utan molnsådd samt deras årtal kan ha någon fördelning. Vi
 vill dessutom konstruera en nollhypotes för att testa med Wilcoxons teckenrangtest
 om det är så att molnsådd ökar nederbörden. Till att börja med undersöker vi med
-hjälp av histogram och normalfördelningsplot om vårt datamaterial kan komma
+hjälp av boxplot, histogram och normalfördelningsplot om vårt datamaterial kan komma
 från någon fördelning.
 
 ```{r}
@@ -53,6 +53,9 @@ hist(nonseed,prob = TRUE, main = 'Nederbörd utan molnsådd', ylab =
 hist(seed,prob = TRUE, main = 'Nederbörd med molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
 par(old_par)
+old_par <- par(mfrow = c(1,2))
+boxplot(nonseed, prob = TRUE, main = 'Nederbörd utan molnsådd')
+boxplot(seed, prob = TRUE, main = 'Nederbörd med molnsådd')
 ```
 
 Vi ser då att vårt datamaterial inte verkar komma från en särskild fördelning.
