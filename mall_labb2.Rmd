@@ -56,6 +56,7 @@ par(old_par)
 old_par <- par(mfrow = c(1,2))
 boxplot(nonseed, prob = TRUE, main = 'Nederbörd utan molnsådd')
 boxplot(seed, prob = TRUE, main = 'Nederbörd med molnsådd')
+par(old_par)
 ```
 
 Vi ser då att vårt datamaterial inte verkar komma från en särskild fördelning.
@@ -101,20 +102,18 @@ legend("topright",
 plot(year,differ,main = 'Diagram för differenserna mellan nederbörd utan molnsådd och nederbörd med molnsådd', ylab= 'differenserna', xlab = 'Årtal')
 ```
 
-
-
-```{r}
-wilcox.test(seed,nonseed, alternative = "greater", mu = 0, conf.level = 0.95)
-```
 Sammanfattande texter
-Histogram och Q-Q-plottar visade att dataset inte var normalfördelade, vi väljer icke-parametrisk metod: teckenrangtest (Wilcoxon signed-rank test).
+Histogram, box plot och Q-Q-plottar visade att dataset inte var normalfördelade, vi väljer icke-parametrisk metod: teckenrangtest (Wilcoxon signed-rank test).
 
 $H_0$: Det finns ingen skillnad i nederbörd mellan molnsådda och icke-molnsådda dagar. Molnsådd har ingen effekt.
 $H_1$: Molnsådd ökar nederbörden.
 ```{r}
-wilcox.test(differ, alternative = "greater", mu = 0, conf.level = 0.95)
+result <- wilcox.test(seed,nonseed, alternative = "greater", paired = TRUE)
+print(result)
 ```
 
+Och vi ser då att $p > \alpha = 0.05$ så vi kan därför inte förkasta $H_{0}$ vilket innebär
+att molnsådd inte verkar öka nederbörden.
 
 # Uppgift 2: Molnsådd i Oregon
 ## Uppgift 2.1: Teoretisk uppgift
