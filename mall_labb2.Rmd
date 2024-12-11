@@ -120,7 +120,7 @@ att molnsådd inte verkar öka nederbörden.
 1. För att undvika det systematiska fel som kan uppstå då exempelvis en meteorolog
 får avgöra när försöket ska genomföras, där den förutsägbarhet som där förekommer
 undviks genom att låta slumpen avgöra.
-2.
+2. Wilcoxons teckenrangtest för de två olika områdena.
 
 ## Uppgift 2.2: Praktisk uppgift
 
@@ -187,4 +187,19 @@ par(old_par)
 Vi kan då se att vår normalfördelningsplot över nederbörd med molnsådd i område 1
 visade att denna datamängd är normalfördelad medan det är svårare att se med 
 boxplot och histogram. Vi ska nu fortsätta genom att konstruera en nollhypotes 
-samt alternativhypotes och sedan testa om molnsådd ökar nederbörden.
+samt alternativhypotes och sedan testa med hjälp av Wilcoxons teckenrang-test 
+för de två områdena om molnsådd ökar nederbörden.
+$H_{0}$: Molnsådd påverkar inte nederbörden
+$H_{1}$: Molnsådd ökar nederbörden
+
+```{r}
+differ1 <- seed1-nonseed1
+differ2 <- seed2-nonseed2
+result1 <- wilcox.test(differ1, alternative = "greater")
+result2 <- wilcox.test(differ2, alternative = "greater")
+print(result1)
+print(result2)
+```
+
+Vi kan här se att Wilcoxons teckenrang-test för båda områdena gav $p > \alpha = 0.05$
+så vi förkastar därför inte nollhypotesen och därmed ökar molnsådd inte nederbörden.
