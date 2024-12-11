@@ -131,6 +131,8 @@ sannolikhet $2/3$ att göra ett försök den dagen samt sannolikhet $1/3$ att av
 Resultatet var att molnsådd genomfördes 22 dagar och genomfördes ej 13 dagar och
 vi vill avgöra om den datamängd från dessa tester har någon fördelning, samt konstruera
 en nollhypotes, alternativhypotes för att sedan testa om molnsådd ökar nederbörden.
+Vi börjar med att undersöka om vår datamängd kan komma från någon fördelning
+med hjälp av histogram, boxplot och normalfördelningsplot
 
 ```{r}
 oregon <- read.csv("oregon.csv", header = FALSE) #Yinyi testa använda denna istället
@@ -138,12 +140,51 @@ oregon <- read.csv("oregon.csv", header = FALSE) #Yinyi testa använda denna ist
 trial <- oregon$V1
 typ1 <- oregon$V2
 typ2 <- oregon$V3
-```
-
-```{r}
 nonseed1 <- typ1[trial == 1]
 seed1 <- typ1[trial == 2]
 nonseed2 <- typ2[trial == 1]
 seed2 <- typ2[trial == 2]
+old_par <- par(mfrow = c(2,3))
+qqnorm(seed1,main = 'Nederbörd med molnsådd i område 1', ylab= 'Nederbörd med
+molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
+qqline(seed1)
+qqnorm(nonseed1,main = 'Nederbörd utan molnsådd i område 1', ylab= 'Nederbörd utan
+molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
+qqline(nonseed1)
+qqnorm(seed2,main = 'Nederbörd med molnsådd i område 2', ylab= 'Nederbörd med
+molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
+qqline(seed2)
+qqnorm(nonseed2,main = 'Nederbörd utan molnsådd i område 2', ylab= 'Nederbörd utan
+molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
+qqline(nonseed2)
+par(old_par)
 ```
 
+Och vi kan här se att den data som kommer från nederbörd med molnsådd i område 1
+efterliknar linjen i vår normalfördelningsplot och den verkar därmed vara 
+normalfördelad. Vi fortsätter med att undersöka histogram och boxplot
+
+```{r}
+old_par <- par(mfrow = c(2,3))
+hist(nonseed1,prob = TRUE, main = 'Nederbörd utan molnsådd i område 1', ylab =
+       'Densitet', xlab = 'Nederbörd utan molnsådd')
+hist(seed1,prob = TRUE, main = 'Nederbörd med molnsådd i område 1', ylab =
+       'Densitet', xlab = 'Nederbörd med molnsådd')
+hist(nonseed2,prob = TRUE, main = 'Nederbörd utan molnsådd i område 2', ylab =
+       'Densitet', xlab = 'Nederbörd utan molnsådd')
+hist(seed2,prob = TRUE, main = 'Nederbörd med molnsådd i område 2', ylab =
+       'Densitet', xlab = 'Nederbörd med molnsådd')
+par(old_par)
+old_par <- par(mfrow = c(2,3))
+boxplot(nonseed1, prob = TRUE, main = 'Nederbörd utan molnsådd i område 1')
+boxplot(seed1, prob = TRUE, main = 'Nederbörd med molnsådd i område 1')
+boxplot(nonseed2, prob = TRUE, main = 'Nederbörd utan molnsådd i område 2')
+boxplot(seed2, prob = TRUE, main = 'Nederbörd med molnsådd i område 2')
+par(old_par)
+
+```
+
+Vi kan då se att vår normalfördelningsplot över nederbörd med molnsådd i område 1
+visade att denna datamängd är normalfördelad medan det är svårare att se med 
+boxplot och histogram. Vi ska nu fortsätta genom att konstruera en nollhypotes 
+samt alternativhypotes och sedan testa om molnsådd ökar nederbörden.
