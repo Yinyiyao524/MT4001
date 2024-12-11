@@ -117,10 +117,21 @@ att molnsådd inte verkar öka nederbörden.
 
 # Uppgift 2: Molnsådd i Oregon
 ## Uppgift 2.1: Teoretisk uppgift
-1.
+1. För att undvika det systematiska fel som kan uppstå då exempelvis en meteorolog
+får avgöra när försöket ska genomföras, där den förutsägbarhet som där förekommer
+undviks genom att låta slumpen avgöra.
 2.
 
 ## Uppgift 2.2: Praktisk uppgift
+
+I denna uppgift så vill vi avgöra om molnsådd ökar nederbörden i Oregon där en
+meteorolog varje morgon bedömmer om förutsättningarna för nederbörd är lämpliga
+senare under dagen, om sådant var fallet så används en slumptalsgenerator med 
+sannolikhet $2/3$ att göra ett försök den dagen samt sannolikhet $1/3$ att avstå.
+Resultatet var att molnsådd genomfördes 22 dagar och genomfördes ej 13 dagar och
+vi vill avgöra om den datamängd från dessa tester har någon fördelning, samt konstruera
+en nollhypotes, alternativhypotes för att sedan testa om molnsådd ökar nederbörden.
+
 ```{r}
 oregon <- read.csv("oregon.csv", header = FALSE) #Yinyi testa använda denna istället
 #oregon <- read.csv("E:\\matematik\\MT4001\\labb\\homework1\\oregon.csv", header = FALSE)
