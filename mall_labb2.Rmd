@@ -15,8 +15,12 @@ på detaljer.
 
 # Uppgift 1: Molnsådd i Arizona
 ## Uppgift 1.1: Teoretisk uppgift
-1. Indelningen i tvådagarsperioden säkerställer att varja dag med molnsådd har en motsvarande kontroll dag (utan molnsådd dagen) innan eller efter. Detta blir möjligt att direkt jämföra resultatet mellan dessa två dagar.
-2.
+1. Indelningen i tvådagarsperioden säkerställer att varja dag med molnsådd har en motsvarande kontroll dag (utan molnsådd dagen) efter. Detta gör det möjligt att direkt jämföra resultatet mellan dessa två dagar
+och se hur då påverkar varandra.
+2. Eftersom det slumpmässiga valet av vilken dag molnsådd ska genomföras i en
+tvådagarsperiod minimerar systematiska fel, förstärker sannolikheten att 
+korrelationen mellan den dag då molnsådd beströs och dagen efter då den inte beströs
+faktist har en korrelation.
 3. Wilcoxons teckenrangtest
 
 ## Uppgift 1.2 Praktisk uppgift
