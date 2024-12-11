@@ -15,8 +15,10 @@ på detaljer.
 
 # Uppgift 1: Molnsådd i Arizona
 ## Uppgift 1.1: Teoretisk uppgift
-1. Indelningen i tvådagarsperioden säkerställer att varja dag med molnsådd har en motsvarande kontroll dag (utan molnsådd dagen) efter. Detta gör det möjligt att direkt jämföra resultatet mellan dessa två dagar
-och se hur då påverkar varandra.
+1. Indelningen i tvådagarsperioden säkerställer att varje dag med molnsådd har en motsvarande kontroll dag (utan molnsådd) dagen efter. Detta gör det möjligt att direkt jämföra resultatet mellan dessa två dagar
+och se hur då påverkar varandra. Dessutom så blir fördelningen av dagarna då
+molnsådd beströs och inte beströs jämnare och riskerar inte att beströ molnsådd
+flera dagar i rad som skulle kunna ske med fallet då man singlar slant.
 2. Eftersom det slumpmässiga valet av vilken dag molnsådd ska genomföras i en
 tvådagarsperiod minimerar systematiska fel, förstärker sannolikheten att 
 korrelationen mellan den dag då molnsådd beströs och dagen efter då den inte beströs
