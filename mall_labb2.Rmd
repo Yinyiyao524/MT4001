@@ -78,7 +78,6 @@ mellan den nederbörd som förekommer med molnsådd eller den dagen då det ej f
 
 ```{r}
 arizona <- read.csv("arizona.csv", header = FALSE) #Yinyi testa använda denna istället
-#arizona <- read.csv("E:\\matematik\\MT4001\\labb\\homework1\\arizona.csv", header = FALSE)
 year <- arizona$V1
 seed <- arizona$V2
 nonseed <- arizona$V3
@@ -183,7 +182,6 @@ Et cetera om det är fler än 2 uppgifter.
 ## Uppgift 2.2: Praktisk uppgift
 ```{r}
 oregon <- read.csv("oregon.csv", header = FALSE) #Yinyi testa använda denna istället
-#oregon <- read.csv("E:\\matematik\\MT4001\\labb\\homework1\\oregon.csv", header = FALSE)
 trial <- oregon$V1
 typ1 <- oregon$V2
 typ2 <- oregon$V3
