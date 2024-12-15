@@ -11,7 +11,7 @@ output:
 
 # Sammanfattning
 I denna laboration så kommer vi att undersöka med hjälp av hypotesttest och
-Wilcoxons teckenrangtest samt Wilcoxon-Mann_Whitneytest om effekten av molnsådd ökar nederbörden för respektive
+Wilcoxons teckenrangtest samt Wilcoxon-Mann-Whitneytest om effekten av molnsådd ökar nederbörden för respektive
 område. I den första uppgiften delas försöksperioden in tvådagarsperioder där
 molnsådd utförs den första dagen men inte den andra, och på sätt har man en
 grund för jämförelse. I den andra uppgiften användes i stället en slumptalsgenerator 
@@ -23,7 +23,7 @@ härstamma från någon fördelning med hjälp av normalfördelningsplot, histog
 och boxplot. Efter det genomför vi hypotestest med nollhypotes att molnsådd inte
 påverkar nederbörden kontra alternativhypotesen att molnsådd ökar nederbörden.
 För att genomföra dessa hypotest så använder vi oss av Wilcoxons teckenrangtest 
-samt Wilcoxon-Mann_Whitneytest för att få fram ett p-värde och se om det är större
+samt Wilcoxon-Mann-Whitneytest för att få fram ett p-värde och se om det är större
 eller mindre än vår felrisk för att dra slutsats om att inte förkasta nollhypotesen
 kontra förkasta nollhypotesen.
 
@@ -142,8 +142,12 @@ att molnsådd inte verkar öka nederbörden.
 1. För att undvika det systematiska fel som kan uppstå då exempelvis en meteorolog
 får avgöra när försöket ska genomföras, där den förutsägbarhet som där förekommer
 undviks genom att låta slumpen avgöra.
+<<<<<<< HEAD
 2. 
 2. Wilcoxons-Mann_Whitneytest eftersom denna på samma sätt som tecken-rangtestet
+=======
+2. Wilcoxons-Mann-Whitneytest eftersom denna på samma sätt som tecken-rangtestet
+>>>>>>> da6dae9fa05f809798cca5e52e228ce7ab0da1b2
 bör användas då vår datamängd inte verkar normalfördelad, men då vi nu har två
 datavektorer i stället för enbart en som i Wilcoxons teckenrangtest.
 
