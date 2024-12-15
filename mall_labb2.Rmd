@@ -40,6 +40,8 @@ faktist är legitim.
 3. För att testa om molnsådd ökar mängden nederbörd jämfört med dagar utan molnsådd, kan vi använda följande statistiska tester beroende på datans egenskaper:
  t-test: om datan är kvantitativ, normalfördelad (eller tillräckligt stor sample-storlek för att approximera normalitet). Vi kan jämföra medelvärdet av nederbörd mellan dagar med och utan molnsådd för att testa om skillnaden är signifikant.
  teckenrangtest: Om datan är kvantitativ men inte normalfördelad. Det är ett icke-parametriskt alternativ till parat t-test som jämför medianen av skillnader mellan olika grupper.
+Men eftersom vår data ej är normalfördelad Är Wilcoxons teckenrangtest det 
+lämpliga valet för att testa om molnsådd ökar mängden nederbörd.
 
 ## Uppgift 1.2 Praktisk uppgift
 I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbörd med
