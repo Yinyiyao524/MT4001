@@ -36,7 +36,7 @@ flera dagar i rad som skulle kunna ske med fallet då man singlar slant.
 2. Eftersom det slumpmässiga valet av vilken dag molnsådd ska genomföras i en
 tvådagarsperiod minimerar systematiska fel, förstärker sannolikheten att 
 korrelationen mellan den dag då molnsådd beströs och dagen efter då den inte beströs
-faktist har en korrelation.
+faktist är legitim.
 3. Wilcoxons teckenrangtest
 
 ## Uppgift 1.2 Praktisk uppgift
@@ -135,7 +135,9 @@ att molnsådd inte verkar öka nederbörden.
 1. För att undvika det systematiska fel som kan uppstå då exempelvis en meteorolog
 får avgöra när försöket ska genomföras, där den förutsägbarhet som där förekommer
 undviks genom att låta slumpen avgöra.
-2. Wilcoxons-Mann_Whitneytest
+2. Wilcoxons-Mann_Whitneytest eftersom denna på samma sätt som tecken-rangtestet
+bör användas då vår datamängd inte verkar normalfördelad, men då vi nu har två
+datavektorer i stället för enbart en som i Wilcoxons teckenrangtest.
 
 ## Uppgift 2.2: Praktisk uppgift
 
