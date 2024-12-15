@@ -130,7 +130,7 @@ $H_1$: Molnsådd ökar nederbörden.
 wilcox.test(differ, alternative = "greater", paired = FALSE)## tror att jag har gjort fel med syntax, se syntax nedan
 ```
 ```{r}
-wilcox.test(seed, nonseed, alternative = "two.sided")
+wilcox.test(seed, nonseed, alternative ="greater",paired = TRUE) #vi har samma mängd på 2 grupper, och kan se datan beroende, därför paired= TRUE
 ```
 
 
@@ -220,8 +220,8 @@ för de två områdena om molnsådd ökar nederbörden.
 $H_{0}$: Molnsådd påverkar inte nederbörden
 $H_{1}$: Molnsådd ökar nederbörden
 ```{r}
-wilcox.test(nonseed1, seed2, alternative = "two.sided", exact = FALSE)
-wilcox.test(nonseed2, seed2, alternative = "two.sided",exact = FALSE)
+wilcox.test(seed1, nonseed1, alternative = "greater") # två grupper har olika mängd, därför är de oberoende (paired=FALSE)
+wilcox.test(seed2, nonseed2, alternative = "greater")
 ```
 
 ```{r}
