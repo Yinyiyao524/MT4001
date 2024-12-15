@@ -37,18 +37,20 @@ flera dagar i rad som skulle kunna ske med fallet då man singlar slant.
 tvådagarsperiod minimerar systematiska fel, förstärker sannolikheten att 
 korrelationen mellan den dag då molnsådd beströs och dagen efter då den inte beströs
 faktist är legitim.
-3. Wilcoxons teckenrangtest
+3. För att testa om molnsådd ökar mängden nederbörd jämfört med dagar utan molnsådd, kan vi använda följande statistiska tester beroende på datans egenskaper:
+1. t-test: om datan är kvantitativ, normalfördelad (eller tillräckligt stor sample-storlek för att approximera normalitet). Vi kan jämföra medelvärdet av nederbörd mellan dagar med och utan molnsådd för att testa om skillnaden är signifikant.
+2. teckenrangtest: Om datan är kvantitativ men inte normalfördelad. Det är ett icke-parametriskt alternativ till parat t-test som jämför medianen av skillnader mellan olika grupper.
 
 ## Uppgift 1.2 Praktisk uppgift
 I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbörd med
-molnsådd, nederbörd utan molnsådd samt deras årtal kan ha någon fördelning. Vi
+molnsådd, nederbörd utan molnsådd samt deras årtal kan ha någon fördelning. (Vi
 vill dessutom konstruera en nollhypotes för att testa med Wilcoxons teckenrangtest
-om det är så att molnsådd ökar nederbörden. Till att börja med undersöker vi med
+om det är så att molnsådd ökar nederbörden.) Till att börja med undersöker vi med
 hjälp av boxplot, histogram och normalfördelningsplot om vårt datamaterial kan komma
 från någon fördelning.
 
 ```{r}
-arizona <- read.csv("arizona.csv", header = FALSE) #Yinyi testa använda denna istället
+arizona <- read.csv("arizona.csv", header = FALSE)
 year <- arizona$V1
 seed <- arizona$V2
 nonseed <- arizona$V3
@@ -115,6 +117,7 @@ legend("topright",
 plot(year,differ,main = 'Diagram för differenserna mellan nederbörd utan molnsådd och nederbörd med molnsådd', ylab= 'differenserna', xlab = 'Årtal')
 ```
 
+
 Sammanfattande texter
 Histogram, box plot och Q-Q-plottar visade att dataset inte var normalfördelade, vi väljer icke-parametrisk metod: teckenrangtest (Wilcoxon signed-rank test).
 
@@ -124,8 +127,12 @@ $H_0$: Det finns ingen skillnad i nederbörd mellan molnsådda och icke-molnsåd
 $H_1$: Molnsådd ökar nederbörden.
 
 ```{r}
-wilcox.test(differ, alternative = "greater", paired = FALSE)
+wilcox.test(differ, alternative = "greater", paired = FALSE)## tror att jag har gjort fel med syntax, se syntax nedan
 ```
+```{r}
+wilcox.test(seed, nonseed, alternative = "two.sided")
+```
+
 
 Och vi ser då att $p > \alpha = 0.05$ så vi kan därför inte förkasta $H_{0}$ vilket innebär
 att molnsådd inte verkar öka nederbörden.
@@ -135,6 +142,7 @@ att molnsådd inte verkar öka nederbörden.
 1. För att undvika det systematiska fel som kan uppstå då exempelvis en meteorolog
 får avgöra när försöket ska genomföras, där den förutsägbarhet som där förekommer
 undviks genom att låta slumpen avgöra.
+2. 
 2. Wilcoxons-Mann_Whitneytest eftersom denna på samma sätt som tecken-rangtestet
 bör användas då vår datamängd inte verkar normalfördelad, men då vi nu har två
 datavektorer i stället för enbart en som i Wilcoxons teckenrangtest.
@@ -207,11 +215,15 @@ samt alternativhypotes och sedan testa med hjälp av Wilcoxons teckenrang-test
 för de två områdena om molnsådd ökar nederbörden.
 $H_{0}$: Molnsådd påverkar inte nederbörden
 $H_{1}$: Molnsådd ökar nederbörden
+```{r}
+wilcox.test(nonseed1, seed2, alternative = "two.sided", exact = FALSE)
+wilcox.test(nonseed2, seed2, alternative = "two.sided",exact = FALSE)
+```
 
 ```{r}
 differ1 <- seed1-nonseed1
 differ2 <- seed2-nonseed2
-result1 <- wilcox.test(differ1, differ2, alternative = "greater")
+result1 <- wilcox.test(differ1, differ2, alternative = "greater") # The code you've written contains a logical issue. The Wilcoxon Mann-Whitney test is designed to compare two independent groups, not two sets of differences.
 #result2 <- wilcox.test(differ2, alternative = "greater")
 print(result1)
 #print(result2)
