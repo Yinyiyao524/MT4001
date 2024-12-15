@@ -72,16 +72,18 @@ qqline(nonseed)
 ```
 Även här verkar vår datamängd ej vara normalfördelad eftersom den ej följer
 Q-Q-plotens raka linje utan innehåller för många outliers vilket indikerar att
-vår datamängd avviker från normalfördelningen. Vi fortsätter med ett histogram över
-nederbörd utan molnsådd
+vår datamängd avviker från normalfördelningen och liknar delvis en exponentialfördelning
+med tanke på den exponentiella ökningen runt normalfördelningens andra teoretiska kvantil.
+Vi fortsätter med ett histogram över nederbörd utan molnsådd
 
 ```{r,fig.cap='Figur 3: Histogram: Utan molnsådd'}
 hist(nonseed,prob = TRUE, main = 'Nederbörd utan molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
 ```
 Vi ser att histogrammet ej tyder på normalfördelning eftersom många stickprov
-tenderar att vara kring 0 och ingen klockform visar sig. Vi fortsätter med histogram över nederbörd
-utan molnsådd
+tenderar att vara kring 0 och ingen klockform visar sig men den liknar till viss del
+en exponentialfördelning på grund av det stora antalet stickprov runt 0 som exponentiellt
+minskar. Vi fortsätter med histogram över nederbörd utan molnsådd
 
 ```{r,fig.cap='Figur 4: Histogram: Med molnsådd'}
 hist(seed,prob = TRUE, main = 'Nederbörd med molnsådd', ylab =
@@ -107,7 +109,8 @@ Av samma anledning som innan kan vi dra slutsatsen att vår datamängd ej verkar
 normalfördelad eftersom utseendet på vår boxplot saknar symmetri och jämna proportioner.
 
 
-Vi ser då att vårt datamaterial inte verkar komma från en särskild fördelning.
+Vi ser då att vårt datamaterial inte verkar komma en normalfördelning men vårt histogram
+samt Q-Q-plot över nederbörd utan molnsådd liknar till viss del en exponentialfördelning.
 Vi fortsätter nu med att göra ett diagram för differensen mellan nederbörden
 med molnsådd och utan molnsådd, för att sedan konstruera vår nollhypotes och
 utföra Wilcoxons teckentangtest. Om differensen visar sig vara normalfördelad
