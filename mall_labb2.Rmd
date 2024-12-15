@@ -56,25 +56,40 @@ arizona <- read.csv("arizona.csv", header = FALSE)
 year <- arizona$V1
 seed <- arizona$V2
 nonseed <- arizona$V3
-old_par <- par(mfrow = c(1,2))
 qqnorm(seed,main = 'Nederbörd med molnsådd', ylab= 'Nederbörd med
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(seed)
+```
+
+
+```{r}
 qqnorm(nonseed,main = 'Nederbörd utan molnsådd', ylab= 'Nederbörd utan
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed)
-par(old_par)
-old_par <- par(mfrow = c(1,2))
+```
+
+
+```{r}
 hist(nonseed,prob = TRUE, main = 'Nederbörd utan molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
+```
+
+
+```{r}
 hist(seed,prob = TRUE, main = 'Nederbörd med molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
-par(old_par)
-old_par <- par(mfrow = c(1,2))
-boxplot(nonseed, prob = TRUE, main = 'Nederbörd utan molnsådd')
-boxplot(seed, prob = TRUE, main = 'Nederbörd med molnsådd')
-par(old_par)
 ```
+
+
+```{r}
+boxplot(nonseed, prob = TRUE, main = 'Nederbörd utan molnsådd')
+```
+
+
+```{r}
+boxplot(seed, prob = TRUE, main = 'Nederbörd med molnsådd')
+```
+
 
 Vi ser då att vårt datamaterial inte verkar komma från en särskild fördelning.
 Vi fortsätter nu med att göra ett diagram för differensen mellan nederbörden
@@ -217,18 +232,9 @@ för de två områdena om molnsådd ökar nederbörden.
 $H_{0}$: Molnsådd påverkar inte nederbörden
 $H_{1}$: Molnsådd ökar nederbörden
 ```{r}
-wilcox.test(seed1, nonseed1, alternative = "greater") # två grupper har olika mängd, därför är de oberoende (paired=FALSE)
-wilcox.test(seed2, nonseed2, alternative = "greater")
+wilcox.test(seed1, nonseed1, alternative = "greater", paired = FALSE) # två grupper har olika mängd, därför är de oberoende (paired=FALSE)
+wilcox.test(seed2, nonseed2, alternative = "greater", paired = FALSE)
 ```
 
-```{r}
-differ1 <- seed1-nonseed1
-differ2 <- seed2-nonseed2
-result1 <- wilcox.test(differ1, differ2, alternative = "greater") # The code you've written contains a logical issue. The Wilcoxon Mann-Whitney test is designed to compare two independent groups, not two sets of differences.
-#result2 <- wilcox.test(differ2, alternative = "greater")
-print(result1)
-#print(result2)
-```
-
-Vi kan här se att Wilcoxons teckenrang-test för båda områdena gav $p > \alpha = 0.05$
+Vi kan här se att Wilcoxons-Mann-Whitney test för båda områdena gav $p > \alpha = 0.05$
 så vi förkastar därför inte nollhypotesen och därmed ökar molnsådd inte nederbörden.
