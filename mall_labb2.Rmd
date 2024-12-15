@@ -111,49 +111,34 @@ normalfördelad eftersom utseendet på vår boxplot saknar symmetri och jämna p
 
 Vi ser då att vårt datamaterial inte verkar komma en normalfördelning men vårt histogram
 samt Q-Q-plot över nederbörd utan molnsådd liknar till viss del en exponentialfördelning.
-Vi fortsätter nu med att göra ett diagram för differensen mellan nederbörden
-med molnsådd och utan molnsådd, för att sedan konstruera vår nollhypotes och
-utföra Wilcoxons teckentangtest. Om differensen visar sig vara normalfördelad
+Vi fortsätter nu med att göra Q-Q-plot, histogram samt boxplot för differensen mellan nederbörden
+med molnsådd och utan molnsådd.  Om differensen visar sig vara normalfördelad
 skulle det vara rimligt att utföra t-test, vi undersöker därför grafiskt
 
-```{r, fig.cap="Diagram för nederbörd med molnsådd och utan molnsådd"}
+```{r,fig.cap='Figur 7: Q-Q-plot: Differens'}
 differ <- seed-nonseed
-old_par <- par(mfrow = c(1,2))
-plot(year,seed, xlab= '
-Årtal', ylab = 'Nederbörd',
-pch = 15,
-col ="blue")
-points(year,nonseed,
-       pch = 17,  # Solid triangles
-       col = "red")
-legend("topright", 
-       legend = c("Seed", "Nonseed"), 
-       pch = c(15, 17),  # Shapes corresponding to seed and nonseed
-       col = c("blue", "red"))  # Colors corresponding to seed and nonseed
-plot(year,differ, ylab= 'differenserna', xlab = 'Årtal')
-par(old_par)
-```
-```{r}
-plot(year, seed, 
-     main = 'Diagram för nederbörd med molnsådd och utan molnsådd', 
-     xlab = 'Årtal', 
-     ylab = 'Nederbörd', 
-     pch = 15,  # Solid squares for seed
-     col = "blue")
-points(year, nonseed, 
-       pch = 17,  # Solid triangles for nonseed
-       col = "red")
-
-# Add a legend
-legend("topright", 
-       legend = c("Seed", "Nonseed"), 
-       pch = c(15, 17),  # Shapes corresponding to seed and nonseed
-       col = c("blue", "red"))  # Colors corresponding to seed and nonseed
-```
-```{r}
-plot(year,differ,main = 'Diagram för differenserna mellan nederbörd utan molnsådd och nederbörd med molnsådd', ylab= 'differenserna', xlab = 'Årtal')
+qqnorm(differ,main = 'Q-Q-plot: Differens', ylab= 'Nederbörd med
+molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
+qqline(seed)
 ```
 
+Men vi ser här att vår datamängd har outliers och inte följer Q-Q-plotens raka linje
+så den tyder inte på normalfördelning. Vi fortsätter med histogram
+
+```{r,fig.cap='Figur 8: Histogram: Differens'}
+hist(differ,prob = TRUE, main = 'Histogram: Differens', ylab =
+       'Densitet', xlab = 'Nederbörd med molnsådd')
+```
+
+Detta histogram saknar klockform och tyder ej på normalfördelning. Vi fortsätter med
+boxplot
+
+```{r,fig.cap='Figur 9: Boxplot: Differens'}
+boxplot(differ, prob = TRUE, main = 'Boxplot: Differens')
+```
+
+Men denna boxplot är asymmetrisk och saknar jämna proportioner så vi drar slutsatsen
+att differensen mellan molnsådd och utan molnsådd ej verkar vara normalfördelad.
 
 Sammanfattande text
 Histogram, boxplot och Q-Q-plottar visade att dataset inte var normalfördelade, vi väljer icke-parametrisk metod: teckenrangtest (Wilcoxon signed-rank test).
@@ -193,7 +178,7 @@ Vi ska undersöka om vår datamängd kan komma från någon fördelning
 med hjälp av histogram, boxplot och normalfördelningsplot och vi börjar med en
 Q-Q-plot över nederbörd med molnsådd i område 1
 
-```{r,fig.cap='Figur 7: Q-Q-plot: Med molnsådd i område 1'}
+```{r,fig.cap='Figur 10: Q-Q-plot: Med molnsådd i område 1'}
 oregon <- read.csv("oregon.csv", header = FALSE) #Yinyi testa använda denna istället
 trial <- oregon$V1
 typ1 <- oregon$V2
@@ -211,7 +196,7 @@ Vi kan här se att utseendet på vår Q-Q-plot ej efterliknar utseendet hos norm
 på grund av att Q-Q-plotens raka linje ej följs och en viss tendens till s-form kan synas.
 Vi fortsätter med Q-Q-plot över nederbörd utan molnsådd i område 1
 
-```{r,fig.cap='Figur 8: Q-Q-plot: Utan molnsådd i område 1'}
+```{r,fig.cap='Figur 11: Q-Q-plot: Utan molnsådd i område 1'}
 qqnorm(nonseed1,main = 'Nederbörd utan molnsådd i område 1', ylab= 'Nederbörd utan
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed1)
@@ -220,7 +205,7 @@ I detta fall tyder vår data ej heller på att den är normalfördelad eftersom 
 outliers och Q-Q-plotens raka linje ej följs. Vi fortsätter med en Q-Q-plot över
 nederbörd med molnsådd i område 2
 
-```{r,fig.cap='Figur 9: Q-Q-plot: Med molnsådd i område 2'}
+```{r,fig.cap='Figur 12: Q-Q-plot: Med molnsådd i område 2'}
 qqnorm(seed2,main = 'Nederbörd med molnsådd i område 2', ylab= 'Nederbörd med
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(seed2)
@@ -229,7 +214,7 @@ Utseendet här tyder inte på normalfördelning på grund av att Q-Q-plotens rak
 ej följs då avvikelserna är för stora. Vi fortsätter med Q-Q-plot över nederbörd
 utan molnsådd i område 2
 
-```{r,fig.cap='Figur 10: Q-Q-plot: Utan molnsådd i område 2'}
+```{r,fig.cap='Figur 13: Q-Q-plot: Utan molnsådd i område 2'}
 qqnorm(nonseed2,main = 'Nederbörd utan molnsådd i område 2', ylab= 'Nederbörd utan
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed2)
@@ -238,14 +223,14 @@ Outlierserna i denna Q-Q-plot är tydliga och Q-Q-plotens raka linje visar sig i
 följas av vår datamängd. Vi fortsätter med att undersöka histogram över nederbörd
 utan molnsådd i område 1
 
-```{r,fig.cap='Figur 11: Histogram: Utan molnsådd i område 1'}
+```{r,fig.cap='Figur 14: Histogram: Utan molnsådd i område 1'}
 hist(nonseed1,prob = TRUE, main = 'Nederbörd utan molnsådd i område 1', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
 ```
 Men detta histogram saknar klockform och verkar ej vara normalfördelad. Vi fortsätter
 med histogram över nederbörd med molnsådd i område 1
 
-```{r,fig.cap='Figur 12: Histogram: Med molnsådd i område 1'}
+```{r,fig.cap='Figur 15: Histogram: Med molnsådd i område 1'}
 hist(seed1,prob = TRUE, main = 'Nederbörd med molnsådd i område 1', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
 ```
@@ -253,7 +238,7 @@ hist(seed1,prob = TRUE, main = 'Nederbörd med molnsådd i område 1', ylab =
 Detta histogram saknar klockform och tyder inte på normalfördelning. Vi fortsätter
 med histogram över nederbörd utan molnsådd i område 2
 
-```{r,fig.cap='Figur 13: Histogram: Utan molnsådd i område 2'}
+```{r,fig.cap='Figur 16: Histogram: Utan molnsådd i område 2'}
 hist(nonseed2,prob = TRUE, main = 'Nederbörd utan molnsådd i område 2', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
 ```
@@ -261,7 +246,7 @@ Detta histogram saknar klockform och stickproven tenderar att vara kring 0 vilke
 ej tyder på normalfördelning. Vi fortsätter med histogram över nederbörd med molnsådd
 i område 2
 
-```{r,fig.cap='Figur 14: Histogram: Med molnsådd i område 2'}
+```{r,fig.cap='Figur 17: Histogram: Med molnsådd i område 2'}
 hist(seed2,prob = TRUE, main = 'Nederbörd med molnsådd i område 2', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
 ```
@@ -269,26 +254,26 @@ Men detta histogram saknar klockform och stickproven tenderar att vara kring 0 s
 histogrammet tyder ej på normalfördelning. Vi fortsätter med boxplot över nederbörd
 utan molnsådd i område 1
 
-```{r,fig.cap='Figur 15: Boxplot: Utan molnsådd i område 1'}
+```{r,fig.cap='Figur 18: Boxplot: Utan molnsådd i område 1'}
 boxplot(nonseed1, prob = TRUE, main = 'Nederbörd utan molnsådd i område 1')
 ```
 
 Men denna boxplot saknar symmetri och jämna proportioner vilket ej tyder på normalfördelning.
 Vi fortsätter med boxplot över nederbörd med molnsådd i område 1
-```{r,fig.cap='Figur 16: Boxplot: Med molnsådd i område 1'}
+```{r,fig.cap='Figur 19: Boxplot: Med molnsådd i område 1'}
 boxplot(seed1, prob = TRUE, main = 'Nederbörd med molnsådd i område 1')
 ```
 
 Men eftersom vår boxplot har asymmetri verkar den ej visa på normalfördelning. Vi
 fortsätter med boxplot över nederbörd utan molnsådd i område 2
-```{r,fig.cap='Figur 17: Boxplot: Utan molnsådd i område 2'}
+```{r,fig.cap='Figur 20: Boxplot: Utan molnsådd i område 2'}
 boxplot(nonseed2, prob = TRUE, main = 'Nederbörd utan molnsådd i område 2')
 ```
 
 Men denna boxplot saknar jämna proportioner så den tyder ej på normalfördelning.
 Vi fortsätter med boxplot över nederbörd med molnsådd i område 2
 
-```{r,fig.cap='Figur 18: Boxplot: Med molnsådd i område 2'}
+```{r,fig.cap='Figur 21: Boxplot: Med molnsådd i område 2'}
 boxplot(seed2, prob = TRUE, main = 'Nederbörd med molnsådd i område 2')
 ```
 
