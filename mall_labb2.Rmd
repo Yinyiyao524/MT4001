@@ -115,22 +115,16 @@ legend("topright",
 plot(year,differ,main = 'Diagram för differenserna mellan nederbörd utan molnsådd och nederbörd med molnsådd', ylab= 'differenserna', xlab = 'Årtal')
 ```
 
-## Hypotes
-$H_0$: Det finns ingen skillnad i nederbörd mellan molnsådda och icke-molnsådda dagar. Molnsådd har ingen effekt.
-$H_1$: Molnsådd ökar nederbörden.
-```{r}
-wilcox.test(differ, alternative = "greater", paired = FALSE)
-```
-
-
 Sammanfattande texter
 Histogram, box plot och Q-Q-plottar visade att dataset inte var normalfördelade, vi väljer icke-parametrisk metod: teckenrangtest (Wilcoxon signed-rank test).
 
+## Hypotes
 $H_0$: Det finns ingen skillnad i nederbörd mellan molnsådda och icke-molnsådda dagar. Molnsådd har ingen effekt.
+
 $H_1$: Molnsådd ökar nederbörden.
+
 ```{r}
-result <- wilcox.test(seed,nonseed, alternative = "greater", paired = TRUE)
-print(result)
+wilcox.test(differ, alternative = "greater", paired = FALSE)
 ```
 
 Och vi ser då att $p > \alpha = 0.05$ så vi kan därför inte förkasta $H_{0}$ vilket innebär
