@@ -10,8 +10,22 @@ output:
 ---
 
 # Sammanfattning
-I detta inledande stycke ska du förklara vad labben går ut på, utan att gå in
-på detaljer.
+I denna laboration så kommer vi att undersöka med hjälp av hypotesttest och
+Wilcoxons teckenrangtest om effekten av molnsådd ökar nederbörden för respektive
+område. I den första uppgiften delas försöksperioden in tvådagarsperioder där
+molnsådd utförs den första dagen men inte den andra, och på sätt har man en
+grund för jämförelse. I den andra uppgiften användes i stället en slumptalsgenerator 
+om molnsådd ska utföras, där sannolikheten för att genomföra är $2/3$ och sannolikheten 
+för att avstå är $1/3$. Resultatet av detta var att molnsådd genomfördes 22 dagar
+och genomfördes ej i 13 dagar. I båda dessa uppgifter så undersöker vi till att
+börja med om den datamängd vi erhåller genom respektive csv-fil kan anses
+härstamma från någon fördelning med hjälp av normalfördelningsplot, histogram
+och boxplot. Efter det genomför vi hypotestest med nollhypotes att molnsådd inte
+påverkar nederbörden kontra alternativhypotesen att molnsådd ökar nederbörden.
+För att genomföra dessa hypotest så använder vi oss av Wilcoxons teckenrangtest 
+samt Wilcoxon-Mann_Whitneytest för att få fram ett p-värde och se om det är större
+eller mindre än vår felrisk för att dra slutsats om att inte förkasta nollhypotesen
+kontra förkasta nollhypotesen.
 
 # Uppgift 1: Molnsådd i Arizona
 ## Uppgift 1.1: Teoretisk uppgift
@@ -201,10 +215,10 @@ $H_{1}$: Molnsådd ökar nederbörden
 ```{r}
 differ1 <- seed1-nonseed1
 differ2 <- seed2-nonseed2
-result1 <- wilcox.test(differ1, alternative = "greater")
-result2 <- wilcox.test(differ2, alternative = "greater")
+result1 <- wilcox.test(differ1, differ2, alternative = "greater")
+#result2 <- wilcox.test(differ2, alternative = "greater")
 print(result1)
-print(result2)
+#print(result2)
 ```
 
 Vi kan här se att Wilcoxons teckenrang-test för båda områdena gav $p > \alpha = 0.05$
