@@ -38,8 +38,8 @@ tvådagarsperiod minimerar systematiska fel, förstärker sannolikheten att
 korrelationen mellan den dag då molnsådd beströs och dagen efter då den inte beströs
 faktist är legitim.
 3. För att testa om molnsådd ökar mängden nederbörd jämfört med dagar utan molnsådd, kan vi använda följande statistiska tester beroende på datans egenskaper:
-1. t-test: om datan är kvantitativ, normalfördelad (eller tillräckligt stor sample-storlek för att approximera normalitet). Vi kan jämföra medelvärdet av nederbörd mellan dagar med och utan molnsådd för att testa om skillnaden är signifikant.
-2. teckenrangtest: Om datan är kvantitativ men inte normalfördelad. Det är ett icke-parametriskt alternativ till parat t-test som jämför medianen av skillnader mellan olika grupper.
+ t-test: om datan är kvantitativ, normalfördelad (eller tillräckligt stor sample-storlek för att approximera normalitet). Vi kan jämföra medelvärdet av nederbörd mellan dagar med och utan molnsådd för att testa om skillnaden är signifikant.
+ teckenrangtest: Om datan är kvantitativ men inte normalfördelad. Det är ett icke-parametriskt alternativ till parat t-test som jämför medianen av skillnader mellan olika grupper.
 
 ## Uppgift 1.2 Praktisk uppgift
 I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbörd med
@@ -142,12 +142,7 @@ att molnsådd inte verkar öka nederbörden.
 1. För att undvika det systematiska fel som kan uppstå då exempelvis en meteorolog
 får avgöra när försöket ska genomföras, där den förutsägbarhet som där förekommer
 undviks genom att låta slumpen avgöra.
-<<<<<<< HEAD
-2. 
-2. Wilcoxons-Mann_Whitneytest eftersom denna på samma sätt som tecken-rangtestet
-=======
-2. Wilcoxons-Mann-Whitneytest eftersom denna på samma sätt som tecken-rangtestet
->>>>>>> da6dae9fa05f809798cca5e52e228ce7ab0da1b2
+2. Wilcoxons-Mann-Whitneytest eftersom denna på samma sätt som tecken-rangtestet 
 bör användas då vår datamängd inte verkar normalfördelad, men då vi nu har två
 datavektorer i stället för enbart en som i Wilcoxons teckenrangtest.
 
