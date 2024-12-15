@@ -179,7 +179,7 @@ med hjälp av histogram, boxplot och normalfördelningsplot och vi börjar med e
 Q-Q-plot över nederbörd med molnsådd i område 1
 
 ```{r,fig.cap='Figur 10: Q-Q-plot: Med molnsådd i område 1'}
-oregon <- read.csv("oregon.csv", header = FALSE) #Yinyi testa använda denna istället
+oregon <- read.csv("oregon.csv", header = FALSE) 
 trial <- oregon$V1
 typ1 <- oregon$V2
 typ2 <- oregon$V3
@@ -192,8 +192,8 @@ molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(seed1)
 ```
 
-Vi kan här se att utseendet på vår Q-Q-plot ej efterliknar utseendet hos normalfördelad data
-på grund av att Q-Q-plotens raka linje ej följs och en viss tendens till s-form kan synas.
+Vi kan här se att utseendet på vår Q-Q-plot efterliknar utseendet hos normalfördelad data
+på grund av att Q-Q-plotens raka linje följs.
 Vi fortsätter med Q-Q-plot över nederbörd utan molnsådd i område 1
 
 ```{r,fig.cap='Figur 11: Q-Q-plot: Utan molnsådd i område 1'}
@@ -201,8 +201,9 @@ qqnorm(nonseed1,main = 'Nederbörd utan molnsådd i område 1', ylab= 'Nederbör
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed1)
 ```
-I detta fall tyder vår data ej heller på att den är normalfördelad eftersom den har
-outliers och Q-Q-plotens raka linje ej följs. Vi fortsätter med en Q-Q-plot över
+I detta fall tyder vår data på att den är normalfördelad eftersom den följer 
+Q-Q-plotens raka linje någorlunda men i detta fall är den mer avvikande vilket kan
+tyda på att nederbörd utan molnsådd i område 1 ej är normalfördelad. Vi fortsätter med en Q-Q-plot över
 nederbörd med molnsådd i område 2
 
 ```{r,fig.cap='Figur 12: Q-Q-plot: Med molnsådd i område 2'}
@@ -210,8 +211,8 @@ qqnorm(seed2,main = 'Nederbörd med molnsådd i område 2', ylab= 'Nederbörd me
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(seed2)
 ```
-Utseendet här tyder inte på normalfördelning på grund av att Q-Q-plotens raka linje
-ej följs då avvikelserna är för stora. Vi fortsätter med Q-Q-plot över nederbörd
+Utseendet här tyder delvis på normalfördelning på grund av att Q-Q-plotens raka linje
+följs till viss del men här är avvikelserna relativt stora. Vi fortsätter med Q-Q-plot över nederbörd
 utan molnsådd i område 2
 
 ```{r,fig.cap='Figur 13: Q-Q-plot: Utan molnsådd i område 2'}
@@ -220,7 +221,8 @@ molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed2)
 ```
 Outlierserna i denna Q-Q-plot är tydliga och Q-Q-plotens raka linje visar sig inte
-följas av vår datamängd. Vi fortsätter med att undersöka histogram över nederbörd
+följas av vår datamängd vilket tyder på att vår datamängd ej skulle vara
+normalfördelad. Vi fortsätter med att undersöka histogram över nederbörd
 utan molnsådd i område 1
 
 ```{r,fig.cap='Figur 14: Histogram: Utan molnsådd i område 1'}
