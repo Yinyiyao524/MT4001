@@ -284,6 +284,8 @@ boxplot(seed2, main = 'Nederbörd med molnsådd i område 2')
 ```
 
 Men denna boxplot saknar jämna proportioner och symmetri så den tyder ej på normalfördelning.
+Om vi hade fler observationer hade Q-Q-plottarna tydligare visat om datamängden
+var normalfördelad eller inte.
 
 Vi ska nu fortsätta genom att konstruera en nollhypotes 
 samt alternativhypotes och sedan testa med hjälp av Wilcoxons-Mann-Whitney test 
