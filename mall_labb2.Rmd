@@ -302,4 +302,4 @@ print(result2)
 ```
 
 Vi kan här se att Wilcoxons-Mann-Whitney test för båda områdena gav $p > \alpha = 0.05$
-så vi förkastar därför inte nollhypotesen och därmed ökar molnsådd inte nederbörden.
+så vi förkastar därför inte nollhypotesen och därmed drar vi slutsatsen att molnsådd inte ökar nederbörden.
