@@ -139,9 +139,8 @@ boxplot(differ, prob = TRUE, main = 'Boxplot: Differens')
 
 Men denna boxplot är asymmetrisk och saknar jämna proportioner så vi drar slutsatsen
 att differensen mellan molnsådd och utan molnsådd ej verkar vara normalfördelad.
-
-Sammanfattande text
-Histogram, boxplot och Q-Q-plottar visade att dataset inte var normalfördelade, vi väljer icke-parametrisk metod: teckenrangtest (Wilcoxon signed-rank test).
+Därför är det ej lämpligt att i detta fall använda t-test och vi använder därför
+en icke-parametrisk metod, nämligen Wilcoxons tecken-rang test för hypotesprövning.
 
 ## Hypotes
 $H_0$: Det finns ingen skillnad i nederbörd mellan molnsådda och icke-molnsådda dagar. Molnsådd har ingen effekt.
@@ -193,7 +192,8 @@ qqline(seed1)
 ```
 
 Vi kan här se att utseendet på vår Q-Q-plot efterliknar utseendet hos normalfördelad data
-på grund av att Q-Q-plotens raka linje följs.
+på grund av att Q-Q-plotens raka linje följs någorlunda men avvikelserna är för stora
+för att kunna dra slutsatsen att vår datamängd är normalfördelad.
 Vi fortsätter med Q-Q-plot över nederbörd utan molnsådd i område 1
 
 ```{r,fig.cap='Figur 11: Q-Q-plot: Utan molnsådd i område 1'}
@@ -212,7 +212,8 @@ molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(seed2)
 ```
 Utseendet här tyder delvis på normalfördelning på grund av att Q-Q-plotens raka linje
-följs till viss del men här är avvikelserna relativt stora. Vi fortsätter med Q-Q-plot över nederbörd
+följs till viss del men här är avvikelserna relativt stora vilket tyder på att vår
+datamängd ej är normalfördelad. Vi fortsätter med Q-Q-plot över nederbörd
 utan molnsådd i område 2
 
 ```{r,fig.cap='Figur 13: Q-Q-plot: Utan molnsådd i område 2'}
