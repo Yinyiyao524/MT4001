@@ -139,7 +139,17 @@ boxplot(differ, main = 'Boxplot: Differens')
 
 Men denna boxplot är asymmetrisk och saknar jämna proportioner så vi drar slutsatsen
 att differensen mellan molnsådd och utan molnsådd ej verkar vara normalfördelad.
-Därför är det ej lämpligt att i detta fall använda t-test och vi använder därför
+Men eftersom det inte föreligger fullständig säkerhet angående differensen potentiella
+normalfördelning så utför vi ett t.test med felrisk $\alpha = 0.05$ för säkerhets skull.
+Vi testar då följande $H_0:$ Molnsådd påverkar ej nederbörden med $H_1:$ Molnsådd ökar nederbörden
+
+```{r}
+t.test(seed,nonseed, alternative = 'greater', paired = TRUE, conf.level = 0.95)
+```
+
+Men vi ser här att $p>\alpha$ så vi kan därför inte förkasta nollhypotesen.
+
+Vi fortsätter nu genom att använda
 en icke-parametrisk metod, nämligen Wilcoxons tecken-rang test för hypotesprövning.
 Vi konstruerar därför nollhypotesen att molnsådd inte har någon effekt och alternativhypotsen
 att molnsådd ökar nederbörden och använder sedan Wilcoxons tecken-rang test med
