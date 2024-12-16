@@ -141,6 +141,9 @@ Men denna boxplot är asymmetrisk och saknar jämna proportioner så vi drar slu
 att differensen mellan molnsådd och utan molnsådd ej verkar vara normalfördelad.
 Därför är det ej lämpligt att i detta fall använda t-test och vi använder därför
 en icke-parametrisk metod, nämligen Wilcoxons tecken-rang test för hypotesprövning.
+Vi konstruerar därför nollhypotesen att molnsådd inte har någon effekt och alternativhypotsen
+att molnsådd ökar nederbörden och använder sedan Wilcoxons tecken-rang test med
+felrisk $\alpha = 0.05$
 
 ## Hypotes
 $H_0$: Det finns ingen skillnad i nederbörd mellan molnsådda och icke-molnsådda dagar. Molnsådd har ingen effekt.
@@ -148,7 +151,7 @@ $H_0$: Det finns ingen skillnad i nederbörd mellan molnsådda och icke-molnsåd
 $H_1$: Molnsådd ökar nederbörden.
 
 ```{r}
-wilcox.test(seed, nonseed, alternative ="greater",paired = TRUE) #vi har samma mängd på 2 grupper, och kan se datan beroende, därför paired= TRUE
+wilcox.test(seed, nonseed, alternative ="greater",paired = TRUE, conf.level = 0.95) #vi har samma mängd på 2 grupper, och kan se datan beroende, därför paired= TRUE
 ```
 
 Och vi ser då att $p > \alpha = 0.05$ så vi kan därför inte förkasta $H_{0}$ vilket innebär
@@ -284,17 +287,17 @@ Men denna boxplot saknar jämna proportioner och symmetri så den tyder ej på n
 
 Vi ska nu fortsätta genom att konstruera en nollhypotes 
 samt alternativhypotes och sedan testa med hjälp av Wilcoxons-Mann-Whitney test 
-för de två områdena om molnsådd ökar nederbörden.
+för de två områdena om molnsådd ökar nederbörden med felrisk $\alpha = 0.05$.
 $H_{0}$: Molnsådd påverkar inte nederbörden
 $H_{1}$: Molnsådd ökar nederbörden
 ```{r}
-result1 <- wilcox.test(seed1, nonseed1, alternative = "greater", paired = FALSE) # två grupper har olika mängd, därför är de oberoende (paired=FALSE)
+result1 <- wilcox.test(seed1, nonseed1, alternative = "greater", paired = FALSE, conf.level = 0.95) # två grupper har olika mängd, därför är de oberoende (paired=FALSE)
 print(result1)
 ```
 Vi kan här se att $\alpha < p$ så vi kan ej förkasta nollhypotesen
 
 ```{r}
-result2 <- wilcox.test(seed2, nonseed2, alternative = "greater", paired = FALSE)
+result2 <- wilcox.test(seed2, nonseed2, alternative = "greater", paired = FALSE, conf.level = 0.95)
 print(result2)
 ```
 
