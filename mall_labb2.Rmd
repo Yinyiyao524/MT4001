@@ -95,14 +95,14 @@ kring 0 och ingen klockform uppenbarar sig. Vi fortsätter med en boxplot över 
 utan molnsådd
 
 ```{r,fig.cap='Figur 5: Boxplot: Utan molnsådd'}
-boxplot(nonseed, prob = TRUE, main = 'Nederbörd utan molnsådd')
+boxplot(nonseed, main = 'Nederbörd utan molnsådd')
 ```
 Vi kan här se att utseendet på vår boxplot ej efterliknar normalfördelningen eftersom
 den är asymmetrisk och saknar jämna proportioner. Vi fortsätter med boxplot över
 nederbörd utan molnsådd
 
 ```{r,fig.cap='Figur 6: Boxplot: Med molnsådd'}
-boxplot(seed, prob = TRUE, main = 'Nederbörd med molnsådd')
+boxplot(seed, main = 'Nederbörd med molnsådd')
 ```
 
 Av samma anledning som innan kan vi dra slutsatsen att vår datamängd ej verkar vara
@@ -134,7 +134,7 @@ Detta histogram saknar klockform och tyder ej på normalfördelning. Vi fortsät
 boxplot
 
 ```{r,fig.cap='Figur 9: Boxplot: Differens'}
-boxplot(differ, prob = TRUE, main = 'Boxplot: Differens')
+boxplot(differ, main = 'Boxplot: Differens')
 ```
 
 Men denna boxplot är asymmetrisk och saknar jämna proportioner så vi drar slutsatsen
@@ -261,26 +261,26 @@ histogrammet tyder ej på normalfördelning. Vi fortsätter med boxplot över ne
 utan molnsådd i område 1
 
 ```{r,fig.cap='Figur 18: Boxplot: Utan molnsådd i område 1'}
-boxplot(nonseed1, prob = TRUE, main = 'Nederbörd utan molnsådd i område 1')
+boxplot(nonseed1,  main = 'Nederbörd utan molnsådd i område 1')
 ```
 
 Men denna boxplot saknar symmetri och jämna proportioner vilket ej tyder på normalfördelning.
 Vi fortsätter med boxplot över nederbörd med molnsådd i område 1
 ```{r,fig.cap='Figur 19: Boxplot: Med molnsådd i område 1'}
-boxplot(seed1, prob = TRUE, main = 'Nederbörd med molnsådd i område 1')
+boxplot(seed1, main = 'Nederbörd med molnsådd i område 1')
 ```
 
 Men eftersom vår boxplot har asymmetri verkar den ej visa på normalfördelning. Vi
 fortsätter med boxplot över nederbörd utan molnsådd i område 2
 ```{r,fig.cap='Figur 20: Boxplot: Utan molnsådd i område 2'}
-boxplot(nonseed2, prob = TRUE, main = 'Nederbörd utan molnsådd i område 2')
+boxplot(nonseed2, main = 'Nederbörd utan molnsådd i område 2')
 ```
 
 Men denna boxplot saknar jämna proportioner så den tyder ej på normalfördelning.
 Vi fortsätter med boxplot över nederbörd med molnsådd i område 2
 
 ```{r,fig.cap='Figur 21: Boxplot: Med molnsådd i område 2'}
-boxplot(seed2, prob = TRUE, main = 'Nederbörd med molnsådd i område 2')
+boxplot(seed2, main = 'Nederbörd med molnsådd i område 2')
 ```
 
 Men denna boxplot saknar jämna proportioner och symmetri så den tyder ej på normalfördelning.
