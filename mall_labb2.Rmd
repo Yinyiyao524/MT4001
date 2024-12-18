@@ -7,6 +7,9 @@ output:
     fig_caption: true
   html_document:
     df_print: paged
+    number_sections: true
+header-includes:
+  - \usepackage{caption}
 ---
 
 # Sammanfattning
@@ -65,7 +68,7 @@ Vi kan här se att vår datamängd ej verkar vara normalfördelad eftersom den i
 Q-Q-plotens raka linje utan är mer s-formad vilket tyder på annan fördelning.
 Vi fortsätter med en Q-Q-plot för nederbörd utan molnsådd
 
-```{r,fig.cap='Q-Q-plot: Utan molnsådd'}
+```{r, fig.cap='Q-Q-plot: Utan molnsådd'}
 qqnorm(nonseed,main = 'Nederbörd utan molnsådd', ylab= 'Nederbörd utan
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed)
