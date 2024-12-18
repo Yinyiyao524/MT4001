@@ -3,9 +3,9 @@ title: "Laboration 2"
 author: "Yinyi Yao Esbjörn Runesson"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
     fig_caption: true
-  pdf_document: default
 ---
 ```{r global_options, include =FALSE}
 knitr::opts_chunk$set (fig.pos ='H')
@@ -311,6 +311,7 @@ boxplot(seed2, main = 'Nederbörd med molnsådd i område 2')
 ```
 
 Men denna boxplot saknar jämna proportioner och symmetri så den tyder ej på normalfördelning.
+Vi kan därför dra slutsatsen att vår datamängd ej verkar normalfördelad.
 Om vi hade fler observationer hade Q-Q-plottarna tydligare visat om datamängden
 var normalfördelad eller inte.
 
