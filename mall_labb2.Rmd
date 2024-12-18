@@ -3,14 +3,15 @@ title: "Laboration 2"
 author: "Yinyi Yao Esbjörn Runesson"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    fig_caption: true
+  pdf_document: default
   html_document:
-    df_print: paged
-    number_sections: true
-header-includes:
-  - \usepackage{caption}
+    fig_caption: true
 ---
+```{r global_options, include =FALSE}
+knitr::opts_chunk$set (fig.pos ='H')
+
+```
+
 
 # Sammanfattning
 I denna laboration så kommer vi att undersöka med hjälp av hypotesttest och
@@ -68,11 +69,13 @@ Vi kan här se att vår datamängd ej verkar vara normalfördelad eftersom den i
 Q-Q-plotens raka linje utan är mer s-formad vilket tyder på annan fördelning.
 Vi fortsätter med en Q-Q-plot för nederbörd utan molnsådd
 
-```{r, fig.cap='Q-Q-plot: Utan molnsådd'}
+
+```{r, fig.cap='Q-Q-plot: Utan molnsådd', fig.pos="H"}
 qqnorm(nonseed,main = 'Nederbörd utan molnsådd', ylab= 'Nederbörd utan
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed)
 ```
+
 Även här verkar vår datamängd ej vara normalfördelad eftersom den ej följer
 Q-Q-plotens raka linje utan innehåller för många outliers vilket indikerar att
 vår datamängd avviker från normalfördelningen och liknar delvis en exponentialfördelning
@@ -83,6 +86,7 @@ Vi fortsätter med ett histogram över nederbörd utan molnsådd
 hist(nonseed,prob = TRUE, main = 'Nederbörd utan molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
 ```
+
 Vi ser att histogrammet ej tyder på normalfördelning eftersom många stickprov
 tenderar att vara kring 0 och ingen klockform visar sig men den liknar till viss del
 en exponentialfördelning på grund av det stora antalet stickprov runt 0 som exponentiellt
@@ -92,6 +96,7 @@ minskar. Vi fortsätter med histogram över nederbörd med molnsådd
 hist(seed,prob = TRUE, main = 'Nederbörd med molnsådd', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
 ```
+
 Vi kan i detta histogram se att vår datamängd ej tyder på normalfördelning av
 liknande anledningar som i vårt förra histogram där stickproven tenderar att vara
 kring 0 och ingen klockform uppenbarar sig. Vi fortsätter med en boxplot över nederbörd
@@ -100,6 +105,7 @@ utan molnsådd
 ```{r,fig.cap='Boxplot: Utan molnsådd'}
 boxplot(nonseed, main = 'Nederbörd utan molnsådd')
 ```
+
 Vi kan här se att utseendet på vår boxplot ej efterliknar normalfördelningen eftersom
 den är asymmetrisk och saknar jämna proportioner. Vi fortsätter med boxplot över
 nederbörd med molnsådd
@@ -217,6 +223,7 @@ qqnorm(nonseed1,main = 'Nederbörd utan molnsådd i område 1', ylab= 'Nederbör
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed1)
 ```
+
 I detta fall tyder vår data på att den är normalfördelad eftersom den följer 
 Q-Q-plotens raka linje någorlunda men i detta fall är den mer avvikande vilket kan
 tyda på att nederbörd utan molnsådd i område 1 ej är normalfördelad. Vi fortsätter med en Q-Q-plot över
@@ -227,6 +234,7 @@ qqnorm(seed2,main = 'Nederbörd med molnsådd i område 2', ylab= 'Nederbörd me
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(seed2)
 ```
+
 Utseendet här tyder delvis på normalfördelning på grund av att Q-Q-plotens raka linje
 följs till viss del men här är avvikelserna relativt stora vilket tyder på att vår
 datamängd ej är normalfördelad. Vi fortsätter med Q-Q-plot över nederbörd
@@ -237,6 +245,7 @@ qqnorm(nonseed2,main = 'Nederbörd utan molnsådd i område 2', ylab= 'Nederbör
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
 qqline(nonseed2)
 ```
+
 Outlierserna i denna Q-Q-plot är tydliga och Q-Q-plotens raka linje visar sig inte
 följas av vår datamängd vilket tyder på att vår datamängd ej skulle vara
 normalfördelad. Vi fortsätter med att undersöka histogram över nederbörd
@@ -246,6 +255,7 @@ utan molnsådd i område 1
 hist(nonseed1,prob = TRUE, main = 'Nederbörd utan molnsådd i område 1', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
 ```
+
 Men detta histogram saknar klockform och verkar ej vara normalfördelad. Vi fortsätter
 med histogram över nederbörd med molnsådd i område 1
 
@@ -261,6 +271,7 @@ med histogram över nederbörd utan molnsådd i område 2
 hist(nonseed2,prob = TRUE, main = 'Nederbörd utan molnsådd i område 2', ylab =
        'Densitet', xlab = 'Nederbörd utan molnsådd')
 ```
+
 Detta histogram saknar klockform och stickproven tenderar att vara kring 0 vilket
 ej tyder på normalfördelning. Vi fortsätter med histogram över nederbörd med molnsådd
 i område 2
@@ -269,6 +280,7 @@ i område 2
 hist(seed2,prob = TRUE, main = 'Nederbörd med molnsådd i område 2', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
 ```
+
 Men detta histogram saknar klockform och stickproven tenderar att vara kring 0 så
 histogrammet tyder ej på normalfördelning. Vi fortsätter med boxplot över nederbörd
 utan molnsådd i område 1
