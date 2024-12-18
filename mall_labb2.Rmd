@@ -3,9 +3,9 @@ title: "Laboration 2"
 author: "Yinyi Yao Esbjörn Runesson"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document:
     fig_caption: true
+  pdf_document: default
 ---
 ```{r global_options, include =FALSE}
 knitr::opts_chunk$set (fig.pos ='H')
@@ -14,8 +14,8 @@ knitr::opts_chunk$set (fig.pos ='H')
 
 
 # Sammanfattning
-I denna laboration så kommer vi att undersöka med hjälp av hypotesttest och
-Wilcoxons teckenrangtest samt Wilcoxon-Mann-Whitneytest om effekten av molnsådd ökar nederbörden för respektive
+I denna laboration så kommer vi att undersöka med hjälp av hypotesttest (t-test, Wilcoxon-Mann-Whitneytest, Wilcoxons tecken-rangtest)
+ om effekten av molnsådd ökar nederbörden för respektive
 område. I den första uppgiften delas försöksperioden in tvådagarsperioder där
 molnsådd utförs den första dagen men inte den andra, och på sätt har man en
 grund för jämförelse. I den andra uppgiften användes i stället en slumptalsgenerator 
@@ -26,7 +26,7 @@ börja med om den datamängd vi erhåller genom respektive csv-fil kan anses
 härstamma från någon fördelning med hjälp av normalfördelningsplot, histogram
 och boxplot. Efter det genomför vi hypotestest med nollhypotes att molnsådd inte
 påverkar nederbörden kontra alternativhypotesen att molnsådd ökar nederbörden.
-För att genomföra dessa hypotest så använder vi oss av Wilcoxons teckenrangtest 
+För att genomföra dessa hypotest så använder vi oss av t-test, teckenrang-test 
 samt Wilcoxon-Mann-Whitneytest för att få fram ett p-värde och se om det är större
 eller mindre än vår felrisk för att dra slutsats om att inte förkasta nollhypotesen
 kontra förkasta nollhypotesen.
@@ -44,13 +44,13 @@ faktist är legitim.
 3. För att testa om molnsådd ökar mängden nederbörd jämfört med dagar utan molnsådd, kan vi använda följande statistiska tester beroende på datans egenskaper:
  t-test: om datan är kvantitativ, normalfördelad (eller tillräckligt stor sample-storlek för att approximera normalitet). Vi kan jämföra medelvärdet av nederbörd mellan dagar med och utan molnsådd för att testa om skillnaden är signifikant.
  teckenrangtest: Om datan är kvantitativ men inte normalfördelad. Det är ett icke-parametriskt alternativ till parat t-test som jämför medianen av skillnader mellan olika grupper.
-Men eftersom vår data ej är normalfördelad är Wilcoxons teckenrangtest det 
-lämpliga valet för att testa om molnsådd ökar mängden nederbörd.
+Men eftersom vår data över differensen mellan nederbörd med molnsådd och nederbörd utan molnsådd
+är normalfördelad är t-test det lämpligaste valet för att testa om molnsådd ökar mängden nederbörd.
 
 ## Uppgift 1.2 Praktisk uppgift
 I denna uppgift vill vi undersöka om vårt datamaterial baserat på en nederbörd med
 molnsådd, nederbörd utan molnsådd samt deras årtal kan ha någon fördelning. (Vi
-vill dessutom konstruera en nollhypotes för att testa med Wilcoxons teckenrangtest
+vill dessutom konstruera en nollhypotes för att testa med t-test
 om det är så att molnsådd ökar nederbörden.) Till att börja med undersöker vi med
 hjälp av boxplot, histogram och normalfördelningsplot om vårt datamaterial kan komma
 från någon fördelning. Vi börjar med att göra en Q-Q-plot över nederbörd med molnsådd
@@ -122,43 +122,43 @@ Vi ser då att vårt datamaterial inte verkar komma en normalfördelning men vå
 samt Q-Q-plot över nederbörd utan molnsådd liknar till viss del en exponentialfördelning.
 Vi fortsätter nu med att göra Q-Q-plot, histogram samt boxplot för differensen mellan nederbörden
 med molnsådd och utan molnsådd.  Om differensen visar sig vara normalfördelad
-skulle det vara rimligt att utföra t-test, vi undersöker därför grafiskt (Även om diffen är normalfördelad kan vi inte göra ett t-test här, eftersom våra stickprov inte är parvis beroende.)
+skulle det vara rimligt att utföra t-test, vi undersöker därför grafiskt
 
 ```{r,fig.cap='Q-Q-plot: Differens'}
 differ <- seed-nonseed
 qqnorm(differ,main = 'Q-Q-plot: Differens', ylab= 'Nederbörd med
 molnsådd', xlab= 'Normalfördelningens teoretiska kvantiler')
-qqline(seed)
+qqline(differ)
 ```
 
-Men vi ser här att vår datamängd har outliers och inte följer Q-Q-plotens raka linje
-så den tyder inte på normalfördelning. Vi fortsätter med histogram
+Vi ser här att vår datamängd följer Q-Q-plotens raka linje vilket tyder på normalfördelning.
+Vi fortsätter med histogram
 
 ```{r,fig.cap='Histogram: Differens'}
-hist(differ,prob = TRUE, main = 'Histogram: Differens', ylab =
+hist(differ, breaks=seq(-1,1,0.02),prob = TRUE, main = 'Histogram: Differens', ylab =
        'Densitet', xlab = 'Nederbörd med molnsådd')
 ```
 
-Detta histogram saknar klockform och tyder ej på normalfördelning. Vi fortsätter med
-boxplot
+Detta histogram besitter viss klockform och verkar likna en normalfördelningskurva.
+Vi fortsätter med Boxplot 
 
 ```{r,fig.cap='Boxplot: Differens'}
 boxplot(differ, main = 'Boxplot: Differens')
 ```
 
-Men denna boxplot är asymmetrisk och saknar jämna proportioner så vi drar slutsatsen
-att differensen mellan molnsådd och utan molnsådd ej verkar vara normalfördelad.
-Men eftersom det inte föreligger fullständig säkerhet angående differensen potentiella
-normalfördelning så utför vi ett t.test med felrisk $\alpha = 0.05$ för säkerhets skull.
+Och denna boxplot motsäger ej att differensen skulle vara normalfördelad.
+Vi ser då i figur 7 och 8 att differensen verkar vara normalfördelad och eftersom
+stickproven är parvist beroende så är det rimligt att utföra ett t-test.
+Vi utför därför ett t-test med felrisk $\alpha = 0.05$.
 Vi testar då följande $H_0:$ Molnsådd påverkar ej nederbörden med $H_1:$ Molnsådd ökar nederbörden
 
 ```{r}
 t.test(seed,nonseed, alternative = 'greater', paired = TRUE, conf.level = 0.95)
 ```
 
-Men vi ser här att $p>\alpha$ så vi kan därför inte förkasta nollhypotesen. ---(är du säker på at vi behöver göra ett t.test för diffen?)
+Men vi ser här att $p>\alpha$ så vi kan därför inte förkasta nollhypotesen.
 
-Vi fortsätter nu genom att använda
+Vi fortsätter nu genom att använda 
 en icke-parametrisk metod, nämligen Wilcoxons tecken-rang test för hypotesprövning.
 Vi konstruerar därför nollhypotesen att molnsådd inte har någon effekt och alternativhypotsen
 att molnsådd ökar nederbörden och använder sedan Wilcoxons tecken-rang test med
@@ -318,12 +318,13 @@ för de två områdena om molnsådd ökar nederbörden med felrisk $\alpha = 0.0
 $H_{0}$: Molnsådd påverkar inte nederbörden
 $H_{1}$: Molnsådd ökar nederbörden
 ```{r}
-wilcox.test(seed1, nonseed1, alternative = "greater", paired = FALSE, conf.level = 0.95) 
+wilcox.test(seed1, nonseed1, alternative = "greater", paired = FALSE, conf.level = 0.95,mu = 0, exact = FALSE) 
 ```
+
 Vi kan här se att $\alpha < p$ så vi kan ej förkasta nollhypotesen
 
 ```{r}
-wilcox.test(seed2, nonseed2, alternative = "greater", paired = FALSE, conf.level = 0.95)
+wilcox.test(seed2, nonseed2, alternative = "greater", paired = FALSE, conf.level = 0.95,mu = 0, exact = FALSE)
 ```
 
 Vi kan här se att Wilcoxons-Mann-Whitney test för båda områdena gav $p > \alpha = 0.05$
