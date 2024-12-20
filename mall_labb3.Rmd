@@ -1,0 +1,85 @@
+---
+title: "Laboration 3"
+author: "Yinyi Yao Esbjörn Runesson"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    fig_caption: yes
+---
+
+# Sammanfattning
+I detta inledande stycke ska du förklara vad labben går ut på, utan att gå in
+på detaljer.
+
+# Uppgift 1
+Text. Använd underrubriker för delfrågor om du tycker det är motiverat.
+```{r}
+df <- read.csv("temperatur.csv", header = TRUE)
+```
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1850--2007 ."}
+plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
+```
+
+```{r}
+modell <- lm(temperatur ~ 1 + år, data = df)
+summary(modell)
+```
+```{r, fig.cap= "Anpassad modell"}
+plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
+abline(modell, col = "blue")
+```
+
+```{r}
+residual <- modell$residuals
+plot(df$år, residual, xlab ="År", ylab="Residual")
+abline(a = 0, b = 0, lty = "dotted")
+```
+```{r}
+qqnorm(residual)
+qqline(residual)
+```
+
+
+# Uppgift 2
+```{r}
+df1 <- subset(df, år >= 1880 & år <=1929)
+df2 <- subset(df, år >= 1930 & år <=1969)
+df3 <- subset(df, år >= 1970 & år <=2007)
+```
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1880--1929 ."}
+plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
+```
+
+```{r}
+modell1 <- lm(temperatur ~ 1 + år, data = df1)
+summary(modell1)
+```
+```{r, fig.cap= "Anpassad modell år 1880-1929"}
+plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
+abline(modell1, col = "blue")
+```
+
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1930--1969 ."}
+plot(df2$år, df2$temperatur, xlab = "År", ylab = "Temperatur")
+```
+
+```{r}
+modell2 <- lm(temperatur ~ 1 + år, data = df2)
+summary(modell2)
+```
+```{r, fig.cap= "Anpassad modell år 1930-1969"}
+plot(df2$år, df2$temperatur, xlab = "År", ylab = "Temperatur")
+abline(modell2, col = "blue")
+```
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1970--2007 ."}
+plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur")
+```
+
+```{r}
+modell3 <- lm(temperatur ~ 1 + år, data = df3)
+summary(modell3)
+```
+```{r, fig.cap= "Anpassad modell år 1930-2007"}
+plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur")
+abline(modell3, col = "blue")
+```
