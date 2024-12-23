@@ -12,7 +12,28 @@ I detta inledande stycke ska du förklara vad labben går ut på, utan att gå i
 på detaljer.
 
 # Uppgift 1
-Text. Använd underrubriker för delfrågor om du tycker det är motiverat.
+1. Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgående trend, vilket tyder på att temperaturen ökar med tiden. Sambandet ser linjärt ut över stora delar av perioden, men det finns mindre variationer och eventuella avvikelser som kan påverka lineariteten, särskilt i de tidigare åren.
+
+2. För att utföra en enkel linjär regression behöver följande förutsättningar vara uppfyllda:
+
+ a.Lineäritet: Sambandet mellan den förklarande variabeln (år) och responsvariabeln (temperatur) ska vara linjärt.
+ b.Oberoende: Observationerna ska vara oberoende av varandra.
+ c.Homoscedasticitet: Variansen i residualerna ska vara konstant över alla värden på den förklarande variabeln.
+ d.Normalfördelade residualer: Residualerna ska följa en normalfördelning.
+
+3. En enkel linjär regression genomfördes där temperaturen (responsvariabel) förklaras av år (förklarande variabel). Regressionslinjen lades till scatterploten, vilket visar att linjen generellt passar bra till datan. Dock finns vissa avvikelser, särskilt i de tidigare åren, vilket antyder att modellen inte fångar alla variationer i datan.
+
+4. Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda runt noll utan ett tydligt mönster, vilket tyder på att linearitetsantagandet är rimligt uppfyllt. Det finns dock vissa tecken på heteroscedasticitet (varierande spridning), vilket kan bryta mot homoscedasticitet. Q-Q-plottens residualer ligger nära den förväntade linjen för en normalfördelning, vilket indikerar att antagandet om normalfördelning är rimligt uppfyllt. Det finns dock mindre avvikelser i svansarna.
+
+Slutsaterna: 
+
+- Lineäritet: Uppfyllt med små avvikelser.
+- Oberoende: Antas uppfyllt eftersom datan består av årliga observationer.
+- Homoscedasticitet: Delvis uppfyllt, vissa tecken på varierande spridning i residualerna.
+- Normalitet: Generellt uppfyllt med mindre avvikelser.
+
+Även om vissa antaganden inte är perfekta, ger modellen en användbar approximation av sambandet mellan år och global medeltemperatur.
+
 ```{r}
 df <- read.csv("temperatur.csv", header = TRUE)
 ```
@@ -21,13 +42,14 @@ plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
 ```
 
 ```{r}
-modell <- lm(temperatur ~ 1 + år, data = df)
+modell <- lm(temperatur ~ år, data = df)
 summary(modell)
 ```
 ```{r, fig.cap= "Anpassad modell"}
 plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
 abline(modell, col = "blue")
 ```
+
 
 ```{r}
 residual <- modell$residuals
@@ -41,6 +63,7 @@ qqline(residual)
 
 
 # Uppgift 2
+
 ```{r}
 df1 <- subset(df, år >= 1880 & år <=1929)
 df2 <- subset(df, år >= 1930 & år <=1969)
@@ -51,7 +74,7 @@ plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
 ```
 
 ```{r}
-modell1 <- lm(temperatur ~ 1 + år, data = df1)
+modell1 <- lm(temperatur ~ år, data = df1)
 summary(modell1)
 ```
 ```{r, fig.cap= "Anpassad modell år 1880-1929"}
@@ -64,7 +87,7 @@ plot(df2$år, df2$temperatur, xlab = "År", ylab = "Temperatur")
 ```
 
 ```{r}
-modell2 <- lm(temperatur ~ 1 + år, data = df2)
+modell2 <- lm(temperatur ~  år, data = df2)
 summary(modell2)
 ```
 ```{r, fig.cap= "Anpassad modell år 1930-1969"}
@@ -76,7 +99,7 @@ plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur")
 ```
 
 ```{r}
-modell3 <- lm(temperatur ~ 1 + år, data = df3)
+modell3 <- lm(temperatur ~ år, data = df3)
 summary(modell3)
 ```
 ```{r, fig.cap= "Anpassad modell år 1930-2007"}
