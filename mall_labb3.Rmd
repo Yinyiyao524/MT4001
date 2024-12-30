@@ -113,7 +113,22 @@ plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur")
 abline(modell3, col = "blue")
 ```
 
-2.
+2.Hypotesprövning för perioden 1970–2007
+
+$H_0$: Det finns ingen bevisad trend mot ett varmare klimat ($\beta$ =0)
+
+$H_1$: $\beta$ >0
+
+```{r}
+p_value <- summary(modell3)$coefficients[2, 4]
+print(p_value)
+if (p_value < 0.05) {
+  print("Nollhypotesen förkastas. Det finns en positiv trend.")
+} else {
+  print("Nollhypotesen kan inte förkastas. Ingen signifikant trend observeras.")
+}
+```
+
 
 # Uppgift 3
 
@@ -121,6 +136,8 @@ abline(modell3, col = "blue")
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
 ```
 
+pred <- predict(modell, newdata = df_test, interval = "predict")
+pred3 <- predict(modell3, newdata = df_test, interval = "predict")
 
 # Uppgift 3.1
 
