@@ -12,7 +12,15 @@ I detta inledande stycke ska du förklara vad labben går ut på, utan att gå i
 på detaljer.
 
 # Uppgift 1
-1. Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgående trend, vilket tyder på att temperaturen ökar med tiden. Sambandet ser linjärt ut över stora delar av perioden, men det finns mindre variationer och eventuella avvikelser som kan påverka lineariteten, särskilt i de tidigare åren.
+
+1. 
+
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1850--2007 ."}
+df <- read.csv("temperatur.csv", header = TRUE)
+plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
+```
+
+Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgående trend, vilket tyder på att temperaturen ökar med tiden. Sambandet ser linjärt ut över stora delar av perioden, men det finns mindre variationer och eventuella avvikelser som kan påverka lineariteten, särskilt i de tidigare åren.
 
 2. För att utföra en enkel linjär regression behöver följande förutsättningar vara uppfyllda:
 
@@ -21,9 +29,30 @@ på detaljer.
  c.Homoscedasticitet: Variansen i residualerna ska vara konstant över alla värden på den förklarande variabeln.
  d.Normalfördelade residualer: Residualerna ska följa en normalfördelning.
 
-3. En enkel linjär regression genomfördes där temperaturen (responsvariabel) förklaras av år (förklarande variabel). Regressionslinjen lades till scatterploten, vilket visar att linjen generellt passar bra till datan. Dock finns vissa avvikelser, särskilt i de tidigare åren, vilket antyder att modellen inte fångar alla variationer i datan.
+3. 
 
-4. Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda runt noll utan ett tydligt mönster, vilket tyder på att linearitetsantagandet är rimligt uppfyllt. Det finns dock vissa tecken på heteroscedasticitet (varierande spridning), vilket kan bryta mot homoscedasticitet. Q-Q-plottens residualer ligger nära den förväntade linjen för en normalfördelning, vilket indikerar att antagandet om normalfördelning är rimligt uppfyllt. Det finns dock mindre avvikelser i svansarna.
+```{r, fig.cap = 'Anpassad modell'}
+df <- read.csv("temperatur.csv", header = TRUE)
+modell <- lm(temperatur ~ år, data = df)
+summary(modell)
+plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
+abline(modell, col = "blue")
+```
+
+En enkel linjär regression genomfördes där temperaturen (responsvariabel) förklaras av år (förklarande variabel). Regressionslinjen lades till scatterploten, vilket visar att linjen generellt passar bra till datan. Dock finns vissa avvikelser, särskilt i de tidigare åren, vilket antyder att modellen inte fångar alla variationer i datan.
+
+4. 
+
+```{r}
+residual <- modell$residuals
+plot(df$år, residual, xlab ="År", ylab="Residual")
+abline(a = 0, b = 0, lty = "dotted")
+qqnorm(residual)
+qqline(residual)
+```
+
+
+Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda runt noll utan ett tydligt mönster, vilket tyder på att linearitetsantagandet är rimligt uppfyllt. Det finns dock vissa tecken på heteroscedasticitet (varierande spridning), vilket kan bryta mot homoscedasticitet. Q-Q-plottens residualer ligger nära den förväntade linjen för en normalfördelning, vilket indikerar att antagandet om normalfördelning är rimligt uppfyllt. Det finns dock mindre avvikelser i svansarna.
 
 Slutsaterna: 
 
@@ -34,41 +63,17 @@ Slutsaterna:
 
 Även om vissa antaganden inte är perfekta, ger modellen en användbar approximation av sambandet mellan år och global medeltemperatur.
 
-```{r}
-df <- read.csv("temperatur.csv", header = TRUE)
-```
-```{r, fig.cap="Jordens medeltemperatur plottad mot år 1850--2007 ."}
-plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
-```
-
-```{r}
-modell <- lm(temperatur ~ år, data = df)
-summary(modell)
-```
-```{r, fig.cap= "Anpassad modell"}
-plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
-abline(modell, col = "blue")
-```
-
-
-```{r}
-residual <- modell$residuals
-plot(df$år, residual, xlab ="År", ylab="Residual")
-abline(a = 0, b = 0, lty = "dotted")
-```
-```{r}
-qqnorm(residual)
-qqline(residual)
-```
-
 
 # Uppgift 2
+
+1.
 
 ```{r}
 df1 <- subset(df, år >= 1880 & år <=1929)
 df2 <- subset(df, år >= 1930 & år <=1969)
 df3 <- subset(df, år >= 1970 & år <=2007)
 ```
+
 ```{r, fig.cap="Jordens medeltemperatur plottad mot år 1880--1929 ."}
 plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
 ```
@@ -77,6 +82,7 @@ plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
 modell1 <- lm(temperatur ~ år, data = df1)
 summary(modell1)
 ```
+
 ```{r, fig.cap= "Anpassad modell år 1880-1929"}
 plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
 abline(modell1, col = "blue")
@@ -106,3 +112,24 @@ summary(modell3)
 plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur")
 abline(modell3, col = "blue")
 ```
+
+2.
+
+# Uppgift 3
+
+```{r}
+df_test <- read.csv("temperatur_test.csv", header = TRUE)
+```
+
+
+# Uppgift 3.1
+
+1.
+2.
+3.
+
+# Uppgift 3.2
+
+1.
+2.
+3.
