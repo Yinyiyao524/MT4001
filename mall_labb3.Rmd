@@ -8,28 +8,29 @@ output:
 ---
 
 # Sammanfattning
-I detta inledande stycke ska du förklara vad labben går ut på, utan att gå in
-på detaljer.
+Denna laboration syftar till att analysera och modellera förändringar i jordens medeltemperatur över tid med hjälp av linjär regression. Den första uppgiften fokuserar på att utforska globala temperaturavvikelser mellan åren 1850 och 2007 genom att skapa visualiseringar, utföra enkel linjär regression och utvärdera modellens förutsättningar. I den andra uppgiften delas data upp i tre tidsperioder för att undersöka om modellen förbättras när kortare tidsserier används, samt för att testa hypoteser kring klimatförändringar under senare år. Slutligen utforskar vi i den tredje uppgiften modellens prediktiva förmåga genom att jämföra olika regressionsmodeller och deras förmåga att förutsäga temperaturavvikelser under perioden 2008–2022. Fokus ligger på att tolka resultaten, identifiera modellens begränsningar och föreslå förbättringar för framtida analyser.
 
 # Uppgift 1
 
-1. 
+I denna uppgift ska vi undersöka avvikelsen av jordens medeltemperatur mellan åren 1850-2007 i jämförelse med genomsnittet för perioden 1961-1990 genom att läsa in filen temperatur.csv och sedan undersöka med hjälp av scatterplot om sambandet verkar linjärt. Sedan genomför vi en enkel linjär regression och undersöker linjen som tillkommer i vår scatterplot för att dra slutsatser om det potentiella linjära sambandet i vår data.
+
+1. Vi börjar här med att göra en scatterplot med den globala temperaturen på y-axeln och årtal på x-axeln för att se om sambandet verkar linjärt eller inte
 
 ```{r, fig.cap="Jordens medeltemperatur plottad mot år 1850--2007 ."}
 df <- read.csv("temperatur.csv", header = TRUE)
 plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
 ```
 
-Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgående trend, vilket tyder på att temperaturen ökar med tiden. Sambandet ser linjärt ut över stora delar av perioden, men det finns mindre variationer och eventuella avvikelser som kan påverka lineariteten, särskilt i de tidigare åren.
+Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgående trend, vilket tyder på att temperaturen ökar med tiden. Sambandet ser över stora delen av perioden inte strikt linjärt ut, utan det förekommer uppenbara avvikelser och variation som tyder på att sambandet ej är linjärt.
 
 2. För att utföra en enkel linjär regression behöver följande förutsättningar vara uppfyllda:
 
  a.Lineäritet: Sambandet mellan den förklarande variabeln (år) och responsvariabeln (temperatur) ska vara linjärt.
- b.Oberoende: Observationerna ska vara oberoende av varandra.
- c.Homoscedasticitet: Variansen i residualerna ska vara konstant över alla värden på den förklarande variabeln.
- d.Normalfördelade residualer: Residualerna ska följa en normalfördelning.
+ b.Oberoende: Observationerna ska vara oberoende av varandra (ingen inbördes påverkan).
+ c.Homoscedasticitet: Variansen i residualerna (skillnaderna mellan observerade och förväntade värden) ska vara konstant över alla värden på den förklarande variabeln.
+ d.Normalfördelade residualer: Residualerna ska följa en normalfördelning, vilket kan kontrolleras med en normalfördelningsplot.
 
-3. 
+3. Vi genomför här en enkel linjär regression av den globala medeltemperaturen (temperatur) som responsvariabel och och årtal (år) som förklarande variabel och plottar sedan regressionslinjen i vår scatterplot
 
 ```{r, fig.cap = 'Anpassad modell'}
 df <- read.csv("temperatur.csv", header = TRUE)
@@ -41,9 +42,9 @@ abline(modell, col = "blue")
 
 En enkel linjär regression genomfördes där temperaturen (responsvariabel) förklaras av år (förklarande variabel). Regressionslinjen lades till scatterploten, vilket visar att linjen generellt passar bra till datan. Dock finns vissa avvikelser, särskilt i de tidigare åren, vilket antyder att modellen inte fångar alla variationer i datan.
 
-4. 
+4. Vi vill nu avgöra om förutsättningarna för enkel linjär regression är uppfyllda för vårt datamaterial med hjälp av en residualplot samt normalfördelningsplot
 
-```{r}
+```{r,fig.cap = 'Residual samt normalfördelningsplot'}
 residual <- modell$residuals
 plot(df$år, residual, xlab ="År", ylab="Residual")
 abline(a = 0, b = 0, lty = "dotted")
@@ -52,14 +53,14 @@ qqline(residual)
 ```
 
 
-Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda runt noll utan ett tydligt mönster, vilket tyder på att linearitetsantagandet är rimligt uppfyllt. Det finns dock vissa tecken på heteroscedasticitet (varierande spridning), vilket kan bryta mot homoscedasticitet. Q-Q-plottens residualer ligger nära den förväntade linjen för en normalfördelning, vilket indikerar att antagandet om normalfördelning är rimligt uppfyllt. Det finns dock mindre avvikelser i svansarna.
+Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda runt noll med ett systematiskt mönster, vilket tyder på att linearitetsantagandet inte är rimligt uppfyllt. Det finns även vissa tecken på varierande spridning vilket kan tyda på att homoscedasticiteten inte är uppfylld.  Q-Q-plottens residualer ligger nära den förväntade linjen för en normalfördelning, vilket indikerar att antagandet om normalfördelning är rimligt uppfyllt. Det finns dock mindre avvikelser i svansarna (outliers).
 
 Slutsaterna: 
 
-- Lineäritet: Uppfyllt med små avvikelser.
+- Lineäritet: Ej uppfyllt med avvikelser.
 - Oberoende: Antas uppfyllt eftersom datan består av årliga observationer.
-- Homoscedasticitet: Delvis uppfyllt, vissa tecken på varierande spridning i residualerna.
-- Normalitet: Generellt uppfyllt med mindre avvikelser.
+- Homoscedasticitet: Verkar ej vara uppfyllt, det finns tecken på varierande spridning i residualerna.
+- Normalfördelade residualer: Uppfyllt med försumbara outliers.
 
 Även om vissa antaganden inte är perfekta, ger modellen en användbar approximation av sambandet mellan år och global medeltemperatur.
 
