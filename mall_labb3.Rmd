@@ -18,7 +18,7 @@ I denna uppgift ska vi undersöka avvikelsen av jordens medeltemperatur mellan �
 
 ```{r, fig.cap="Jordens medeltemperatur plottad mot år 1850--2007"}
 df <- read.csv("temperatur.csv", header = TRUE)
-plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
+plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur",main = 'Scatterplot över jordens medeltemperatur mellan 1850-2007')
 ```
 
 Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgående trend, vilket tyder på att temperaturen ökar med tiden. Sambandet ser över stora delen av perioden inte strikt linjärt ut, utan det förekommer uppenbara avvikelser och variation som tyder på att sambandet ej är linjärt.
@@ -36,7 +36,7 @@ Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgåend
 df <- read.csv("temperatur.csv", header = TRUE)
 modell <- lm(temperatur ~ år, data = df)
 summary(modell)
-plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
+plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressionsmodell för jordens medeltemperatur mellan 1850-2007')
 abline(modell, col = "blue")
 ```
 
@@ -46,7 +46,7 @@ En enkel linjär regression genomfördes där temperaturen (responsvariabel) fö
 
 ```{r,fig.cap = 'Residual samt normalfördelningsplot'}
 residual <- modell$residuals
-plot(df$år, residual, xlab ="År", ylab="Residual", main = 'Residualplot')
+plot(df$år, residual, xlab ="År", ylab="Residual", main = 'Residualplot för jordens medeltemperatur mellan 1850-2007')
 abline(a = 0, b = 0, lty = "dotted")
 qqnorm(residual,main = 'Normalfördelningsplot för residualer',xlab = 'Normalfördelningens teoretiska kvantiler', ylab = 'Residualer')
 qqline(residual)
@@ -67,54 +67,42 @@ Slutsaterna:
 
 # Uppgift 2
 
-I denna uppgift ska vi dela in vårt datamaterial i tre separata tidsperioder (1880-1929,1930-1969,1970-2007) och sedan utföra liknande enkla linjära regression men denna gång en för varje indelning i tidsperiod som angavs ovan. Vi ska i varje enskilt fall undersöka om förutsättningarna för enkel linjär regression är bättre uppfyllda, samt ange punktskattningarna av intercept $\alpha$ samt lutningskoefficient $\beta$ för den enkla linjära regressionen.
+I denna uppgift ska vi dela in vårt datamaterial i tre separata tidsperioder (1880-1929,1930-1969,1970-2007) och sedan utföra liknande enkla linjära regression men denna gång en för varje indelning i tidsperiod som angavs ovan. Vi ska i varje enskilt fall undersöka om förutsättningarna för enkel linjär regression är bättre uppfyllda, samt ange punktskattningarna av intercept $\alpha$ samt lutningskoefficient $\beta$ för den enkla linjära regressionen. Sedan kommer vi testa hypotesen "Det finns ingen bevisad trend mot ett varmare klimat" med signifikansnivå $\alpha = 0.05$ för perioden 1970-2007 genom ett ensidigt test, konstruera vår nollhypotes samt alternativhypotes och sedan testa dessa.
 
-1.
+1. Vi delar nu in datamaterialet i tre separata tidsperioder och undersöker om förutsättningarna för enkel linjär regression är bättre uppfyllda för dessa. Vi börjar med att undersöka perioden 1880-1929
 
-```{r}
+
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1880-1929"}
 df1 <- subset(df, år >= 1880 & år <=1929)
-df2 <- subset(df, år >= 1930 & år <=1969)
-df3 <- subset(df, år >= 1970 & år <=2007)
-```
-
-```{r, fig.cap="Jordens medeltemperatur plottad mot år 1880--1929 ."}
-plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
-```
-
-```{r}
+#plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
 modell1 <- lm(temperatur ~ år, data = df1)
 summary(modell1)
-```
-
-```{r, fig.cap= "Anpassad modell år 1880-1929"}
-plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
+plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressionsmodell för jordens medeltemperatur mellan 1880-1929')
 abline(modell1, col = "blue")
 ```
 
-```{r, fig.cap="Jordens medeltemperatur plottad mot år 1930--1969 ."}
-plot(df2$år, df2$temperatur, xlab = "År", ylab = "Temperatur")
-```
+Vi ser här att vi har skattningarna av intercept $\alpha = 1.2849781$ samt lutningskoefficient $\beta = -0.0008419$ och förutsättningarna för enkel linjär regression är ej bättre uppfyllda. Vi fortsätter nu med perioden 1930-1969
 
-```{r}
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1930-1969"}
+df2 <- subset(df, år >= 1930 & år <=1969)
 modell2 <- lm(temperatur ~  år, data = df2)
 summary(modell2)
-```
-```{r, fig.cap= "Anpassad modell år 1930-1969"}
-plot(df2$år, df2$temperatur, xlab = "År", ylab = "Temperatur")
+plot(df2$år, df2$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressionsmodell för jordens medeltemperatur mellan 1930-1969')
 abline(modell2, col = "blue")
 ```
-```{r, fig.cap="Jordens medeltemperatur plottad mot år 1970--2007 ."}
-plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur")
-```
 
-```{r}
+Vi har här skattningarna av intercept $\alpha = -0.9199713$ samt lutningskoefficient $\beta = 0.0004318$ och förutsättningarna för enkel linjär regression är ej bättre uppfyllda. Vi fortsätter nu med perioden 1970-2007
+
+
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1970-2007"}
+df3 <- subset(df, år >= 1970 & år <=2007)
 modell3 <- lm(temperatur ~ år, data = df3)
 summary(modell3)
-```
-```{r, fig.cap= "Anpassad modell år 1930-2007"}
-plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur")
+plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressionsmodell för jordens medeltemperatur mellan 1970-2007')
 abline(modell3, col = "blue")
 ```
+
+Vi har här skattningarna av intercept $\alpha = -34.627751$ samt lutningskoefficient $\beta = 0.017527$ och förutsättningarna för enkel linjär regression verkar här vara bättre uppfyllda.
 
 2.Hypotesprövning för perioden 1970–2007
 
