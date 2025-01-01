@@ -16,7 +16,7 @@ I denna uppgift ska vi undersöka avvikelsen av jordens medeltemperatur mellan �
 
 1. Vi börjar här med att göra en scatterplot med den globala temperaturen på y-axeln och årtal på x-axeln för att se om sambandet verkar linjärt eller inte
 
-```{r, fig.cap="Jordens medeltemperatur plottad mot år 1850--2007 ."}
+```{r, fig.cap="Jordens medeltemperatur plottad mot år 1850--2007"}
 df <- read.csv("temperatur.csv", header = TRUE)
 plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur")
 ```
@@ -46,9 +46,9 @@ En enkel linjär regression genomfördes där temperaturen (responsvariabel) fö
 
 ```{r,fig.cap = 'Residual samt normalfördelningsplot'}
 residual <- modell$residuals
-plot(df$år, residual, xlab ="År", ylab="Residual")
+plot(df$år, residual, xlab ="År", ylab="Residual", main = 'Residualplot')
 abline(a = 0, b = 0, lty = "dotted")
-qqnorm(residual)
+qqnorm(residual,main = 'Normalfördelningsplot för residualer',xlab = 'Normalfördelningens teoretiska kvantiler', ylab = 'Residualer')
 qqline(residual)
 ```
 
@@ -66,6 +66,8 @@ Slutsaterna:
 
 
 # Uppgift 2
+
+I denna uppgift ska vi dela in vårt datamaterial i tre separata tidsperioder (1880-1929,1930-1969,1970-2007) och sedan utföra liknande enkla linjära regression men denna gång en för varje indelning i tidsperiod som angavs ovan. Vi ska i varje enskilt fall undersöka om förutsättningarna för enkel linjär regression är bättre uppfyllda, samt ange punktskattningarna av intercept $\alpha$ samt lutningskoefficient $\beta$ för den enkla linjära regressionen.
 
 1.
 
