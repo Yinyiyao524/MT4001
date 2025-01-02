@@ -122,13 +122,25 @@ if (p_value < 0.05) {
 
 
 # Uppgift 3
+
+I denna uppgift ska vi undersöka lämpligheten av vår anpassade regressionsmodell för att prediktera framtida temperaturer. Vi kommer utvärdera vår modell på tidsperioden 2008-2022 som läses in genom filen temperatur_test.csv.
+
 ## Upgift 3.1
+
+Vi ska nu generera prediktioner för åren 2008-2022 genom att ställa upp två linjära regressionsmodeller där den ena använder sig av hela perioden 1850-2007 medan den andra använder enbart perioden 1970-2007. Utöver att generera prediktioner för åren 2008-2022 för båda modellerna så ska vi även beräkna roten ur medelkvadratfelet (RMSE) mellan de predikterade värdena och de faktiska temperaturvärdena i respektive testdata. Vi börjar med perioden 1850-2007
 
 ```{r}
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
+pred <- predict(modell, newdata = df_test, interval = "predict")
+y_pred <- pred[,1]
+interval_lower <- pred[,2]
+interval_upper <- pred[,3]
+plot(df_test$år,y_pred,xlab = 'År',ylab = 'Förväntad temperatur',ylim = c(-0.5,1))
+lines(df_test$år,interval_lower, col = 'red',lty = 'dashed')
+lines(df_test$år,interval_upper,col = 'red', lty = 'dashed')
+abline(modell, col = 'blue')
 ```
 
-pred <- predict(modell, newdata = df_test, interval = "predict")
 pred3 <- predict(modell3, newdata = df_test, interval = "predict")
 
 # newdata <- data.frame(år = df_test$år)
