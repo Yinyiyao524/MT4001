@@ -8,7 +8,7 @@ output:
 ---
 
 # Sammanfattning
-Denna laboration syftar till att analysera och modellera förändringar i jordens medeltemperatur över tid med hjälp av linjär regression. Den första uppgiften fokuserar på att utforska globala temperaturavvikelser mellan åren 1850 och 2007 genom att skapa visualiseringar, utföra enkel linjär regression och utvärdera modellens förutsättningar. I den andra uppgiften delas data upp i tre tidsperioder för att undersöka om modellen förbättras när kortare tidsserier används, samt för att testa hypoteser kring klimatförändringar under senare år. Slutligen utforskar vi i den tredje uppgiften modellens prediktiva förmåga genom att jämföra olika regressionsmodeller och deras förmåga att förutsäga temperaturavvikelser under perioden 2008–2022. Fokus ligger på att tolka resultaten, identifiera modellens begränsningar och föreslå förbättringar för framtida analyser.
+Denna laboration syftar till att analysera och modellera förändringar i jordens medeltemperatur över tid med hjälp av linjär regression. Den första uppgiften fokuserar på att utforska globala temperaturavvikelser mellan åren 1850 och 2007 genom att skapa visualiseringar, utföra enkel linjär regression och utvärdera modellens förutsättningar. I den andra uppgiften delas data upp i tre tidsperioder för att undersöka om modellen förbättras när kortare tidsperioder används, samt för att testa hypoteser kring klimatförändringar under senare år. Slutligen utforskar vi i den tredje uppgiften modellens prediktiva förmåga genom att jämföra olika regressionsmodeller och deras förmåga att förutsäga temperaturavvikelser under perioden 2008–2022. Fokus ligger på att tolka resultaten, identifiera modellens begränsningar och föreslå förbättringar för framtida analyser.
 
 # Uppgift 1
 
