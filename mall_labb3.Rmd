@@ -2,9 +2,10 @@
 title: "Laboration 3"
 author: "Yinyi Yao Esbjörn Runesson"
 date: "`r Sys.Date()`"
-output: 
+output:
   html_document:
-    fig_caption: yes
+    fig_caption: true
+  pdf_document: default
 ---
 
 # Sammanfattning
@@ -32,7 +33,7 @@ Scatterploten mellan år och global medeltemperatur visar en tydlig uppåtgåend
 
 3. Vi genomför här en enkel linjär regression av den globala medeltemperaturen (temperatur) som responsvariabel och och årtal (år) som förklarande variabel och plottar sedan regressionslinjen i vår scatterplot
 
-```{r, fig.cap = 'Anpassad modell'}
+```{r, fig.cap = 'Anpassad modell för jordens medeltemperatur mellan 1850-2007'}
 df <- read.csv("temperatur.csv", header = TRUE)
 modell <- lm(temperatur ~ år, data = df)
 summary(modell)
@@ -44,10 +45,13 @@ Vi kan här se utifrån vår plot att regressionslinjen inte verkar följa vår 
 
 4. Vi vill nu avgöra om förutsättningarna för enkel linjär regression är uppfyllda för vårt datamaterial med hjälp av en residualplot samt normalfördelningsplot
 
-```{r,fig.cap = 'Residual samt normalfördelningsplot'}
+```{r,fig.cap = 'Residualplot för jordens medeltemperatur mellan 1850-2007'}
 residual <- modell$residuals
 plot(df$år, residual, xlab ="År", ylab="Residual", main = 'Residualplot för jordens medeltemperatur mellan 1850-2007')
 abline(a = 0, b = 0, lty = "dotted")
+```
+
+```{r,fig.cap = 'Normalfördelningsplot för residualer'}
 qqnorm(residual,main = 'Normalfördelningsplot för residualer',xlab = 'Normalfördelningens teoretiska kvantiler', ylab = 'Residualer')
 qqline(residual)
 ```
@@ -101,23 +105,22 @@ plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressi
 abline(modell3, col = "blue")
 ```
 
-Vi har här skattningarna av intercept $\alpha = -34.627751$ samt lutningskoefficient $\beta = 0.017527$ och förutsättningarna för enkel linjär regression verkar här vara bättre uppfyllda.
+Vi har här skattningarna av intercept $\alpha = -34.627751$ samt lutningskoefficient $\beta = 0.017527$ och förutsättningarna för enkel linjär regression verkar här vara bättre uppfyllda. 
 
-2.Hypotesprövning för perioden 1970–2007
+2. Vi vill här testa hypotesen "Växthuseffekten är inget problem, det finns ingen bevisad trend mot ett varmare klimat" med signifikansnivå $\alpha = 0.05$ för perioden 1970-2007 och undersöka om testet bör vara ensidigt eller tvåsidigt, kopplingen mellan hypotesen och den anpassade modellen för perioden 1970-2007, konstruera vår nollhypotes samt alternativhypotes, sedan testa hypotesen med lämpligt test. Testet bör vara ensidigt eftersom alternativhypotesen motsvarar att lutningskoefficienten $\beta$ är positiv. Kopplingen mellan hypotesen ovan och vår anpassade modell för perioden åskådliggörs genom att regressionslinjen visar sig vara stigande vilket innebär att lutningskoefficienten $\beta$ är positiv vilket styrker antagandet att det finns en bevisad trend mot ett varmare klimat vilket motsäger hypotesen ovan att "Växthuseffekten är inget problem, det finns ingen bevisad trend mot ett varmare klimat." Vi har därmed följande nollhypotes och alternativhypotes
 
-$H_0$: Det finns ingen bevisad trend mot ett varmare klimat ($\beta$ =0)
+$H_0$: Det finns ingen bevisad trend mot ett varmare klimat ($\beta =0$)
 
-$H_1$: $\beta$ >0
+$H_1$: Det finns en bevisad trend mot ett varmare klimat ($\beta >0$)
+
+Vi utför nu ett ensidigt t-test genom att undersöka p-värdet (som måste halveras eftersom detta är ett ensidigt test), som vi får genom att använda oss av summary(modell3)$coefficients, eftersom vår anpassade modellen för perioden uppfyller förutsättningarna för enkel linjär regression
 
 ```{r}
 p_value <- summary(modell3)$coefficients[2, 4]
-print(p_value)
-if (p_value < 0.05) {
-  print("Nollhypotesen förkastas. Det finns en positiv trend.")
-} else {
-  print("Nollhypotesen kan inte förkastas. Ingen signifikant trend observeras.")
-}
+print(p_value/2)
 ```
+
+Vi kan här se att p-värdet är klart lägre än felrisken $\alpha = 0.05$ och vi kan därför förkasta nollhypotesen.
 
 # Uppgift 3
 
