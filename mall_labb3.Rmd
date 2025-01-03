@@ -40,7 +40,7 @@ plot(df$år, df$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regression
 abline(modell, col = "blue")
 ```
 
-En enkel linjär regression genomfördes där temperaturen (responsvariabel) förklaras av år (förklarande variabel). Regressionslinjen lades till scatterploten, vilket visar att linjen generellt passar bra till datan. Dock finns vissa avvikelser, särskilt i de tidigare åren, vilket antyder att modellen inte fångar alla variationer i datan.
+Vi kan här se utifrån vår plot att regressionslinjen inte verkar följa vår data tillräckligt väl och vi kan därför dra slutsatsen att den inte verkar vara lämplig för vår data.
 
 4. Vi vill nu avgöra om förutsättningarna för enkel linjär regression är uppfyllda för vårt datamaterial med hjälp av en residualplot samt normalfördelningsplot
 
@@ -74,7 +74,6 @@ I denna uppgift ska vi dela in vårt datamaterial i tre separata tidsperioder (1
 
 ```{r, fig.cap="Jordens medeltemperatur plottad mot år 1880-1929"}
 df1 <- subset(df, år >= 1880 & år <=1929)
-#plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur")
 modell1 <- lm(temperatur ~ år, data = df1)
 summary(modell1)
 plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressionsmodell för jordens medeltemperatur mellan 1880-1929')
@@ -219,7 +218,7 @@ interval_lower <- pred_3[, 2]
 interval_upper <- pred_3[, 3]
 ```
 ```{r, fig.cap="Predikterade värden från regressionsmodellen"}
-plot(df_test$år, y_pred_3, xlab = "År", ylab = "Förväntad temperatur", ylim = c(0,10))
+plot(df_test$år, y_pred_3, xlab = "År", ylab = "Förväntad temperatur", ylim = c(0,1.5))
 points(df_test$år, df_test$temperatur, pch = 16, col = "black")
 lines(df_test$år,interval_lower, col = "red", lty = "dashed")
 lines(df_test$år, interval_upper, col = "red", lty = "dashed")
