@@ -57,7 +57,7 @@ Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda
 
 Slutsaterna: 
 
-- Lineäritet: Ej uppfyllt med avvikelser.
+- Lineäritet: Ej uppfyllt.
 - Oberoende: Antas uppfyllt eftersom datan består av årliga observationer.
 - Homoscedasticitet: Verkar ej vara uppfyllt, det finns tecken på varierande spridning i residualerna.
 - Normalfördelade residualer: Uppfyllt med försumbara outliers.
