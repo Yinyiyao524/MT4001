@@ -145,7 +145,7 @@ model_rmse1 = sqrt(model_mse)
 print(paste('RMSE:',model_rmse1))
 ```
 
-Vi gör sedan samma sak men för perioden 1970-2007
+Vi ser att detta RMSE-värde är relativt högt vilket tyder på att modellen inte fångar trender och variationer tillräckligt väl. Vi gör sedan samma sak men för perioden 1970-2007
 
 ```{r}
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
@@ -162,7 +162,7 @@ model_rmse2 = sqrt(model_mse)
 print(paste('RMSE:',model_rmse2))
 ```
 
-Och sedan för då vi predikterar för perioden 1970-2007 
+Detta RMSE-värde är betydligt lägre vilket betyder att denna är mer lämplig för att fånga trender och variationer i modellen. Och sedan för då vi predikterar för perioden 1970-2007 
 
 ```{r}
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
@@ -179,7 +179,7 @@ model_rmse3 = sqrt(model_mse)
 print(paste('RMSE:',model_rmse3))
 ```
 
-Och slutligen då vi predikterar för perioden 1970-2007 men med den anpassade modellen för perioden 1970-2007 som i figur 7 
+Detta RMSE-värde är relativt lågt och fångar då bättre variationer och trender i modellen. Slutligen då vi predikterar för perioden 1970-2007 men med den anpassade modellen för perioden 1970-2007 som i figur 7 
 
 ```{r}
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
@@ -196,7 +196,7 @@ model_rmse4 = sqrt(model_mse)
 print(paste('RMSE:',model_rmse4))
 ```
 
-Vi får därför följande tabell med de fyra RMSE-värdena
+Detta RMSE-värde är särskilt lågt vilket tyder på att vi här fångar variationer och trender väldigt väl i vår modell. Vi får därför följande tabell med de fyra RMSE-värdena
 
 ```{r}
 rmse_table <- data.frame(
@@ -209,18 +209,23 @@ rmse_table <- data.frame(
 knitr::kable(rmse_table, caption = "RMSE-värden för modeller")
 ```
 
+Den skillnad som uppstår då man utvärderar felen på de olika datamängderna består i att felet blir betydligt lägre då man predikterar utifrån perioden 1970-2007 eftersom det förekommer mer visshet då prediktionsintervallet är baserat på befintlig data till skillnad från obefintlig data där det kan förekomma mer slumpmässighet och osäkerhet. 
+
 ## Uppgift 3.2
-Observationerna tycks följa en linjär trend, även om den kanske inte stämmer helt med den förväntade linjen.
+
+
+
 ```{r}
+df_test <- read.csv("temperatur_test.csv", header = TRUE)
+y_actual<- df3$temperatur
+pred <- predict(modell3, newdata = df_test, interval = "predict")
 y_pred <- pred[,1]
 interval_lower <- pred[,2]
 interval_upper <- pred[,3]
-plot(df_test$år,y_pred,xlab = 'År',ylab = 'Förväntad temperatur',ylim = c(-0.5,1))
+plot(df_test$år,df_test$temperatur,xlab = 'År',ylab = 'Förväntad temperatur',ylim = c(-0.5,1))
 lines(df_test$år,interval_lower, col = 'red',lty = 'dashed')
 lines(df_test$år,interval_upper,col = 'red', lty = 'dashed')
-abline(modell, col = 'blue')
-residualer <- df_test$temperatur - pred
-rmse <- sqrt(mean(residualer^2))
+abline(modell3, col = 'blue')
 ```
 ```{r, fig.cap="Predikterade värden från regressionsmodellen"}
 plot(df_test$år, y_pred_3, xlab = "År", ylab = "Förväntad temperatur", ylim = c(0,1.5))
