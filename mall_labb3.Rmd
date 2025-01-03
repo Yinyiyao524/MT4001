@@ -120,7 +120,7 @@ p_value <- summary(modell3)$coefficients[2, 4]
 print(p_value/2)
 ```
 
-Vi kan här se att p-värdet är klart lägre än felrisken $\alpha = 0.05$ och vi kan därför förkasta nollhypotesen.
+Vi kan här se att p-värdet är klart lägre än felrisken $\alpha = 0.05$ och vi kan därför förkasta nollhypotesen vilket innebär att den ursprungliga hypotesen är felaktig.
 
 # Uppgift 3
 
@@ -128,11 +128,90 @@ I denna uppgift ska vi undersöka lämpligheten av vår anpassade regressionsmod
 
 ## Upgift 3.1
 
-Vi ska nu generera prediktioner för åren 2008-2022 genom att ställa upp två linjära regressionsmodeller där den ena använder sig av hela perioden 1850-2007 medan den andra använder enbart perioden 1970-2007. Utöver att generera prediktioner för åren 2008-2022 för båda modellerna så ska vi även beräkna roten ur medelkvadratfelet (RMSE) mellan de predikterade värdena och de faktiska temperaturvärdena i respektive testdata. Vi börjar med perioden 1850-2007
+Vi ska nu generera prediktioner för åren 2008-2022 genom att ställa upp två linjära regressionsmodeller där den ena använder sig av hela perioden 1850-2007 medan den andra använder enbart perioden 1970-2007. Vi kommer sedan generera prediktioner för perioden 1970-2007 och undersöka på samma sätt som ovan. Utöver att generera prediktioner för åren 2008-2022 för båda modellerna så ska vi även beräkna roten ur medelkvadratfelet (RMSE) mellan de predikterade värdena och de faktiska temperaturvärdena i respektive testdata. Vi börjar med perioden 1850-2007 och för följande RMSE
 
 ```{r}
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
+y_actual<- df_test$temperatur
+y_pred <- pred[,1]
 pred <- predict(modell, newdata = df_test, interval = "predict")
+mse <- function(y_actual, y_pred){
+diff <- y_actual - y_pred
+sqr_diff <- diff^2
+mse <- mean(sqr_diff)
+return(mse)}
+model_mse <- mse(y_actual,y_pred)
+model_rmse1 = sqrt(model_mse)
+print(paste('RMSE:',model_rmse1))
+```
+
+Vi gör sedan samma sak men för perioden 1970-2007
+
+```{r}
+df_test <- read.csv("temperatur_test.csv", header = TRUE)
+y_actual<- df_test$temperatur
+pred <- predict(modell3, newdata = df_test, interval = "predict")
+y_pred <- pred[,1]
+mse <- function(y_actual, y_pred){
+diff <- y_actual - y_pred
+sqr_diff <- diff^2
+mse <- mean(sqr_diff)
+return(mse)}
+model_mse <- mse(y_actual,y_pred)
+model_rmse2 = sqrt(model_mse)
+print(paste('RMSE:',model_rmse2))
+```
+
+Och sedan för då vi predikterar för perioden 1970-2007 
+
+```{r}
+df_test <- read.csv("temperatur_test.csv", header = TRUE)
+y_actual<- df3$temperatur
+pred <- predict(modell, newdata = df3, interval = "predict")
+y_pred <- pred[,1]
+mse <- function(y_actual, y_pred){
+diff <- y_actual - y_pred
+sqr_diff <- diff^2
+mse <- mean(sqr_diff)
+return(mse)}
+model_mse <- mse(y_actual,y_pred)
+model_rmse3 = sqrt(model_mse)
+print(paste('RMSE:',model_rmse3))
+```
+
+Och slutligen då vi predikterar för perioden 1970-2007 men med den anpassade modellen för perioden 1970-2007 som i figur 7 
+
+```{r}
+df_test <- read.csv("temperatur_test.csv", header = TRUE)
+y_actual<- df3$temperatur
+pred <- predict(modell3, newdata = df3, interval = "predict")
+y_pred <- pred[,1]
+mse <- function(y_actual, y_pred){
+diff <- y_actual - y_pred
+sqr_diff <- diff^2
+mse <- mean(sqr_diff)
+return(mse)}
+model_mse <- mse(y_actual,y_pred)
+model_rmse4 = sqrt(model_mse)
+print(paste('RMSE:',model_rmse4))
+```
+
+Vi får därför följande tabell med de fyra RMSE-värdena
+
+```{r}
+rmse_table <- data.frame(
+  Prediktionsintervall = c("2008–2022", "2008-2022", 
+            "1970-2007", "1970–2007"),
+  Modell = c("1850-2007", "1970-2007", 
+            "1850-2007", "1970-2007"),
+  RMSE = round(c(model_rmse1, model_rmse2, 
+           model_rmse3, model_rmse4),5))
+knitr::kable(rmse_table, caption = "RMSE-värden för modeller")
+```
+
+## Uppgift 3.2
+Observationerna tycks följa en linjär trend, även om den kanske inte stämmer helt med den förväntade linjen.
+```{r}
 y_pred <- pred[,1]
 interval_lower <- pred[,2]
 interval_upper <- pred[,3]
@@ -140,71 +219,8 @@ plot(df_test$år,y_pred,xlab = 'År',ylab = 'Förväntad temperatur',ylim = c(-0
 lines(df_test$år,interval_lower, col = 'red',lty = 'dashed')
 lines(df_test$år,interval_upper,col = 'red', lty = 'dashed')
 abline(modell, col = 'blue')
-```
-
-
-```{r}
-pred_all <- predict(modell, newdata= df_test, interval = 'predict')
-pred_3 <- predict(modell3, newdata= df_test, interval = 'predict')
-```
-
-```{r}
-mse <- function(y_actual, y_pred){
-diff <- y_actual - y_pred
-sqr_diff <- diff^2
-mse <- mean(sqr_diff)
-return(mse)
-}
-```
-```{r}
-y_actual<- df_test$temperatur
-```
-```{r}
-mse_all <- mse(y_actual, pred_all)  # predict with all period
-rmse_all <- sqrt(mse_all)
-print(paste("Root Mean Squared Error:", round (rmse_all,3)))
-```
-
-```{r}
-mse_3 <- mse(y_actual, pred_3)  # predict with 1970-2007
-rmse_3 <- sqrt(mse_3)
-print(paste("Root Mean Squared Error:", round (rmse_3,3)))
-```
-### Prediktion över 1970-2007
-```{r}
-pred_all_19702007 <- predict(modell, newdata = df3, interval = "predict")
-pred_3_19702007 <- predict(modell3, newdata = df3, interval = "predict")
-```
-
-```{r}
-y_actual_3 <- df3$temperatur
-mse_all_19702007 <- mse(y_actual_3, pred_all_19702007)  # predict with all period
-rmse_all_19702007 <- sqrt(mse_all_19702007)
-print(paste("Root Mean Squared Error:", round (rmse_all_19702007,3)))
-```
-```{r}
-mse_3_19702007 <- mse(y_actual_3, pred_3_19702007)
-rmse_3_19702007 <- sqrt(mse_3_19702007)
-print(paste("Root Mean Squared Error:", round (rmse_3_19702007,3)))
-```
-### Samtliga roten ur medelkvadratfel
-```{r}
-rmse_table <- data.frame(
-  Tidsintervall = c("2008–2022", "2008-2022", 
-            "1970-2007", "1970–2007"),
-  Modell = c("all", "3rd period", 
-            "all", "3rd period"),
-  RMSE = round(c(rmse_all, rmse_3, 
-           rmse_all_19702007, rmse_3_19702007),4))
-knitr::kable(rmse_table, caption = "Summary of RMSE Values for Models")
-```
-
-## Uppgift 3.2
-Observationerna tycks följa en linjär trend, även om den kanske inte stämmer helt med den förväntade linjen.
-```{r}
-y_pred_3 <- pred_3[, 1]
-interval_lower <- pred_3[, 2]
-interval_upper <- pred_3[, 3]
+residualer <- df_test$temperatur - pred
+rmse <- sqrt(mean(residualer^2))
 ```
 ```{r, fig.cap="Predikterade värden från regressionsmodellen"}
 plot(df_test$år, y_pred_3, xlab = "År", ylab = "Förväntad temperatur", ylim = c(0,1.5))
