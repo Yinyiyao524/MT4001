@@ -3,9 +3,9 @@ title: "Laboration 3"
 author: "Yinyi Yao Esbjörn Runesson"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
     fig_caption: true
-  pdf_document: default
 ---
 
 # Sammanfattning
@@ -132,9 +132,9 @@ Vi ska nu generera prediktioner för åren 2008-2022 genom att ställa upp två 
 
 ```{r}
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
+pred <- predict(modell, newdata = df_test, interval = "predict")
 y_actual<- df_test$temperatur
 y_pred <- pred[,1]
-pred <- predict(modell, newdata = df_test, interval = "predict")
 mse <- function(y_actual, y_pred){
 diff <- y_actual - y_pred
 sqr_diff <- diff^2
@@ -209,30 +209,32 @@ rmse_table <- data.frame(
 knitr::kable(rmse_table, caption = "RMSE-värden för modeller")
 ```
 
-Den skillnad som uppstår då man utvärderar felen på de olika datamängderna består i att felet blir betydligt lägre då man predikterar utifrån perioden 1970-2007 eftersom det förekommer mer visshet då prediktionsintervallet är baserat på befintlig data till skillnad från obefintlig data där det kan förekomma mer slumpmässighet och osäkerhet. 
+Den skillnad som uppstår då man utvärderar felen på de olika datamängderna består i att felet blir betydligt lägre då man predikterar utifrån perioden 1970-2007 eftersom det förekommer mer visshet då prediktionsintervallet är baserat på befintlig data till skillnad från obefintlig data där det kan förekomma mer slumpmässighet och osäkerhet. Fördelen med att inkludera mer data i modellanpassningen är att den på lämpligare vis kan fånga långsiktiga trender och på så sätt minska potentiell variation (minska fel). Nackdelen med att inkludera mer data i modellanpassningen är som vi såg i vårt fall att medelkvadratfelet kan öka vilket leder till mindre precisa och trovärdiga prediktioner.
 
 ## Uppgift 3.2
 
+Vi vill nu använda den linjära regressionsmodellen som var anpassad till perioden 1970-2007 och plotta de predikterade värdena och prediktionsintervallet för åren 2008-2022 vid sidan av de faktiska värdena för testdatan i ett spridningsdiagram.
 
-
-```{r}
+```{r,fig.cap='Prediktionsmodell för perioden 1970-2007'}
 df_test <- read.csv("temperatur_test.csv", header = TRUE)
-y_actual<- df3$temperatur
+y_actual<- df_test$temperatur
+pred_year <- df_test$år
 pred <- predict(modell3, newdata = df_test, interval = "predict")
 y_pred <- pred[,1]
 interval_lower <- pred[,2]
 interval_upper <- pred[,3]
-plot(df_test$år,df_test$temperatur,xlab = 'År',ylab = 'Förväntad temperatur',ylim = c(-0.5,1))
+plot(df3$år,df3$temperatur,xlab = 'År',ylab = 'Förväntad temperatur',xlim = c(1970,2022),ylim = c(-0.25,1),pch=19)
 lines(df_test$år,interval_lower, col = 'red',lty = 'dashed')
 lines(df_test$år,interval_upper,col = 'red', lty = 'dashed')
 abline(modell3, col = 'blue')
-```
-```{r, fig.cap="Predikterade värden från regressionsmodellen"}
-plot(df_test$år, y_pred_3, xlab = "År", ylab = "Förväntad temperatur", ylim = c(0,1.5))
-points(df_test$år, df_test$temperatur, pch = 16, col = "black")
-lines(df_test$år,interval_lower, col = "red", lty = "dashed")
-lines(df_test$år, interval_upper, col = "red", lty = "dashed")
-abline(modell3, col = "blue")
+
+points(pred_year,y_pred,col ='green',pch=19)
+lines(pred_year,interval_lower,col = 'red',lty = 'dashed')
+lines(pred_year,interval_upper,col = 'red',lty = 'dashed')
+points(pred_year,y_actual,col ='blue',pch=18)
+
+legend('topleft',legend = c('Data för anpassad modell (1970-2007)','Regressionslinje','Prediktioner för 2008-2022','Prediktionsintervall','Egentliga värden för 2008-2022'),col = c('black','blue','pink','green','red'),pch=c(19,NA,19,NA,18),lty=c(NA,1,NA,2,NA),bty='n')
 ```
 
+Vi kan utifrån denna sluta oss till att regression verkar inte verkar vara en lämplig prediktionsmodell för vår data eftersom det förekommer flera outliers som är utanför prediktionsintervallet vilket ger en viss osäkerhet i vår prediktion. Utifrån observationerna i vårt diagram kan vi dra slutsatsen att modellen skulle kunna förbättras om den delades in i mindre intervall som fångar variationerna och trenderna bättre. Ett problem med att prediktera framtida temperaturer på detta sätt är att det kan förekomma osäkerhet som vi ser i vårt diagram finns det flera outliers i prediktionsintervallet som gör det svårt att kunna prediktera temperaturen med någorlunda precision.
 
