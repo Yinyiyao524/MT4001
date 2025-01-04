@@ -3,9 +3,9 @@ title: "Laboration 3"
 author: "Yinyi Yao Esbjörn Runesson"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document:
     fig_caption: true
+  pdf_document: default
 ---
 
 # Sammanfattning
@@ -57,7 +57,7 @@ qqline(residual)
 ```
 
 
-Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda runt noll med ett systematiskt mönster, vilket tyder på att linearitetsantagandet inte är rimligt uppfyllt. Det finns även vissa tecken på varierande spridning vilket kan tyda på att homoscedasticiteten inte är uppfylld.  Q-Q-plottens residualer ligger nära den förväntade linjen för en normalfördelning, vilket indikerar att antagandet om normalfördelning är rimligt uppfyllt. Det finns dock mindre avvikelser i svansarna (outliers).
+Residualerna (skillnaden mellan observerade och förutsagda värden) är spridda runt noll med ett systematiskt mönster, vilket tyder på att homoscedasticitetsvillkoret inte är rimligt uppfyllt. Det finns även vissa tecken på varierande spridning vilket kan tyda på att homoscedasticiteten inte är uppfylld.  Q-Q-plottens residualer ligger nära den förväntade linjen för en normalfördelning, vilket indikerar att antagandet om normalfördelade residualer är rimligt uppfyllt. Det finns dock mindre avvikelser i svansarna (outliers).
 
 Slutsaterna: 
 
@@ -84,7 +84,20 @@ plot(df1$år, df1$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressi
 abline(modell1, col = "blue")
 ```
 
-Vi ser här att vi har skattningarna av intercept $\alpha = 1.2849781$ samt lutningskoefficient $\beta = -0.0008419$ och förutsättningarna för enkel linjär regression är ej bättre uppfyllda. Vi fortsätter nu med perioden 1930-1969
+Vi ser här att vi har skattningarna av intercept $\alpha = 1.2849781$ samt lutningskoefficient $\beta = -0.0008419$ och förutsättningarna för enkel linjär regression är ej bättre uppfyllda. Vi undersöker nu residualploten samt Q-Q-plot för perioden 1880-1929 för att kontrollera förutsättningarna för enkel linjär regression
+
+```{r,fig.cap='Residual- samt normalfördelningsplot för perioden 1880-1929'}
+par(mfrow=c(1,2))
+residual1 <- modell1$residuals
+plot(df1$år, residual1, xlab ="År", ylab="Residual", main = 'Residualplot för jordens medeltemperatur mellan 1880-1929')
+abline(a = 0, b = 0, lty = "dotted")
+
+qqnorm(residual1,main = 'Normalfördelningsplot för perioden 1880-1929',xlab = 'Normalfördelningens teoretiska kvantiler',ylab='Residualer')
+qqline(residual1)
+```
+
+
+Residualerna verkar vara slumpmässigt utspridda runt 0 vilket tyder på homoscedasticitet men vi ser i Q-Q-ploten att det finns avvikelser i början och slutet vilket tyder på att residualerna inte är normalfördelad. Vi fortsätter nu med perioden 1930-1969
 
 ```{r, fig.cap="Jordens medeltemperatur plottad mot år 1930-1969"}
 df2 <- subset(df, år >= 1930 & år <=1969)
@@ -94,7 +107,19 @@ plot(df2$år, df2$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressi
 abline(modell2, col = "blue")
 ```
 
-Vi har här skattningarna av intercept $\alpha = -0.9199713$ samt lutningskoefficient $\beta = 0.0004318$ och förutsättningarna för enkel linjär regression är ej bättre uppfyllda. Vi fortsätter nu med perioden 1970-2007
+Vi har här skattningarna av intercept $\alpha = -0.9199713$ samt lutningskoefficient $\beta = 0.0004318$ och förutsättningarna för enkel linjär regression är ej bättre uppfyllda. Vi undersöker nu residualploten samt Q-Q-plot för perioden 1930-1969 för att kontrollera förutsättningarna för enkel linjär regression
+
+```{r,fig.cap='Residual- samt normalfördelningsplot för perioden 1930-1969'}
+par(mfrow=c(1,2))
+residual2 <- modell2$residuals
+plot(df2$år, residual2, xlab ="År", ylab="Residual", main = 'Residualplot för jordens medeltemperatur mellan 1930-1969')
+abline(a = 0, b = 0, lty = "dotted")
+
+qqnorm(residual2,main = 'Normalfördelningsplot för perioden 1930-1969',xlab = 'Normalfördelningens teoretiska kvantiler',ylab='Residualer')
+qqline(residual2)
+```
+
+Residualerna verkar utspridda kring 0 utan systematiskt mönster vilket tyder på homoscedasticitet men vi ser i Q-Q-ploten att datan verkar avvika vilket tyder på att residualerna ej är normalfördelade. Vi fortsätter nu med perioden 1970-2007
 
 
 ```{r, fig.cap="Jordens medeltemperatur plottad mot år 1970-2007"}
@@ -105,7 +130,19 @@ plot(df3$år, df3$temperatur, xlab = "År", ylab = "Temperatur",main = 'Regressi
 abline(modell3, col = "blue")
 ```
 
-Vi har här skattningarna av intercept $\alpha = -34.627751$ samt lutningskoefficient $\beta = 0.017527$ och förutsättningarna för enkel linjär regression verkar här vara bättre uppfyllda. 
+Vi har här skattningarna av intercept $\alpha = -34.627751$ samt lutningskoefficient $\beta = 0.017527$ och förutsättningarna för enkel linjär regression verkar här vara bättre uppfyllda. Vi undersöker nu residualploten samt Q-Q-plot för perioden 1970-2007 för att kontrollera förutsättningarna för enkel linjär regression
+
+```{r,fig.cap='Residual- samt normalfördelningsplot för perioden 1970-2007'}
+par(mfrow=c(1,2))
+residual3 <- modell3$residuals
+plot(df3$år, residual3, xlab ="År", ylab="Residual", main = 'Residualplot för jordens medeltemperatur mellan 1970-2007')
+abline(a = 0, b = 0, lty = "dotted")
+
+qqnorm(residual3,main = 'Normalfördelningsplot för perioden 1970-2007',xlab = 'Normalfördelningens teoretiska kvantiler',ylab='Residualer')
+qqline(residual3)
+```
+
+Residualploten visar en slumpmässig spridning kring 0 vilket tyder på homoscedasticitet och Q-Q-plotens raka linje verkar följas ganska väl vilket tyder på att residualerna är normalfördelade. 
 
 2. Vi vill här testa hypotesen "Växthuseffekten är inget problem, det finns ingen bevisad trend mot ett varmare klimat" med signifikansnivå $\alpha = 0.05$ för perioden 1970-2007 och undersöka om testet bör vara ensidigt eller tvåsidigt, kopplingen mellan hypotesen och den anpassade modellen för perioden 1970-2007, konstruera vår nollhypotes samt alternativhypotes, sedan testa hypotesen med lämpligt test. Testet bör vara ensidigt eftersom alternativhypotesen motsvarar att lutningskoefficienten $\beta$ är positiv. Kopplingen mellan hypotesen ovan och vår anpassade modell för perioden åskådliggörs genom att regressionslinjen visar sig vara stigande vilket innebär att lutningskoefficienten $\beta$ är positiv vilket styrker antagandet att det finns en bevisad trend mot ett varmare klimat vilket motsäger hypotesen ovan att "Växthuseffekten är inget problem, det finns ingen bevisad trend mot ett varmare klimat." Vi har därmed följande nollhypotes och alternativhypotes
 
@@ -236,5 +273,10 @@ points(pred_year,y_actual,col ='blue',pch=18)
 legend('topleft',legend = c('Data för anpassad modell (1970-2007)','Regressionslinje','Prediktioner för 2008-2022','Prediktionsintervall','Egentliga värden för 2008-2022'),col = c('black','blue','pink','green','red'),pch=c(19,NA,19,NA,18),lty=c(NA,1,NA,2,NA),bty='n')
 ```
 
-Vi kan utifrån denna sluta oss till att regression verkar inte verkar vara en lämplig prediktionsmodell för vår data eftersom det förekommer flera outliers som är utanför prediktionsintervallet vilket ger en viss osäkerhet i vår prediktion. Utifrån observationerna i vårt diagram kan vi dra slutsatsen att modellen skulle kunna förbättras om den delades in i mindre intervall som fångar variationerna och trenderna bättre. Ett problem med att prediktera framtida temperaturer på detta sätt är att det kan förekomma osäkerhet som vi ser i vårt diagram finns det flera outliers i prediktionsintervallet som gör det svårt att kunna prediktera temperaturen med någorlunda precision.
+Vi kan utifrån diagrammet utläsa ett tydlig trend av temperaturökning där regressionslinjen stämmer ganska bra överens med observationer från året 1970 fram tills vi når prediktionsintervallet i perioden 2007-2022 då vi kan se att temperaturökningen är något högre än vad den linjära modellen förutsäger vilket visar på en viss systematisk underskattning av temperaturen i den senare tidsperioden. Vi kan utifrån denna sluta oss till att regression verkar verkar vara en lämplig prediktionsmodell för vår data eftersom regressionslinjen följer observationerna ganska väl i det givna intervallet bortsett från de avvikelser som syntes i prediktionsintervallet. Därför kan vi dra slutsatsen att linjär regression är en lämplig prediktionsmodell för vår data.
 
+Utifrån observationerna i vårt diagram kan vi dra slutsatsen att modellen skulle kunna förbättras om den delades in i mindre intervall som fångar variationerna och trenderna bättre. Ett annat sätt att förbättra modellen skulle vara att inkludera flera förklaringsvariabler vilket skulle ge en mer nyanserad modell.
+
+Ett problem med att prediktera framtida temperaturer på detta sätt är att linjära modeller förutsätter att de trender som fångas kommer fortsätta på liknande vis i framtiden vilket inte nödvändigtvis är fallet, som vi såg för vår prediktionsmodell så förekom det en systematisk underskattning av temperaturen i prediktionsintervallet vilket tyder på att den linjära modellen inte fångar tillräckligt väl de potentiella trenderna som uppstår i framtida tidsperioder. Ett annat problem kan vara bristen på förklaringsvariabler vilket leder till att komplexiteten i det som den linjära modellen ska fånga inte kan göras.
+
+Sammanfattningsvis visar vårt diagram att enkel linjär regression fungerar som relativ uppskattning av temperatutveckling men att den kan vara oförmögen att fånga kraftigare temperaturökningar under senare år eftersom lineariteten inte fångar det tillräckligt väl.
